@@ -154,4 +154,8 @@
 
 2017.07.19 `v1.1.9`
 
-- 增加对蜻蜓 FM 的支持 (resolve [#6](https
+- 增加对蜻蜓 FM 的支持 (resolve [#6](https://github.com/maicong/music/issues/6))
+
+2017.07.10 `v1.1.8`
+
+- 修复 api 请求接口问题
