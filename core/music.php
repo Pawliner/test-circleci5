@@ -79,3 +79,93 @@ function mc_song_urls($value, $type = 'query', $site = 'netease', $page = 1)
     if (!$value) {
         return;
     }
+    $query             = ('query' === $type) ? $value : '';
+    $songid            = ('songid' === $type || 'lrc' === $type) ? $value : '';
+    $radio_search_urls = [
+        'netease'            => [
+            'method'         => 'POST',
+            'url'            => 'http://music.163.com/api/linux/forward',
+            'referer'        => 'http://music.163.com/',
+            'proxy'          => false,
+            'body'           => encode_netease_data([
+                'method'     => 'POST',
+                'url'        => 'http://music.163.com/api/cloudsearch/pc',
+                'params'     => [
+                    's'      => $query,
+                    'type'   => 1,
+                    'offset' => $page * 10 - 10,
+                    'limit'  => 10
+                ]
+            ])
+        ],
+        '1ting'              => [
+            'method'         => 'GET',
+            'url'            => 'http://so.1ting.com/song/json',
+            'referer'        => 'http://h5.1ting.com/',
+            'proxy'          => false,
+            'body'           => [
+                'q'          => $query,
+                'page'       => $page,
+                'size'       => 10
+            ]
+        ],
+        'baidu'              => [
+            'method'         => 'GET',
+            'url'            => 'http://musicapi.qianqian.com/v1/restserver/ting',
+            'referer'        => 'http://music.baidu.com/',
+            'proxy'          => false,
+            'body'           => [
+                'method'    => 'baidu.ting.search.common',
+                'query'     => $query,
+                'format'    => 'json',
+                'page_no'   => $page,
+                'page_size' => 10
+            ]
+        ],
+        'kugou'              => [
+            'method'         => 'GET',
+            'url'            => MC_INTERNAL ?
+                'http://songsearch.kugou.com/song_search_v2' :
+                'http://mobilecdn.kugou.com/api/v3/search/song',
+            'referer'        => MC_INTERNAL ? 'http://www.kugou.com' : 'http://m.kugou.com',
+            'proxy'          => false,
+            'body'           => [
+                'keyword'    => $query,
+                'platform'   => 'WebFilter',
+                'format'     => 'json',
+                'page'       => $page,
+                'pagesize'   => 10
+            ]
+        ],
+        'kuwo'               => [
+            'method'         => 'GET',
+            'url'            => 'http://search.kuwo.cn/r.s',
+            'referer'        => 'http://player.kuwo.cn/webmusic/play',
+            'proxy'          => false,
+            'body'           => [
+                'all'        => $query,
+                'ft'         => 'music',
+                'itemset'    => 'web_2013',
+                'pn'         => $page - 1,
+                'rn'         => 10,
+                'rformat'    => 'json',
+                'encoding'   => 'utf8'
+            ]
+        ],
+        'qq'                 => [
+            'method'         => 'GET',
+            'url'            => 'http://c.y.qq.com/soso/fcgi-bin/search_for_qq_cp',
+            'referer'        => 'http://m.y.qq.com',
+            'proxy'          => false,
+            'body'           => [
+                'w'          => $query,
+                'p'          => $page,
+                'n'          => 10,
+                'format'     => 'json'
+            ],
+            'user-agent'     => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
+        ],
+        'xiami'              => [
+            'method'         => 'GET',
+            'url'            => 'http://api.xiami.com/web',
+            'referer'        => 'http://m.xiami.com',
