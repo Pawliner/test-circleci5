@@ -169,3 +169,75 @@ function mc_song_urls($value, $type = 'query', $site = 'netease', $page = 1)
             'method'         => 'GET',
             'url'            => 'http://api.xiami.com/web',
             'referer'        => 'http://m.xiami.com',
+            'proxy'          => false,
+            'body'           => [
+                'key'        => $query,
+                'v'          => '2.0',
+                'app_key'    => '1',
+                'r'          => 'search/songs',
+                'page'       => $page,
+                'limit'      => 10
+            ],
+            'user-agent'     => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
+        ],
+        '5singyc'            => [
+            'method'         => 'GET',
+            'url'            => 'http://goapi.5sing.kugou.com/search/search',
+            'referer'        => 'http://5sing.kugou.com/',
+            'proxy'          => false,
+            'body'           => [
+                'k'          => $query,
+                't'          => '0',
+                'filterType' => '1',
+                'ps'         => 10,
+                'pn'         => $page
+            ]
+        ],
+        '5singfc'            => [
+            'method'         => 'GET',
+            'url'            => 'http://goapi.5sing.kugou.com/search/search',
+            'referer'        => 'http://5sing.kugou.com/',
+            'proxy'          => false,
+            'body'           => [
+                'k'          => $query,
+                't'          => '0',
+                'filterType' => '2',
+                'ps'         => 10,
+                'pn'         => 1
+            ]
+        ],
+        'migu'               => [
+            'method'         => 'GET',
+            'url'            => 'http://m.10086.cn/migu/remoting/scr_search_tag',
+            'referer'        => 'http://m.10086.cn',
+            'proxy'          => false,
+            'body'           => [
+                'keyword'    => $query,
+                'type'       => '2',
+                'pgc'        => $page,
+                'rows'       => 10
+            ],
+            'user-agent'    => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
+        ],
+        'lizhi'              => [
+            'method'         => 'GET',
+            'url'            => 'http://m.lizhi.fm/api/search_audio/' . urlencode($query) . '/' . $page,
+            'referer'        => 'http://m.lizhi.fm',
+            'proxy'          => false,
+            'body'           => false,
+            'user-agent'     => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
+        ],
+        'qingting'           => [
+            'method'         => 'GET',
+            'url'            => 'http://i.qingting.fm/wapi/search',
+            'referer'        => 'http://www.qingting.fm',
+            'proxy'          => false,
+            'body'           => [
+                'k'          => $query,
+                'page'       => $page,
+                'pagesize'   => 10,
+                'include'    => 'program_ondemand',
+                'groups'     => 'program_ondemand'
+            ]
+        ],
+        'ximalaya'           => [
