@@ -241,3 +241,82 @@ function mc_song_urls($value, $type = 'query', $site = 'netease', $page = 1)
             ]
         ],
         'ximalaya'           => [
+            'method'         => 'GET',
+            'url'            => 'http://search.ximalaya.com/front/v1',
+            'referer'        => 'http://www.ximalaya.com',
+            'proxy'          => false,
+            'body'           => [
+                'kw'         => $query,
+                'core'       => 'all',
+                'page'       => $page,
+                'rows'       => 10,
+                'is_paid'    => false
+            ]
+        ],
+        'kg'                 => [
+            'method'         => 'GET',
+            'url'            => 'http://kg.qq.com/cgi/kg_ugc_get_homepage',
+            'referer'        => 'http://kg.qq.com',
+            'proxy'          => false,
+            'body'           => [
+                'format'     => 'json',
+                'type'       => 'get_ugc',
+                'inCharset'  => 'utf8',
+                'outCharset' => 'utf-8',
+                'share_uid'  => $query,
+                'start'      => $page,
+                'num'        => 10
+            ]
+        ]
+    ];
+    $radio_song_urls = [
+        'netease'           => [
+            'method'        => 'POST',
+            'url'           => 'http://music.163.com/api/linux/forward',
+            'referer'       => 'http://music.163.com/',
+            'proxy'         => false,
+            'body'          => encode_netease_data([
+                'method'    => 'GET',
+                'url'       => 'http://music.163.com/api/song/detail',
+                'params'    => [
+                  'id'      => $songid,
+                  'ids'     => '[' . $songid . ']'
+                ]
+            ])
+        ],
+        '1ting'             => [
+            'method'        => 'GET',
+            'url'           => 'http://h5.1ting.com/touch/api/song',
+            'referer'       => 'http://h5.1ting.com/#/song/' . $songid,
+            'proxy'         => false,
+            'body'          => [
+                'ids'       => $songid
+            ]
+        ],
+        'baidu'             => [
+            'method'        => 'GET',
+            'url'           => 'http://music.baidu.com/data/music/links',
+            'referer'       => 'music.baidu.com/song/' . $songid,
+            'proxy'         => false,
+            'body'          => [
+                'songIds'   => $songid
+            ]
+        ],
+        'kugou'             => [
+            'method'        => 'GET',
+            'url'           => 'http://m.kugou.com/app/i/getSongInfo.php',
+            'referer'       => 'http://m.kugou.com/play/info/' . $songid,
+            'proxy'         => false,
+            'body'          => [
+                'cmd'       => 'playInfo',
+                'hash'      => $songid
+            ],
+            'user-agent'    => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
+        ],
+        'kuwo'              => [
+            'method'        => 'GET',
+            'url'           => 'http://player.kuwo.cn/webmusic/st/getNewMuiseByRid',
+            'referer'       => 'http://player.kuwo.cn/webmusic/play',
+            'proxy'         => false,
+            'body'          => [
+                'rid'       => 'MUSIC_' . $songid
