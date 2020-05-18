@@ -320,3 +320,78 @@ function mc_song_urls($value, $type = 'query', $site = 'netease', $page = 1)
             'proxy'         => false,
             'body'          => [
                 'rid'       => 'MUSIC_' . $songid
+            ]
+        ],
+        'qq'                => [
+            'method'        => 'GET',
+            'url'           => 'http://c.y.qq.com/v8/fcg-bin/fcg_play_single_song.fcg',
+            'referer'       => 'http://m.y.qq.com',
+            'proxy'         => false,
+            'body'          => [
+                'songmid'   => $songid,
+                'format'    => 'json'
+            ],
+            'user-agent'    => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
+        ],
+        'xiami'             => [
+            'method'        => 'GET',
+            'url'           => 'http://www.xiami.com/song/playlist/id/' . $songid . '/type/0/cat/json',
+            'referer'       => 'http://www.xiami.com',
+            'proxy'         => false
+        ],
+        '5singyc'           => [
+            'method'        => 'GET',
+            'url'           => 'http://mobileapi.5sing.kugou.com/song/newget',
+            'referer'       => 'http://5sing.kugou.com/yc/' . $songid . '.html',
+            'proxy'         => false,
+            'body'          => [
+                'songid'    => $songid,
+                'songtype'  => 'yc'
+            ]
+        ],
+        '5singfc'           => [
+            'method'        => 'GET',
+            'url'           => 'http://mobileapi.5sing.kugou.com/song/newget',
+            'referer'       => 'http://5sing.kugou.com/fc/' . $songid . '.html',
+            'proxy'         => false,
+            'body'          => [
+                'songid'    => $songid,
+                'songtype'  => 'fc'
+            ]
+        ],
+        'migu'              => [
+            'method'        => 'GET',
+            'url'           => MC_INTERNAL ? 'http://music.migu.cn/v2/async/audioplayer/playurl/' . $songid : 'http://m.10086.cn/migu/remoting/cms_detail_tag',
+            'referer'       => 'http://m.10086.cn',
+            'proxy'         => false,
+            'body'          => MC_INTERNAL ? false : [
+                'cid'    => $songid
+            ],
+            'user-agent'    => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
+        ],
+        'lizhi'             => [
+            'method'        => 'GET',
+            'url'           => 'http://m.lizhi.fm/api/audios_with_radio',
+            'referer'       => 'http://m.lizhi.fm',
+            'proxy'         => false,
+            'body'          => false,
+            'user-agent'    => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
+        ],
+        'qingting'          => [
+            'method'        => 'GET',
+            'url'           => 'http://i.qingting.fm/wapi/channels/' . split_songid($songid, 0) . '/programs/' . split_songid($songid, 1),
+            'referer'       => 'http://www.qingting.fm',
+            'proxy'         => false,
+            'body'          => false
+        ],
+        'ximalaya'          => [
+            'method'        => 'GET',
+            'url'           => 'http://mobile.ximalaya.com/v1/track/ca/playpage/' . $songid,
+            'referer'       => 'http://www.ximalaya.com',
+            'proxy'         => false,
+            'body'          => false
+        ],
+        'kg'                => [
+            'method'        => 'GET',
+            'url'           => 'http://kg.qq.com/cgi/kg_ugc_getdetail',
+            'referer'       => 'http://kg.qq.com',
