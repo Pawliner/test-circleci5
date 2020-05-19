@@ -395,3 +395,87 @@ function mc_song_urls($value, $type = 'query', $site = 'netease', $page = 1)
             'method'        => 'GET',
             'url'           => 'http://kg.qq.com/cgi/kg_ugc_getdetail',
             'referer'       => 'http://kg.qq.com',
+            'proxy'         => false,
+            'body'          => [
+                'v'          => 4,
+                'format'     => 'json',
+                'inCharset'  => 'utf8',
+                'outCharset' => 'utf-8',
+                'shareid'    => $songid
+            ]
+        ]
+    ];
+    $radio_lrc_urls = [
+        'netease'           => [
+            'method'        => 'POST',
+            'url'           => 'http://music.163.com/api/linux/forward',
+            'referer'       => 'http://music.163.com/',
+            'proxy'         => false,
+            'body'          => encode_netease_data([
+                'method'    => 'GET',
+                'url'       => 'http://music.163.com/api/song/lyric',
+                'params'    => [
+                  'id' => $songid,
+                  'lv' => 1
+                ]
+            ])
+        ],
+        '1ting'             => [
+            'method'        => 'GET',
+            'url'           => 'http://www.1ting.com/api/geci/lrc/' . $songid,
+            'referer'       => 'http://www.1ting.com/geci' . $songid . '.html',
+            'proxy'         => false,
+            'body'          => false
+        ],
+        'baidu'             => [
+            'method'        => 'GET',
+            'url'           => 'http://musicapi.qianqian.com/v1/restserver/ting',
+            'referer'       => 'http://music.baidu.com/song/' . $songid,
+            'proxy'         => false,
+            'body'          => [
+                'method' => 'baidu.ting.song.lry',
+                'songid' => $songid,
+                'format' => 'json'
+            ]
+        ],
+        'kugou'             => [
+            'method'        => 'GET',
+            'url'           => 'http://m.kugou.com/app/i/krc.php',
+            'referer'       => 'http://m.kugou.com/play/info/' . $songid,
+            'proxy'         => false,
+            'body'          => [
+                'cmd'        => 100,
+                'timelength' => 999999,
+                'hash'       => $songid
+            ],
+            'user-agent'    => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X] AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
+        ],
+        'kuwo'              => [
+            'method'        => 'GET',
+            'url'           => 'http://m.kuwo.cn/newh5/singles/songinfoandlrc',
+            'referer'       => 'http://m.kuwo.cn/yinyue/' . $songid,
+            'proxy'         => false,
+            'body'          => [
+                'musicId' => $songid
+            ],
+            'user-agent'    => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
+        ],
+        'qq'                => [
+            'method'        => 'GET',
+            'url'           => 'http://c.y.qq.com/lyric/fcgi-bin/fcg_query_lyric.fcg',
+            'referer'       => 'http://m.y.qq.com',
+            'proxy'         => false,
+            'body'          => [
+                'songmid'   => $songid,
+                'format'    => 'json',
+                'nobase64'  => 1,
+                'songtype'  => 0,
+                'callback'  => 'c'
+            ],
+            'user-agent'    => 'Mozilla/5.0 (iPhone; CPU iPhone OS 9_1 like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Version/9.0 Mobile/13B143 Safari/601.1'
+        ],
+        'xiami'             => [
+            'method'        => 'GET',
+            'url'           => $songid,
+            'referer'       => 'http://www.xiami.com',
+            'proxy'         => false
