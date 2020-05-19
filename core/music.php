@@ -479,3 +479,88 @@ function mc_song_urls($value, $type = 'query', $site = 'netease', $page = 1)
             'url'           => $songid,
             'referer'       => 'http://www.xiami.com',
             'proxy'         => false
+        ],
+        'kg'                => [
+            'method'        => 'GET',
+            'url'           => 'http://kg.qq.com/cgi/fcg_lyric',
+            'referer'       => 'http://kg.qq.com',
+            'proxy'         => false,
+            'body'          => [
+                'format'     => 'json',
+                'inCharset'  => 'utf8',
+                'outCharset' => 'utf-8',
+                'ksongmid'   => $songid
+            ]
+        ]
+    ];
+    if ('query' === $type) {
+        return $radio_search_urls[$site];
+    }
+    if ('songid' === $type) {
+        return $radio_song_urls[$site];
+    }
+    if ('lrc' === $type) {
+        return $radio_lrc_urls[$site];
+    }
+    return;
+}
+
+// 获取音频信息 - 关键词搜索
+function mc_get_song_by_name($query, $site = 'netease', $page = 1)
+{
+    if (!$query) {
+        return;
+    }
+    $radio_search_url = mc_song_urls($query, 'query', $site, $page);
+    if (empty($query) || empty($radio_search_url)) {
+        return;
+    }
+    $radio_result = mc_curl($radio_search_url);
+    if (empty($radio_result)) {
+        return;
+    }
+    $radio_songid = [];
+    switch ($site) {
+        case '1ting':
+            $radio_data = json_decode($radio_result, true);
+            if (empty($radio_data['results'])) {
+                return;
+            }
+            foreach ($radio_data['results'] as $val) {
+                $radio_songid[] = $val['song_id'];
+            }
+            break;
+        case 'baidu':
+            $radio_data = json_decode($radio_result, true);
+            if (empty($radio_data['song_list'])) {
+                return;
+            }
+            foreach ($radio_data['song_list'] as $val) {
+                $radio_songid[] = $val['song_id'];
+            }
+            break;
+        case 'kugou':
+            $radio_data = json_decode($radio_result, true);
+            $key = MC_INTERNAL ? 'lists' : 'info';
+            if (empty($radio_data['data']) || empty($radio_data['data'][$key])) {
+                return;
+            }
+            foreach ($radio_data['data'][$key] as $val) {
+                if (MC_INTERNAL) {
+                    $hash = $val['SQFileHash'];
+                    if (!str_replace('0', '', $hash)) {
+                        $hash = $val['FileHash'];
+                    }
+                } else {
+                    $hash = $val['320hash'] ?: $val['hash'];
+                }
+                $radio_songid[] = $hash;
+            }
+            break;
+        case 'kuwo':
+            $radio_result = str_replace('\'', '"', $radio_result);
+            $radio_data   = json_decode($radio_result, true);
+            if (empty($radio_data['abslist'])) {
+                return;
+            }
+            foreach ($radio_data['abslist'] as $val) {
