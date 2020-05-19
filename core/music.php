@@ -564,3 +564,92 @@ function mc_get_song_by_name($query, $site = 'netease', $page = 1)
                 return;
             }
             foreach ($radio_data['abslist'] as $val) {
+                $radio_songid[] = str_replace('MUSIC_', '', $val['MUSICRID']);
+            }
+            break;
+        case 'qq':
+            $radio_data = json_decode($radio_result, true);
+            if (empty($radio_data['data']) || empty($radio_data['data']['song']) || empty($radio_data['data']['song']['list'])) {
+                return;
+            }
+            foreach ($radio_data['data']['song']['list'] as $val) {
+                $radio_songid[] = $val['songmid'];
+            }
+            break;
+        case 'xiami':
+            $radio_data = json_decode($radio_result, true);
+            if (empty($radio_data['data']) || empty($radio_data['data']['songs'])) {
+                return;
+            }
+            foreach ($radio_data['data']['songs'] as $val) {
+                $radio_songid[] = $val['song_id'];
+            }
+            break;
+        case '5singyc':
+        case '5singfc':
+            $radio_data = json_decode($radio_result, true);
+            if (empty($radio_data['data']['songArray'])) {
+                return;
+            }
+            foreach ($radio_data['data']['songArray'] as $val) {
+                $radio_songid[] = $val['songId'];
+            }
+            break;
+        case 'migu':
+            $radio_data = json_decode($radio_result, true);
+            if (empty($radio_data['musics'])) {
+                return;
+            }
+            foreach ($radio_data['musics'] as $val) {
+                $radio_songid[] = $val['id'];
+            }
+            break;
+        case 'lizhi':
+            $radio_data = json_decode($radio_result, true);
+            if (empty($radio_data['audio']) || empty($radio_data['audio']['data'])) {
+                return;
+            }
+            foreach ($radio_data['audio']['data'] as $val) {
+                $radio_songid[] = $val['audio']['id'];
+            }
+            break;
+        case 'qingting':
+            $radio_data = json_decode($radio_result, true);
+            if (empty($radio_data['data']) || empty($radio_data['data']['data'])) {
+                return;
+            }
+            foreach ($radio_data['data']['data'][0]['doclist']['docs'] as $val) {
+                $radio_songid[] = $val['parent_id'].'|'.$val['id'];
+            }
+            break;
+        case 'ximalaya':
+            $radio_data = json_decode($radio_result, true);
+            if (empty($radio_data['track']) || empty($radio_data['track']['docs'])) {
+                return;
+            }
+            foreach ($radio_data['track']['docs'] as $val) {
+                if (!$val['is_paid']) { // 过滤付费的
+                    $radio_songid[] = $val['id'];
+                }
+            }
+            break;
+        case 'kg':
+            $radio_data = json_decode($radio_result, true);
+            if (empty($radio_data['data']['ugclist'])) {
+                return;
+            }
+            foreach ($radio_data['data']['ugclist'] as $val) {
+                $radio_songid[] = $val['shareid'];
+            }
+            break;
+        case 'netease':
+        default:
+            $radio_data = json_decode($radio_result, true);
+            if (empty($radio_data['result']) || empty($radio_data['result']['songs'])) {
+                return;
+            }
+            foreach ($radio_data['result']['songs'] as $val) {
+                $radio_songid[] = $val['id'];
+            }
+            break;
+    }
