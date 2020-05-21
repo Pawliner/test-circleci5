@@ -653,3 +653,67 @@ function mc_get_song_by_name($query, $site = 'netease', $page = 1)
             }
             break;
     }
+    return mc_get_song_by_id($radio_songid, $site, true);
+}
+
+// 获取音频信息 - 歌曲ID
+function mc_get_song_by_id($songid, $site = 'netease', $multi = false)
+{
+    if (empty($songid) || empty($site)) {
+        return;
+    }
+    $radio_song_urls = [];
+    $site_allow_multiple = [
+        'netease',
+        '1ting',
+        'baidu',
+        'qq',
+        'xiami',
+        'lizhi'
+    ];
+    if ($multi) {
+        if (!is_array($songid)) {
+            return;
+        }
+        if (in_array($site, $site_allow_multiple, true)) {
+            $radio_song_urls[] = mc_song_urls(implode(',', $songid), 'songid', $site);
+        } else {
+            foreach ($songid as $key => $val) {
+                $radio_song_urls[] = mc_song_urls($val, 'songid', $site);
+            }
+        }
+    } else {
+        $radio_song_urls[] = mc_song_urls($songid, 'songid', $site);
+    }
+    if (empty($radio_song_urls) || !array_key_exists(0, $radio_song_urls)) {
+        return;
+    }
+    $radio_result = [];
+    foreach ($radio_song_urls as $key => $val) {
+        $radio_result[] = mc_curl($val);
+    }
+    if (empty($radio_result) || !array_key_exists(0, $radio_result)) {
+        return;
+    }
+    $radio_songs = [];
+    switch ($site) {
+        case '1ting':
+            foreach ($radio_result as $val) {
+                $radio_data             = json_decode($val, true);
+                if (!empty($radio_data)) {
+                    foreach ($radio_data as $value) {
+                        $radio_song_id  = $value['song_id'];
+                        $radio_lrc_urls = mc_song_urls($radio_song_id, 'lrc', $site);
+                        if ($radio_lrc_urls) {
+                            $radio_lrc  = mc_curl($radio_lrc_urls);
+                        }
+                        $radio_songs[]  = [
+                            'type'   => '1ting',
+                            'link'   => 'http://www.1ting.com/player/6c/player_' . $radio_song_id . '.html',
+                            'songid' => $radio_song_id,
+                            'title'  => $value['song_name'],
+                            'author' => $value['singer_name'],
+                            'lrc'    => $radio_lrc,
+                            'url'    => 'http://h5.1ting.com/file?url=' . str_replace('.wma', '.mp3', $value['song_filepath']),
+                            'pic'    => 'http://img.store.sogou.com/net/a/link?&appid=100520102&w=500&h=500&url=' . $value['album_cover']
+                        ];
