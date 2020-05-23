@@ -717,3 +717,79 @@ function mc_get_song_by_id($songid, $site = 'netease', $multi = false)
                             'url'    => 'http://h5.1ting.com/file?url=' . str_replace('.wma', '.mp3', $value['song_filepath']),
                             'pic'    => 'http://img.store.sogou.com/net/a/link?&appid=100520102&w=500&h=500&url=' . $value['album_cover']
                         ];
+                    }
+                }
+            }
+            break;
+        case 'baidu':
+            foreach ($radio_result as $val) {
+                $radio_json             = json_decode($val, true);
+                $radio_data             = $radio_json['data']['songList'];
+                if (!empty($radio_data)) {
+                    foreach ($radio_data as $value) {
+                        $radio_song_id  = $value['songId'];
+                        $radio_lrc_urls = mc_song_urls($radio_song_id, 'lrc', $site);
+                        if ($radio_lrc_urls) {
+                            $radio_lrc  = json_decode(mc_curl($radio_lrc_urls), true);
+                        }
+                        $radio_songs[]  = [
+                            'type'   => 'baidu',
+                            'link'   => 'http://music.baidu.com/song/' . $radio_song_id,
+                            'songid' => $radio_song_id,
+                            'title'  => $value['songName'],
+                            'author' => $value['artistName'],
+                            'lrc'    => $radio_lrc['lrcContent'],
+                            'url'    => str_replace(
+                                [
+                                    'yinyueshiting.baidu.com',
+                                    'zhangmenshiting.baidu.com',
+                                    'zhangmenshiting.qianqian.com'
+                                ],
+                                'gss0.bdstatic.com/y0s1hSulBw92lNKgpU_Z2jR7b2w6buu',
+                                $value['songLink']
+                            ),
+                            'pic'    => $value['songPicBig']
+                        ];
+                    }
+                }
+            }
+            break;
+        case 'kugou':
+            foreach ($radio_result as $val) {
+                $radio_data           = json_decode($val, true);
+                if (!empty($radio_data)) {
+                    if (!$radio_data['url']) {
+                        if (count($radio_result) === 1) {
+                            $radio_songs      = [
+                                'error' => $radio_data['privilege'] ? '源站反馈此音频需要付费' : '找不到可用的播放地址',
+                                'code' => 403
+                            ];
+                            break;
+                        }
+                        // 过滤无效的
+                        continue;
+                    }
+                    $radio_song_id    = $radio_data['hash'];
+                    $radio_song_album = str_replace('{size}', '150', $radio_data['album_img']);
+                    $radio_song_img   = str_replace('{size}', '150', $radio_data['imgUrl']);
+                    $radio_lrc_urls   = mc_song_urls($radio_song_id, 'lrc', $site);
+                    if ($radio_lrc_urls) {
+                        $radio_lrc    = mc_curl($radio_lrc_urls);
+                    }
+                    $radio_songs[]    = [
+                        'type'   => 'kugou',
+                        'link'   => 'http://www.kugou.com/song/#hash=' . $radio_song_id,
+                        'songid' => $radio_song_id,
+                        'title'  => $radio_data['songName'],
+                        'author' => $radio_data['singerName'],
+                        'lrc'    => $radio_lrc,
+                        'url'    => $radio_data['url'],
+                        'pic'    => $radio_song_album ?: $radio_song_img
+                    ];
+                }
+            }
+            break;
+        case 'kuwo':
+            foreach ($radio_result as $val) {
+                preg_match_all('/<([\w]+)>(.*?)<\/\\1>/i', $val, $radio_json);
+                if (!empty($radio_json[1]) && !empty($radio_json[2])) {
