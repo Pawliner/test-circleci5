@@ -793,3 +793,67 @@ function mc_get_song_by_id($songid, $site = 'netease', $multi = false)
             foreach ($radio_result as $val) {
                 preg_match_all('/<([\w]+)>(.*?)<\/\\1>/i', $val, $radio_json);
                 if (!empty($radio_json[1]) && !empty($radio_json[2])) {
+                    $radio_data             = [];
+                    foreach ($radio_json[1] as $key => $value) {
+                        $radio_data[$value] = $radio_json[2][$key];
+                    }
+                    $radio_song_id          = $radio_data['music_id'];
+                    $radio_lrc_urls         = mc_song_urls($radio_song_id, 'lrc', $site);
+                    if ($radio_lrc_urls) {
+                        $radio_lrc_info     = json_decode(mc_curl($radio_lrc_urls), true);
+                    }
+                    $radio_lrclist          = $radio_lrc_info['data']['lrclist'];
+                    $radio_songs[]          = [
+                        'type'   => 'kuwo',
+                        'link'   => 'http://www.kuwo.cn/yinyue/' . $radio_song_id,
+                        'songid' => $radio_song_id,
+                        'title'  => $radio_data['name'],
+                        'author' => $radio_data['singer'],
+                        'lrc'    => generate_kuwo_lrc($radio_lrclist),
+                        'url'    => 'http://' . $radio_data['mp3dl'] . '/resource/' . $radio_data['mp3path'],
+                        'pic'    => $radio_data['artist_pic']
+                    ];
+                }
+            }
+            break;
+        case 'qq':
+            $radio_vkey = json_decode(mc_curl([
+                'method'     => 'GET',
+                'url'        => 'http://base.music.qq.com/fcgi-bin/fcg_musicexpress.fcg',
+                'referer'    => 'http://y.qq.com',
+                'proxy'      => false,
+                'body'       => [
+                    'json'   => 3,
+                    'guid'   => 5150825362,
+                    'format' => 'json'
+                ]
+            ]), true);
+            foreach ($radio_result as $val) {
+                $radio_json                  = json_decode($val, true);
+                $radio_data                  = $radio_json['data'];
+                $radio_url                   = $radio_json['url'];
+                if (!empty($radio_data) && !empty($radio_url)) {
+                    foreach ($radio_data as $value) {
+                        $radio_song_id       = $value['mid'];
+                        $radio_authors       = [];
+                        foreach ($value['singer'] as $singer) {
+                            $radio_authors[] = $singer['title'];
+                        }
+                        $radio_author        = implode(',', $radio_authors);
+                        $radio_lrc_urls      = mc_song_urls($radio_song_id, 'lrc', $site);
+                        if ($radio_lrc_urls) {
+                            $radio_lrc       = jsonp2json(mc_curl($radio_lrc_urls));
+                        }
+                        $radio_music         = 'http://' . str_replace('ws', 'dl', $radio_url[$value['id']]);
+                        if (!empty($radio_vkey['key'])) {
+                            $radio_music     = generate_qqmusic_url(
+                                $radio_song_id,
+                                $radio_vkey['key']
+                            ) ?: $radio_music;
+                        }
+                        $radio_album_id      = $value['album']['mid'];
+                        $radio_songs[]       = [
+                            'type'   => 'qq',
+                            'link'   => 'http://y.qq.com/n/yqq/song/' . $radio_song_id . '.html',
+                            'songid' => $radio_song_id,
+                            'title'  => $value['title'],
