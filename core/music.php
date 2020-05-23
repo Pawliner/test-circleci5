@@ -857,3 +857,74 @@ function mc_get_song_by_id($songid, $site = 'netease', $multi = false)
                             'link'   => 'http://y.qq.com/n/yqq/song/' . $radio_song_id . '.html',
                             'songid' => $radio_song_id,
                             'title'  => $value['title'],
+                            'author' => $radio_author,
+                            'lrc'    => str_decode($radio_lrc['lyric']),
+                            'url'    => $radio_music,
+                            'pic'    => 'http://y.gtimg.cn/music/photo_new/T002R300x300M000' . $radio_album_id . '.jpg'
+                        ];
+                    }
+                }
+            }
+            break;
+        case 'xiami':
+            foreach ($radio_result as $val) {
+                $radio_json                 = json_decode($val, true);
+                $radio_data                 = $radio_json['data']['trackList'];
+                if (!empty($radio_data)) {
+                    foreach ($radio_data as $value) {
+                        $radio_lrc          = '';
+                        $radio_song_id      = $value['songId'];
+                        if ($value['lyric']) {
+                            $radio_lrc_urls = mc_song_urls($value['lyric'], 'lrc', $site);
+                            if ($radio_lrc_urls) {
+                                $radio_lrc  = mc_curl($radio_lrc_urls);
+                            }
+                        }
+                        $radio_songs[]      = [
+                            'type'   => 'xiami',
+                            'link'   => 'http://www.xiami.com/song/' . $radio_song_id,
+                            'songid' => $radio_song_id,
+                            'title'  => $value['songName'],
+                            'author' => $value['singers'],
+                            'lrc'    => $radio_lrc,
+                            'url'    => decode_xiami_location($value['location']),
+                            'pic'    => $value['album_pic']
+                        ];
+                    }
+                } else {
+                    if ($radio_json['message']) {
+                        $radio_songs        = [
+                            'error' => $radio_json['message'],
+                            'code' => 403
+                        ];
+                        break;
+                    }
+                }
+            }
+            break;
+        case '5singyc':
+        case '5singfc':
+            foreach ($radio_result as $val) {
+                $radio_json        = json_decode($val, true);
+                $radio_data        = $radio_json['data'];
+                if (!empty($radio_data)) {
+                    $radio_song_id = $radio_data['ID'];
+                    $radio_songs[] = [
+                        'type'   => $site,
+                        'link'   => 'http://5sing.kugou.com/'.$radio_data['SK'] . '/' . $radio_song_id . '.html',
+                        'songid' => $radio_song_id,
+                        'title'  => $radio_data['SN'],
+                        'author' => $radio_data['user']['NN'],
+                        'lrc'    => $radio_data['dynamicWords'],
+                        'url'    => $radio_data['KL'],
+                        'pic'    => $radio_data['user']['I']
+                    ];
+                }
+            }
+            break;
+        case 'migu':
+            foreach ($radio_result as $val) {
+                if (MC_INTERNAL) {
+                    $radio_data = json_decode($val, true);
+                    if (!empty($radio_data)) {
+                        $radio_song_id       = $radio_data['musicId'];
