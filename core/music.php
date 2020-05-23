@@ -928,3 +928,77 @@ function mc_get_song_by_id($songid, $site = 'netease', $multi = false)
                     $radio_data = json_decode($val, true);
                     if (!empty($radio_data)) {
                         $radio_song_id       = $radio_data['musicId'];
+                        $radio_authors       = [];
+                        foreach ($radio_data['artistInfoList'] as $author) {
+                            $radio_authors[] = $author['artistName'];
+                        }
+                        $radio_author        = implode(',', $radio_authors);
+                        $radio_songs[] = [
+                            'type'   => 'migu',
+                            'link'   => 'http://music.migu.cn/v2/music/song/' . $radio_song_id,
+                            'songid' => $radio_song_id,
+                            'title'  => $radio_data['musicName'],
+                            'author' => $radio_author,
+                            'lrc'    => $radio_data['dynamicLyric'],
+                            'url'    => $radio_data['songAuditionUrl'],
+                            'pic'    => $radio_data['smallPic']
+                        ];
+                    }
+                } else {
+                    $radio_json = json_decode($val, true);
+                    $radio_data = $radio_json['data'];
+                    if (!empty($radio_data)) {
+                        $radio_song_id = $radio_data['songId'];
+                        $radio_author  = implode(',', $radio_data['singerName']);
+                        $radio_songs[] = [
+                            'type'   => 'migu',
+                            'link'   => 'http://music.migu.cn/v2/music/song/' . $radio_song_id,
+                            'songid' => $radio_song_id,
+                            'title'  => $radio_data['songName'],
+                            'author' => $radio_author,
+                            'lrc'    => $radio_data['lyricLrc'],
+                            'url'    => $radio_data['listenUrl'] ?: $radio_data['sst']['listenUrl'],
+                            'pic'    => $radio_data['picL']
+                        ];
+                    }
+                }
+            }
+            break;
+        case 'lizhi':
+            foreach ($radio_result as $val) {
+                $radio_data            = json_decode($val, true);
+                if (!empty($radio_data)) {
+                    foreach ($radio_data as $value) {
+                        $radio_song_id = $value['audio']['id'];
+                        $radio_streams = [
+                            'method'  => 'GET',
+                            'url'     => 'http://www.lizhi.fm/media/url/' . $radio_song_id,
+                            'referer' => 'http://www.lizhi.fm',
+                            'proxy'   => false,
+                            'body'    => false
+                        ];
+                        $radio_info = json_decode(mc_curl($radio_streams), true);
+                        $radio_songs[] = [
+                            'type'   => 'lizhi',
+                            'link'   => 'http://www.lizhi.fm/' . $value['radio']['band'] . '/' . $radio_song_id,
+                            'songid' => $radio_song_id,
+                            'title'  => $value['audio']['name'],
+                            'author' => $value['radio']['name'],
+                            'lrc'    => '',
+                            'url'    => $radio_info ? $radio_info['data']['url'] : null,
+                            'pic'    => 'http://m.lizhi.fm/radio_cover/' . $value['radio']['cover']
+                        ];
+                    }
+                }
+            }
+            break;
+        case 'qingting':
+            foreach ($radio_result as $val) {
+                $radio_json           = json_decode($val, true);
+                $radio_data           = $radio_json['data'];
+                if (!empty($radio_data)) {
+                    $radio_channels   = [
+                        'method'  => 'GET',
+                        'url'     => 'http://i.qingting.fm/wapi/channels/' . $radio_data['channel_id'],
+                        'referer' => 'http://www.qingting.fm',
+                        'proxy'   => false,
