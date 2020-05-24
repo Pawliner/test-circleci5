@@ -1002,3 +1002,81 @@ function mc_get_song_by_id($songid, $site = 'netease', $multi = false)
                         'url'     => 'http://i.qingting.fm/wapi/channels/' . $radio_data['channel_id'],
                         'referer' => 'http://www.qingting.fm',
                         'proxy'   => false,
+                        'body'    => false
+                    ];
+                    $radio_info       = json_decode(mc_curl($radio_channels), true);
+                    if (!empty($radio_info) && !empty($radio_info['data'])) {
+                        $radio_author = $radio_info['data']['name'];
+                        $radio_pic    = $radio_info['data']['img_url'];
+                    }
+                    $radio_songs[]    = [
+                        'type'   => 'qingting',
+                        'link'   => 'http://www.qingting.fm/channels/' . $radio_data['channel_id'] . '/programs/' . $radio_data['id'],
+                        'songid' => $radio_data['channel_id'] . '|' . $radio_data['id'],
+                        'title'  => $radio_data['name'],
+                        'author' => $radio_author,
+                        'lrc'    => '',
+                        'url'    => 'http://od.qingting.fm/' . $radio_data['file_path'],
+                        'pic'    => $radio_pic
+                    ];
+                }
+            }
+            break;
+        case 'ximalaya':
+            foreach ($radio_result as $val) {
+                $radio_json        = json_decode($val, true);
+                $radio_data        = $radio_json['trackInfo'];
+                $radio_user        = $radio_json['userInfo'];
+                if (!empty($radio_data) && !empty($radio_user)) {
+                    if ($radio_data['isPaid']) {
+                        $radio_songs = [
+                            'error' => '源站反馈此音频需要付费',
+                            'code' => 403
+                        ];
+                        break;
+                    }
+                    $radio_songs[] = [
+                        'type'   => 'ximalaya',
+                        'link'   => 'http://www.ximalaya.com/' . $radio_data['uid'] . '/sound/' . $radio_data['trackId'],
+                        'songid' => $radio_data['trackId'],
+                        'title'  => $radio_data['title'],
+                        'author' => $radio_user['nickname'],
+                        'lrc'    => '',
+                        'url'    => $radio_data['playUrl64'],
+                        'pic'    => $radio_data['coverLarge']
+                    ];
+                }
+            }
+            break;
+        case 'kg':
+            foreach ($radio_result as $key => $val) {
+                $radio_json        = json_decode($val, true);
+                $radio_data        = $radio_json['data'];
+                if (!empty($radio_data)) {
+                    $radio_song_id      = is_array($songid) ? $songid[$key] : $songid;
+                    $radio_lrc_urls     = mc_song_urls($radio_data['ksong_mid'], 'lrc', $site);
+                    if ($radio_lrc_urls) {
+                        $radio_lrc_info = json_decode(mc_curl($radio_lrc_urls), true);
+                    }
+                    $radio_songs[] = [
+                        'type'   => 'kg',
+                        'link'   => 'https://kg.qq.com/node/play?s=' . $radio_song_id . '&shareuid='. $radio_data['uid'],
+                        'songid' => $radio_song_id,
+                        'title'  => $radio_data['song_name'],
+                        'author' => $radio_data['nick'],
+                        'lrc'    => $radio_lrc_info['data']['lyric'],
+                        'url'    => $radio_data['playurl'],
+                        'pic'    => $radio_data['cover']
+                    ];
+                }
+            }
+        break;
+        case 'netease':
+        default:
+            if (MC_INTERNAL) {
+                $radio_streams                   = [
+                    'method'      => 'POST',
+                    'url'         => 'http://music.163.com/api/linux/forward',
+                    'referer'     => 'http://music.163.com/',
+                    'proxy'       => false,
+                    'body'        => encode_netease_data([
