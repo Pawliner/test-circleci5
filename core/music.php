@@ -1080,3 +1080,73 @@ function mc_get_song_by_id($songid, $site = 'netease', $multi = false)
                     'referer'     => 'http://music.163.com/',
                     'proxy'       => false,
                     'body'        => encode_netease_data([
+                        'method'  => 'POST',
+                        'url'     => 'http://music.163.com/api/song/enhance/player/url',
+                        'params'  => [
+                            'ids' => is_array($songid) ? $songid : [$songid],
+                            'br'  => 320000,
+                        ]
+                    ])
+                ];
+                $radio_info                      = json_decode(mc_curl($radio_streams), true);
+                $radio_urls                      = [];
+                if (!empty($radio_info['data'])) {
+                    foreach ($radio_info['data'] as $val) {
+                        $radio_urls[$val['id']]  = $val['url'];
+                    }
+                }
+            }
+            foreach ($radio_result as $val) {
+                $radio_json                  = json_decode($val, true);
+                $radio_data                  = $radio_json['songs'];
+                if (!empty($radio_data)) {
+                    foreach ($radio_data as $value) {
+                        $radio_song_id       = $value['id'];
+                        $radio_authors       = [];
+                        foreach ($value['artists'] as $key => $val) {
+                            $radio_authors[] = $val['name'];
+                        }
+                        $radio_author        = implode(',', $radio_authors);
+                        $radio_lrc_urls      = mc_song_urls($radio_song_id, 'lrc', $site);
+                        if ($radio_lrc_urls) {
+                            $radio_lrc       = json_decode(mc_curl($radio_lrc_urls), true);
+                        }
+                        $radio_songs[]       = [
+                            'type'   => 'netease',
+                            'link'   => 'http://music.163.com/#/song?id=' . $radio_song_id,
+                            'songid' => $radio_song_id,
+                            'title'  => $value['name'],
+                            'author' => $radio_author,
+                            'lrc'    => !empty($radio_lrc['lrc']) ? $radio_lrc['lrc']['lyric'] : '',
+                            'url'    => MC_INTERNAL ? $radio_urls[$radio_song_id] : 'http://music.163.com/song/media/outer/url?id=' . $radio_song_id . '.mp3',
+                            'pic'    => $value['album']['picUrl'] . '?param=300x300'
+                        ];
+                    }
+                }
+            }
+            break;
+    }
+    return !empty($radio_songs) ? $radio_songs : '';
+}
+
+// 获取音频信息 - url
+function mc_get_song_by_url($url)
+{
+    preg_match('/music\.163\.com\/(#(\/m)?|m)\/song(\?id=|\/)(\d+)/i', $url, $match_netease);
+    preg_match('/(www|m)\.1ting\.com\/(player\/b6\/player_|#\/song\/)(\d+)/i', $url, $match_1ting);
+    preg_match('/music\.baidu\.com\/song\/(\d+)/i', $url, $match_baidu);
+    preg_match('/(m|www)\.kugou\.com\/(play\/info\/|song\/\#hash\=)([a-z0-9]+)/i', $url, $match_kugou);
+    preg_match('/www\.kuwo\.cn\/(yinyue|my)\/(\d+)/i', $url, $match_kuwo);
+    preg_match('/(y\.qq\.com\/n\/yqq\/song\/|data\.music\.qq\.com\/playsong\.html\?songmid=)([a-zA-Z0-9]+)/i', $url, $match_qq);
+    preg_match('/(www|m)\.xiami\.com\/song\/([a-zA-Z0-9]+)/i', $url, $match_xiami);
+    preg_match('/5sing\.kugou\.com\/(m\/detail\/|)yc(-|\/)(\d+)/i', $url, $match_5singyc);
+    preg_match('/5sing\.kugou\.com\/(m\/detail\/|)fc(-|\/)(\d+)/i', $url, $match_5singfc);
+    preg_match('/music\.migu\.cn(\/(#|v2\/music))?\/song\/(\d+)/i', $url, $match_migu);
+    preg_match('/(www|m)\.lizhi\.fm\/(\d+)\/(\d+)/i', $url, $match_lizhi);
+    preg_match('/(www|m)\.qingting\.fm\/channels\/(\d+)\/programs\/(\d+)/i', $url, $match_qingting);
+    preg_match('/(www|m)\.ximalaya\.com\/(\d+)\/sound\/(\d+)/i', $url, $match_ximalaya);
+    preg_match('/kg\d?\.qq\.com\/(node\/)?play\?s=([a-zA-Z0-9_-]+)/i', $url, $match_kg_id);
+    preg_match('/kg\d?\.qq\.com\/(node\/)?personal\?uid=([a-z0-9_-]+)/i', $url, $match_kg_uid);
+    if (!empty($match_netease)) {
+        $songid   = $match_netease[4];
+        $songtype = 'netease';
