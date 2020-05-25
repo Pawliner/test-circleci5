@@ -1150,3 +1150,82 @@ function mc_get_song_by_url($url)
     if (!empty($match_netease)) {
         $songid   = $match_netease[4];
         $songtype = 'netease';
+    } elseif (!empty($match_1ting)) {
+        $songid   = $match_1ting[3];
+        $songtype = '1ting';
+    } elseif (!empty($match_baidu)) {
+        $songid   = $match_baidu[1];
+        $songtype = 'baidu';
+    } elseif (!empty($match_kugou)) {
+        $songid   = $match_kugou[3];
+        $songtype = 'kugou';
+    } elseif (!empty($match_kuwo)) {
+        $songid   = $match_kuwo[2];
+        $songtype = 'kuwo';
+    } elseif (!empty($match_qq)) {
+        $songid   = $match_qq[2];
+        $songtype = 'qq';
+    } elseif (!empty($match_xiami)) {
+        $songid   = $match_xiami[2];
+        $songtype = 'xiami';
+    } elseif (!empty($match_5singyc)) {
+        $songid   = $match_5singyc[3];
+        $songtype = '5singyc';
+    } elseif (!empty($match_5singfc)) {
+        $songid   = $match_5singfc[3];
+        $songtype = '5singfc';
+    } elseif (!empty($match_migu)) {
+        $songid   = $match_migu[3];
+        $songtype = 'migu';
+    } elseif (!empty($match_lizhi)) {
+        $songid   = $match_lizhi[3];
+        $songtype = 'lizhi';
+    } elseif (!empty($match_qingting)) {
+        $songid   = $match_qingting[2].'|'.$match_qingting[3];
+        $songtype = 'qingting';
+    } elseif (!empty($match_ximalaya)) {
+        $songid   = $match_ximalaya[3];
+        $songtype = 'ximalaya';
+    }  elseif (!empty($match_kg_id)) {
+        $songid   = $match_kg_id[2];
+        $songtype = 'kg';
+    }  elseif (!empty($match_kg_uid)) {
+        return mc_get_song_by_name($match_kg_uid[2], 'kg');
+    } else {
+        return;
+    }
+    return mc_get_song_by_id($songid, $songtype);
+}
+
+// 解密虾米 location
+function decode_xiami_location($location)
+{
+    $location     = trim($location);
+    $result       = [];
+    $line         = intval($location[0]);
+    $locLen       = strlen($location);
+    $rows         = intval(($locLen - 1) / $line);
+    $extra        = ($locLen - 1) % $line;
+    $location     = substr($location, 1);
+    for ($i       = 0; $i < $extra; ++$i) {
+        $start    = ($rows + 1) * $i;
+        $end      = ($rows + 1) * ($i + 1);
+        $result[] = substr($location, $start, $end - $start);
+    }
+    for ($i       = 0; $i < $line - $extra; ++$i) {
+        $start    = ($rows + 1) * $extra + ($rows * $i);
+        $end      = ($rows + 1) * $extra + ($rows * $i) + $rows;
+        $result[] = substr($location, $start, $end - $start);
+    }
+    $url          = '';
+    for ($i       = 0; $i < $rows + 1; ++$i) {
+        for ($j   = 0; $j < $line; ++$j) {
+            if ($j >= count($result) || $i >= strlen($result[$j])) {
+                continue;
+            }
+            $url .= $result[$j][$i];
+        }
+    }
+    $url          = urldecode($url);
+    $url          = str_replace('^', '0', $url);
+    return $url;
