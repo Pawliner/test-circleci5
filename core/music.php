@@ -1229,3 +1229,93 @@ function decode_xiami_location($location)
     $url          = urldecode($url);
     $url          = str_replace('^', '0', $url);
     return $url;
+}
+
+// 加密网易云音乐 api 参数
+function encode_netease_data($data)
+{
+    $_key     = '7246674226682325323F5E6544673A51';
+    $data     = json_encode($data);
+    if (function_exists('openssl_encrypt')) {
+        $data = openssl_encrypt($data, 'aes-128-ecb', pack('H*', $_key));
+    } else {
+        $_pad = 16 - (strlen($data) % 16);
+        $data = base64_encode(mcrypt_encrypt(
+            MCRYPT_RIJNDAEL_128,
+            hex2bin($_key),
+            $data.str_repeat(chr($_pad), $_pad),
+            MCRYPT_MODE_ECB
+        ));
+    }
+    $data     = strtoupper(bin2hex(base64_decode($data)));
+    return ['eparams' => $data];
+}
+
+// 分割 songid 并获取
+function split_songid($songid, $index = 0, $delimiter = '|') {
+    if (mb_strpos($songid, $delimiter, 0, 'UTF-8') > 0) {
+        $array = explode($delimiter, $songid);
+        if (count($array) > 1) {
+            return $array[$index];
+        }
+    }
+    return;
+}
+
+// 生成 QQ 音乐各品质链接
+function generate_qqmusic_url($songmid, $key) {
+    $quality = array('M800', 'M500', 'C400');
+    foreach ($quality as $value) {
+        $url = 'http://dl.stream.qqmusic.qq.com/' . $value . $songmid . '.mp3?vkey=' . $key . '&guid=5150825362&fromtag=1';
+        if (!mc_is_error($url)) {
+            return $url;
+        }
+    }
+}
+
+// 生成酷我音乐歌词
+function generate_kuwo_lrc($lrclist) {
+    if (!empty($lrclist)) {
+        $lrc = '';
+        foreach ($lrclist as $val) {
+            if ($val['time'] > 60) {
+                $time_exp = explode('.', round($val['time'] / 60, 4));
+                $minute = $time_exp[0] < 10 ? '0' . $time_exp[0] : $time_exp[0];
+                $sec = substr($time_exp[1], 0, 2) . '.' . substr($time_exp[1], 2, 2);
+                $time = '[' . $minute . ':' . $sec . ']';
+            } else {
+                $time = '[00:' . $val['time'] . ']';
+            }
+            $lrc .= $time . $val['lineLyric'] . "\n";
+        }
+        return $lrc;
+    }
+}
+
+// jsonp 转 json
+function jsonp2json($jsonp) {
+    if ($jsonp[0] !== '[' && $jsonp[0] !== '{') {
+        $jsonp = mb_substr($jsonp, mb_strpos($jsonp, '('));
+    }
+    $json = trim($jsonp, "();");
+    if ($json) {
+        return json_decode($json, true);
+    }
+}
+
+// 去除字符串转义
+function str_decode($str) {
+    $str = str_replace(['&#13;', '&#10;'], ['', "\n"], $str);
+    $str = html_entity_decode($str, ENT_QUOTES, 'UTF-8');
+    return $str;
+}
+
+// Server
+function server($key)
+{
+    return isset($_SERVER[$key]) ? $_SERVER[$key] : null;
+}
+
+// Post
+function post($key)
+{
