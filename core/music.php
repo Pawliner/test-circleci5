@@ -1319,3 +1319,17 @@ function server($key)
 // Post
 function post($key)
 {
+    return isset($_POST[$key]) ? $_POST[$key] : null;
+}
+
+// Response
+function response($data, $code = 200, $error = '')
+{
+    header('Content-type:text/json; charset=utf-8');
+    echo json_encode(array(
+        'data'  => $data,
+        'code'  => $code,
+        'error' => $error
+    ));
+    exit();
+}
