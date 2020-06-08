@@ -17,4 +17,5 @@ namespace Composer\Autoload;
  *
  *     $loader = new \Composer\Autoload\ClassLoader();
  *
- *    
+ *     // register classes with namespaces
+ *     $loader->add('Symfony\Co
