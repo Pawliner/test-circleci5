@@ -19,4 +19,7 @@ namespace Composer\Autoload;
  *
  *     // register classes with namespaces
  *     $loader->add('Symfony\Component', __DIR__.'/component');
- *     $loader->add('Symfony',     
+ *     $loader->add('Symfony',           __DIR__.'/framework');
+ *
+ *     // activate the autoloader
+ *  
