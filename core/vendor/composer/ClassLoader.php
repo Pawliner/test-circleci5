@@ -22,4 +22,6 @@ namespace Composer\Autoload;
  *     $loader->add('Symfony',           __DIR__.'/framework');
  *
  *     // activate the autoloader
- *  
+ *     $loader->register();
+ *
+ *     // to enable searching the include path (eg. for PEAR pa
