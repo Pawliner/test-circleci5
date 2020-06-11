@@ -24,4 +24,7 @@ namespace Composer\Autoload;
  *     // activate the autoloader
  *     $loader->register();
  *
- *     // to enable searching the include path (eg. for PEAR pa
+ *     // to enable searching the include path (eg. for PEAR packages)
+ *     $loader->setUseIncludePath(true);
+ *
+ * In this exampl
