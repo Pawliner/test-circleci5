@@ -27,4 +27,5 @@ namespace Composer\Autoload;
  *     // to enable searching the include path (eg. for PEAR packages)
  *     $loader->setUseIncludePath(true);
  *
- * In this exampl
+ * In this example, if you try to use a class in the Symfony\Component
+ * n
