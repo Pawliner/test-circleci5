@@ -28,4 +28,4 @@ namespace Composer\Autoload;
  *     $loader->setUseIncludePath(true);
  *
  * In this example, if you try to use a class in the Symfony\Component
- * n
+ * namespace or one of its children (Symfony\Component\Console for instanc
