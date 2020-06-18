@@ -33,4 +33,6 @@ namespace Composer\Autoload;
  * directory, and it will then fallback to the framework/ directory if not
  * found before giving up.
  *
- * This class is loose
+ * This class is loosely based on the Symfony UniversalClassLoader.
+ *
+ * @author Fabien Potencier <fabien@s
