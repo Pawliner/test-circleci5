@@ -35,4 +35,6 @@ namespace Composer\Autoload;
  *
  * This class is loosely based on the Symfony UniversalClassLoader.
  *
- * @author Fabien Potencier <fabien@s
+ * @author Fabien Potencier <fabien@symfony.com>
+ * @author Jordi Boggiano <j.boggiano@seld.be>
+ * @s
