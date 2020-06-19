@@ -40,3 +40,7 @@ namespace Composer\Autoload;
  * @see    http://www.php-fig.org/psr/psr-0/
  * @see    http://www.php-fig.org/psr/psr-4/
  */
+class ClassLoader
+{
+    // PSR-4
+    private $prefixLengthsPsr4 = array()
