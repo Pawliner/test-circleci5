@@ -43,4 +43,6 @@ namespace Composer\Autoload;
 class ClassLoader
 {
     // PSR-4
-    private $prefixLengthsPsr4 = array()
+    private $prefixLengthsPsr4 = array();
+    private $prefixDirsPsr4 = array();
+    private $fallbackDirsPsr4 = a
