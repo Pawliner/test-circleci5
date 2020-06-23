@@ -52,4 +52,6 @@ class ClassLoader
     private $fallbackDirsPsr0 = array();
 
     private $useIncludePath = false;
-    private $clas
+    private $classMap = array();
+    private $classMapAuthoritative = false;
+    pr
