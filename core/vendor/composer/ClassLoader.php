@@ -49,4 +49,7 @@ class ClassLoader
 
     // PSR-0
     private $prefixesPsr0 = array();
-    private $fall
+    private $fallbackDirsPsr0 = array();
+
+    private $useIncludePath = false;
+    private $clas
