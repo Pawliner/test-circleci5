@@ -45,4 +45,8 @@ class ClassLoader
     // PSR-4
     private $prefixLengthsPsr4 = array();
     private $prefixDirsPsr4 = array();
-    private $fallbackDirsPsr4 = a
+    private $fallbackDirsPsr4 = array();
+
+    // PSR-0
+    private $prefixesPsr0 = array();
+    private $fall
