@@ -57,4 +57,6 @@ class ClassLoader
     private $missingClasses = array();
     private $apcuPrefix;
 
-  
+    public function getPrefixes()
+    {
+        if (!empty($this->prefixesPs
