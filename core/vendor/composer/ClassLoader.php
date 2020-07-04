@@ -71,4 +71,9 @@ class ClassLoader
         return $this->prefixDirsPsr4;
     }
 
-    public function getFallba
+    public function getFallbackDirs()
+    {
+        return $this->fallbackDirsPsr0;
+    }
+
+    public function getFal
