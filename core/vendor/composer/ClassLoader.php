@@ -66,4 +66,9 @@ class ClassLoader
         return array();
     }
 
-    public function getPrefix
+    public function getPrefixesPsr4()
+    {
+        return $this->prefixDirsPsr4;
+    }
+
+    public function getFallba
