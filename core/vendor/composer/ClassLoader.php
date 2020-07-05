@@ -76,4 +76,9 @@ class ClassLoader
         return $this->fallbackDirsPsr0;
     }
 
-    public function getFal
+    public function getFallbackDirsPsr4()
+    {
+        return $this->fallbackDirsPsr4;
+    }
+
+    public
