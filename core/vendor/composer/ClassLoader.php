@@ -81,4 +81,6 @@ class ClassLoader
         return $this->fallbackDirsPsr4;
     }
 
-    public
+    public function getClassMap()
+    {
+        return $this->classMap;
