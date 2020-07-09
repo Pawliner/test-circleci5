@@ -92,4 +92,5 @@ class ClassLoader
     public function addClassMap(array $classMap)
     {
         if ($this->classMap) {
-        
+            $this->classMap = array_merge($this->classMap, $classMap);
+      
