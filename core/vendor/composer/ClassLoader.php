@@ -100,4 +100,6 @@ class ClassLoader
 
     /**
      * Registers a set of PSR-0 directories for a given prefix, either
-     * appending or
+     * appending or prepending to the ones previously set for this prefix.
+     *
+     * @param string
