@@ -93,4 +93,9 @@ class ClassLoader
     {
         if ($this->classMap) {
             $this->classMap = array_merge($this->classMap, $classMap);
-      
+        } else {
+            $this->classMap = $classMap;
+        }
+    }
+
+    /**
