@@ -99,3 +99,5 @@ class ClassLoader
     }
 
     /**
+     * Registers a set of PSR-0 directories for a given prefix, either
+     * appending or
