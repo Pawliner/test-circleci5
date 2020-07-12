@@ -102,4 +102,5 @@ class ClassLoader
      * Registers a set of PSR-0 directories for a given prefix, either
      * appending or prepending to the ones previously set for this prefix.
      *
-     * @param string
+     * @param string       $prefix  The prefix
+     * @param array|string $paths   The PSR-0 root dir
