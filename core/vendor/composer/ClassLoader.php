@@ -103,4 +103,6 @@ class ClassLoader
      * appending or prepending to the ones previously set for this prefix.
      *
      * @param string       $prefix  The prefix
-     * @param array|string $paths   The PSR-0 root dir
+     * @param array|string $paths   The PSR-0 root directories
+     * @param bool         $prepend Whether to prepend the directories
+    
