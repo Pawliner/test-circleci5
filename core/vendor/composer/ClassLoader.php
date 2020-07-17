@@ -105,4 +105,7 @@ class ClassLoader
      * @param string       $prefix  The prefix
      * @param array|string $paths   The PSR-0 root directories
      * @param bool         $prepend Whether to prepend the directories
-    
+     */
+    public function add($prefix, $paths, $prepend = false)
+    {
+        if (!$pr
