@@ -108,4 +108,6 @@ class ClassLoader
      */
     public function add($prefix, $paths, $prepend = false)
     {
-        if (!$pr
+        if (!$prefix) {
+            if ($prepend) {
+                $this->fallbackDirsPsr0 = array
