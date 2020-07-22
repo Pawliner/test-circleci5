@@ -110,4 +110,6 @@ class ClassLoader
     {
         if (!$prefix) {
             if ($prepend) {
-                $this->fallbackDirsPsr0 = array
+                $this->fallbackDirsPsr0 = array_merge(
+                    (array) $paths,
+                    $this->fallbackDi
