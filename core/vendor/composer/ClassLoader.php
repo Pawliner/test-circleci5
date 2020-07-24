@@ -120,3 +120,8 @@ class ClassLoader
                     (array) $paths
                 );
             }
+
+            return;
+        }
+
+        $first = $prefix[0]
