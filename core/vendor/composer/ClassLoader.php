@@ -112,4 +112,7 @@ class ClassLoader
             if ($prepend) {
                 $this->fallbackDirsPsr0 = array_merge(
                     (array) $paths,
-                    $this->fallbackDi
+                    $this->fallbackDirsPsr0
+                );
+            } else {
+               
