@@ -115,4 +115,5 @@ class ClassLoader
                     $this->fallbackDirsPsr0
                 );
             } else {
-               
+                $this->fallbackDirsPsr0 = array_merge(
+                    $this->fallbackDirsPsr0,
