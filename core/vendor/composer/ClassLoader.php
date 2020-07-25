@@ -124,4 +124,6 @@ class ClassLoader
             return;
         }
 
-        $first = $prefix[0]
+        $first = $prefix[0];
+        if (!isset($this->prefixesPsr0[$first][$prefix])) {
+            
