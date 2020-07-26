@@ -128,4 +128,7 @@ class ClassLoader
         if (!isset($this->prefixesPsr0[$first][$prefix])) {
             $this->prefixesPsr0[$first][$prefix] = (array) $paths;
 
-            return
+            return;
+        }
+        if ($prepend) {
+            $this->pre
