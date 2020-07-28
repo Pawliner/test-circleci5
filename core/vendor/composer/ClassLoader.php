@@ -136,4 +136,5 @@ class ClassLoader
                 $this->prefixesPsr0[$first][$prefix]
             );
         } else {
-        
+            $this->prefixesPsr0[$first][$prefix] = array_merge(
+                $this
