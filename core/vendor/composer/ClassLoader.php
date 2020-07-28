@@ -131,4 +131,6 @@ class ClassLoader
             return;
         }
         if ($prepend) {
-            $this->pre
+            $this->prefixesPsr0[$first][$prefix] = array_merge(
+                (array) $paths,
+        
