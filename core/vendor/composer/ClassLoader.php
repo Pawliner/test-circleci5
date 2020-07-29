@@ -139,4 +139,9 @@ class ClassLoader
             $this->prefixesPsr0[$first][$prefix] = array_merge(
                 $this->prefixesPsr0[$first][$prefix],
                 (array) $paths
-            )
+            );
+        }
+    }
+
+    /**
+     * Registers a set of PSR-4 directories for a given 
