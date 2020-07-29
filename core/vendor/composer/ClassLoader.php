@@ -137,4 +137,6 @@ class ClassLoader
             );
         } else {
             $this->prefixesPsr0[$first][$prefix] = array_merge(
-                $this
+                $this->prefixesPsr0[$first][$prefix],
+                (array) $paths
+            )
