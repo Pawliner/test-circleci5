@@ -145,4 +145,6 @@ class ClassLoader
 
     /**
      * Registers a set of PSR-4 directories for a given namespace, either
-     * appending or prepending to the ones p
+     * appending or prepending to the ones previously set for this namespace.
+     *
+     * @param string       $prefix  
