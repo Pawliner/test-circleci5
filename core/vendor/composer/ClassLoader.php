@@ -149,4 +149,7 @@ class ClassLoader
      *
      * @param string       $prefix  The prefix/namespace, with trailing '\\'
      * @param array|string $paths   The PSR-4 base directories
-     * @param bool         $prepend Whether to pr
+     * @param bool         $prepend Whether to prepend the directories
+     *
+     * @throws \InvalidArgumentException
+   
