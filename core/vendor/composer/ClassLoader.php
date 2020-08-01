@@ -152,4 +152,5 @@ class ClassLoader
      * @param bool         $prepend Whether to prepend the directories
      *
      * @throws \InvalidArgumentException
-   
+     */
+    public function addPsr4($prefix, $paths, $prepend
