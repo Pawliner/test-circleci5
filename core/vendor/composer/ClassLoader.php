@@ -158,4 +158,5 @@ class ClassLoader
         if (!$prefix) {
             // Register directories for the root namespace.
             if ($prepend) {
-                $t
+                $this->fallbackDirsPsr4 = array_merge(
+                    (
