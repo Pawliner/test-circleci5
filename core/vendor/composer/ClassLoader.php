@@ -156,4 +156,6 @@ class ClassLoader
     public function addPsr4($prefix, $paths, $prepend = false)
     {
         if (!$prefix) {
-            // Register director
+            // Register directories for the root namespace.
+            if ($prepend) {
+                $t
