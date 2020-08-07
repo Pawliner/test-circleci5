@@ -159,4 +159,6 @@ class ClassLoader
             // Register directories for the root namespace.
             if ($prepend) {
                 $this->fallbackDirsPsr4 = array_merge(
-                    (
+                    (array) $paths,
+                    $this->fallbackDirsPsr4
+ 
