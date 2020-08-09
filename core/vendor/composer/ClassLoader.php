@@ -168,4 +168,5 @@ class ClassLoader
                     (array) $paths
                 );
             }
-  
+        } elseif (!isset($this->prefixDirsPsr4[$prefix])) {
+            // Reg
