@@ -169,4 +169,5 @@ class ClassLoader
                 );
             }
         } elseif (!isset($this->prefixDirsPsr4[$prefix])) {
-            // Reg
+            // Register directories for a new namespace.
+            $length = strlen($pre
