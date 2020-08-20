@@ -174,4 +174,5 @@ class ClassLoader
             if ('\\' !== $prefix[$length - 1]) {
                 throw new \InvalidArgumentException("A non-empty PSR-4 prefix must end with a namespace separator.");
             }
-            $this-
+            $this->prefixLengthsPsr4[$prefix[0]][$prefix] = $length;
+            $this->prefixDirsPs
