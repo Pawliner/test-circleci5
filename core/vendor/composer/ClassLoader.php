@@ -177,4 +177,5 @@ class ClassLoader
             $this->prefixLengthsPsr4[$prefix[0]][$prefix] = $length;
             $this->prefixDirsPsr4[$prefix] = (array) $paths;
         } elseif ($prepend) {
-        
+            // Prepend directories for an already registered namespace.
+            $this-
