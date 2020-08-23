@@ -182,4 +182,6 @@ class ClassLoader
                 (array) $paths,
                 $this->prefixDirsPsr4[$prefix]
             );
-        } else 
+        } else {
+            // Append directories for an already registered namespace.
+          
