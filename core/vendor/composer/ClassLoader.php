@@ -180,4 +180,6 @@ class ClassLoader
             // Prepend directories for an already registered namespace.
             $this->prefixDirsPsr4[$prefix] = array_merge(
                 (array) $paths,
-             
+                $this->prefixDirsPsr4[$prefix]
+            );
+        } else 
