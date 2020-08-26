@@ -187,4 +187,9 @@ class ClassLoader
             $this->prefixDirsPsr4[$prefix] = array_merge(
                 $this->prefixDirsPsr4[$prefix],
                 (array) $paths
-       
+            );
+        }
+    }
+
+    /**
+     * Registers a set of PSR-0 directories for a giv
