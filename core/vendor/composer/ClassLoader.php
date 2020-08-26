@@ -184,4 +184,5 @@ class ClassLoader
             );
         } else {
             // Append directories for an already registered namespace.
-          
+            $this->prefixDirsPsr4[$prefix] = array_merge(
+                $this->
