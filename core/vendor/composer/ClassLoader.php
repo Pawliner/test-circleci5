@@ -196,4 +196,6 @@ class ClassLoader
      * replacing any others previously set for this prefix.
      *
      * @param string       $prefix The prefix
-     * @param array|string $paths  The
+     * @param array|string $paths  The PSR-0 base directories
+     */
+    public function set($prefix, $paths
