@@ -203,4 +203,9 @@ class ClassLoader
         if (!$prefix) {
             $this->fallbackDirsPsr0 = (array) $paths;
         } else {
-            $this->prefixesPsr0[$prefix[0]][
+            $this->prefixesPsr0[$prefix[0]][$prefix] = (array) $paths;
+        }
+    }
+
+    /**
+     * Registers a set of PSR-
