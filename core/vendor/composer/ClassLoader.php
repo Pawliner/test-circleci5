@@ -208,4 +208,5 @@ class ClassLoader
     }
 
     /**
-     * Registers a set of PSR-
+     * Registers a set of PSR-4 directories for a given namespace,
+     * replacing any others previously se
