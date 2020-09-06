@@ -216,4 +216,7 @@ class ClassLoader
      *
      * @throws \InvalidArgumentException
      */
-    public 
+    public function setPsr4($prefix, $paths)
+    {
+        if (!$prefix) {
+            $this->fallbackDirs
