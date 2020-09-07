@@ -223,4 +223,4 @@ class ClassLoader
         } else {
             $length = strlen($prefix);
             if ('\\' !== $prefix[$length - 1]) {
-                throw new \In
+                throw new \InvalidArgumentException("A non-empty PSR-4 prefix must end with a nam
