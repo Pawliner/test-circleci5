@@ -231,4 +231,6 @@ class ClassLoader
     }
 
     /**
-     * Turns on searching the include pat
+     * Turns on searching the include path for class files.
+     *
+     * @param bool $useIncludePa
