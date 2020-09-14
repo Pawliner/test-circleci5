@@ -240,4 +240,5 @@ class ClassLoader
         $this->useIncludePath = $useIncludePath;
     }
 
- 
+    /**
+     * Can be used to check if the autoloader uses the include path 
