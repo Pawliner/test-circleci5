@@ -241,4 +241,9 @@ class ClassLoader
     }
 
     /**
-     * Can be used to check if the autoloader uses the include path 
+     * Can be used to check if the autoloader uses the include path to check
+     * for classes.
+     *
+     * @return bool
+     */
+    public
