@@ -246,4 +246,6 @@ class ClassLoader
      *
      * @return bool
      */
-    public
+    public function getUseIncludePath()
+    {
+        return $this->useInclud
