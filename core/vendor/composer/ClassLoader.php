@@ -248,4 +248,8 @@ class ClassLoader
      */
     public function getUseIncludePath()
     {
-        return $this->useInclud
+        return $this->useIncludePath;
+    }
+
+    /**
+     * Turns off searching the prefix and f
