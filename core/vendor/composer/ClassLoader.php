@@ -252,4 +252,5 @@ class ClassLoader
     }
 
     /**
-     * Turns off searching the prefix and f
+     * Turns off searching the prefix and fallback directories for classes
+     * that have not been registered w
