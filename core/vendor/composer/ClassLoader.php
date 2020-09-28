@@ -263,4 +263,8 @@ class ClassLoader
     }
 
     /**
-     * Should class lookup fail if not found 
+     * Should class lookup fail if not found in the current class map?
+     *
+     * @return bool
+     */
+    public function isClassM
