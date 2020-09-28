@@ -257,4 +257,6 @@ class ClassLoader
      *
      * @param bool $classMapAuthoritative
      */
-    public function setClassMapAuthoritative($classMapAuthorit
+    public function setClassMapAuthoritative($classMapAuthoritative)
+    {
+        $this->classMapAuthoritative = $classMapAuthor
