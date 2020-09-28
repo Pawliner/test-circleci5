@@ -259,4 +259,8 @@ class ClassLoader
      */
     public function setClassMapAuthoritative($classMapAuthoritative)
     {
-        $this->classMapAuthoritative = $classMapAuthor
+        $this->classMapAuthoritative = $classMapAuthoritative;
+    }
+
+    /**
+     * Should class lookup fail if not found 
