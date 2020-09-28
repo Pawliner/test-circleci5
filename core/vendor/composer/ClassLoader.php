@@ -277,4 +277,6 @@ class ClassLoader
      *
      * @param string|null $apcuPrefix
      */
-    pub
+    public function setApcuPrefix($apcuPrefix)
+    {
+        $this->ap
