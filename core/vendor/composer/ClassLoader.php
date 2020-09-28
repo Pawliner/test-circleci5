@@ -271,3 +271,6 @@ class ClassLoader
     {
         return $this->classMapAuthoritative;
     }
+
+    /**
+     * APCu prefix to use to cache found/not-found classes, if the e
