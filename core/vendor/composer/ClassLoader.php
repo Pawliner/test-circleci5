@@ -267,4 +267,7 @@ class ClassLoader
      *
      * @return bool
      */
-    public function isClassM
+    public function isClassMapAuthoritative()
+    {
+        return $this->classMapAuthoritative;
+    }
