@@ -255,4 +255,6 @@ class ClassLoader
      * Turns off searching the prefix and fallback directories for classes
      * that have not been registered with the class map.
      *
-     * @param bool $classMapAuthori
+     * @param bool $classMapAuthoritative
+     */
+    public function setClassMapAuthoritative($classMapAuthorit
