@@ -283,4 +283,6 @@ class ClassLoader
     }
 
     /**
-     * The APCu prefix in use, or null 
+     * The APCu prefix in use, or null if APCu caching is not enabled.
+     *
+     * @return string|null
