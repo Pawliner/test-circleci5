@@ -279,4 +279,4 @@ class ClassLoader
      */
     public function setApcuPrefix($apcuPrefix)
     {
-        $this->ap
+        $this->apcuPrefix = function_exists('apcu_fetch') && ini_get('apc.enabled'
