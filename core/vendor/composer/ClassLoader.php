@@ -286,3 +286,7 @@ class ClassLoader
      * The APCu prefix in use, or null if APCu caching is not enabled.
      *
      * @return string|null
+     */
+    public function getApcuPrefix()
+    {
+        return $th
