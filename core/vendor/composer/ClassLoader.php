@@ -293,4 +293,6 @@ class ClassLoader
     }
 
     /**
-     * Registers this instance as an au
+     * Registers this instance as an autoloader.
+     *
+     * @param bool $prepend Whether to prepend the autoloader
