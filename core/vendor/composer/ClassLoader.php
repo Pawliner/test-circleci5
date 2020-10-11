@@ -289,4 +289,8 @@ class ClassLoader
      */
     public function getApcuPrefix()
     {
-        return $th
+        return $this->apcuPrefix;
+    }
+
+    /**
+     * Registers this instance as an au
