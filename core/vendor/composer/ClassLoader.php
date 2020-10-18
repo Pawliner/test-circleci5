@@ -299,4 +299,9 @@ class ClassLoader
      */
     public function register($prepend = false)
     {
-        spl_autoload_register(array($this, 'loadClass'), true, $p
+        spl_autoload_register(array($this, 'loadClass'), true, $prepend);
+    }
+
+    /**
+     * Unregisters this instance as an autoloader.
+     */
