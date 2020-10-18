@@ -299,4 +299,4 @@ class ClassLoader
      */
     public function register($prepend = false)
     {
- 
+        spl_autoload_register(array($this, 'loadClass'), true, $p
