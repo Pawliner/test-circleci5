@@ -307,4 +307,8 @@ class ClassLoader
      */
     public function unregister()
     {
-        spl_autoload_unregiste
+        spl_autoload_unregister(array($this, 'loadClass'));
+    }
+
+    /**
+     * Loads the given class or interf
