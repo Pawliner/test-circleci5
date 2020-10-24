@@ -305,3 +305,6 @@ class ClassLoader
     /**
      * Unregisters this instance as an autoloader.
      */
+    public function unregister()
+    {
+        spl_autoload_unregiste
