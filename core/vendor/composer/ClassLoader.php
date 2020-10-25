@@ -314,3 +314,6 @@ class ClassLoader
      * Loads the given class or interface.
      *
      * @param  string    $class The name of the class
+     * @return bool|null True if loaded, null otherwise
+     */
+  
