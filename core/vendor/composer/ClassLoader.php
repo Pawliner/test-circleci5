@@ -311,4 +311,6 @@ class ClassLoader
     }
 
     /**
-     * Loads the given class or interf
+     * Loads the given class or interface.
+     *
+     * @param  string    $class The name of the class
