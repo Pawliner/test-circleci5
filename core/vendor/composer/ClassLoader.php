@@ -316,4 +316,6 @@ class ClassLoader
      * @param  string    $class The name of the class
      * @return bool|null True if loaded, null otherwise
      */
-  
+    public function loadClass($class)
+    {
+        if ($file 
