@@ -331,4 +331,7 @@ class ClassLoader
      * @param string $class The name of the class
      *
      * @return string|false The path if found, false otherwise
- 
+     */
+    public function findFile($class)
+    {
+        // class map
