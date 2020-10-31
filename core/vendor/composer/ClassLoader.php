@@ -328,4 +328,7 @@ class ClassLoader
     /**
      * Finds the path to the file where the class is defined.
      *
-     * @param string $class The name of the c
+     * @param string $class The name of the class
+     *
+     * @return string|false The path if found, false otherwise
+ 
