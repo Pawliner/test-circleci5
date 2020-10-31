@@ -321,4 +321,9 @@ class ClassLoader
         if ($file = $this->findFile($class)) {
             includeFile($file);
 
-            retur
+            return true;
+        }
+    }
+
+    /**
+     * Finds the path to the file where the 
