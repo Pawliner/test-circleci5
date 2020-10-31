@@ -334,4 +334,6 @@ class ClassLoader
      */
     public function findFile($class)
     {
-        // class map
+        // class map lookup
+        if (isset($this->classMap[$class])) {
+            
