@@ -338,4 +338,5 @@ class ClassLoader
         if (isset($this->classMap[$class])) {
             return $this->classMap[$class];
         }
-        if ($this->cl
+        if ($this->classMapAuthoritative || isset($this->missingClasses[$class])) {
+     
