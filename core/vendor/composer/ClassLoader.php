@@ -339,4 +339,7 @@ class ClassLoader
             return $this->classMap[$class];
         }
         if ($this->classMapAuthoritative || isset($this->missingClasses[$class])) {
-     
+            return false;
+        }
+        if (null !== $this->apcuPrefix) {
+         
