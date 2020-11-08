@@ -344,3 +344,8 @@ class ClassLoader
         if (null !== $this->apcuPrefix) {
             $file = apcu_fetch($this->apcuPrefix.$class, $hit);
             if ($hit) {
+                return $file;
+            }
+        }
+
+        $file = $this->f
