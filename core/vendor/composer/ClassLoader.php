@@ -348,4 +348,6 @@ class ClassLoader
             }
         }
 
-        $file = $this->f
+        $file = $this->findFileWithExtension($class, '.php');
+
+        // Search for Hack files if we are 
