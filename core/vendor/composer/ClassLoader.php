@@ -352,4 +352,7 @@ class ClassLoader
 
         // Search for Hack files if we are running on HHVM
         if (false === $file && defined('HHVM_VERSION')) {
-            $fi
+            $file = $this->findFileWithExtension($class, '.hh');
+        }
+
+        if (null 
