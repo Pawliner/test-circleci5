@@ -356,4 +356,8 @@ class ClassLoader
         }
 
         if (null !== $this->apcuPrefix) {
-            apcu_add($this->a
+            apcu_add($this->apcuPrefix.$class, $file);
+        }
+
+        if (false === $file) {
+ 
