@@ -355,4 +355,5 @@ class ClassLoader
             $file = $this->findFileWithExtension($class, '.hh');
         }
 
-        if (null 
+        if (null !== $this->apcuPrefix) {
+            apcu_add($this->a
