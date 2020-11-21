@@ -361,4 +361,10 @@ class ClassLoader
 
         if (false === $file) {
             // Remember that this class does not exist.
-            $this-
+            $this->missingClasses[$class] = true;
+        }
+
+        return $file;
+    }
+
+    private
