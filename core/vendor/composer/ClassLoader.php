@@ -367,4 +367,6 @@ class ClassLoader
         return $file;
     }
 
-    private
+    private function findFileWithExtension($class, $ext)
+    {
+        // PSR
