@@ -375,4 +375,6 @@ class ClassLoader
         $first = $class[0];
         if (isset($this->prefixLengthsPsr4[$first])) {
             $subPath = $class;
-            while (false !== $lastPos = strrpos($s
+            while (false !== $lastPos = strrpos($subPath, '\\')) {
+                $subPath = substr($subPath, 0, $lastPos);
+ 
