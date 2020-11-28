@@ -377,4 +377,5 @@ class ClassLoader
             $subPath = $class;
             while (false !== $lastPos = strrpos($subPath, '\\')) {
                 $subPath = substr($subPath, 0, $lastPos);
- 
+                $search = $subPath.'\\';
+                if (iss
