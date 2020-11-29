@@ -380,4 +380,5 @@ class ClassLoader
                 $search = $subPath.'\\';
                 if (isset($this->prefixDirsPsr4[$search])) {
                     foreach ($this->prefixDirsPsr4[$search] as $dir) {
-                        $length = $this->p
+                        $length = $this->prefixLengthsPsr4[$first][$search];
+                        if (file_ex
