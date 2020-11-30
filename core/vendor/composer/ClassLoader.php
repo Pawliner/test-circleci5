@@ -381,4 +381,5 @@ class ClassLoader
                 if (isset($this->prefixDirsPsr4[$search])) {
                     foreach ($this->prefixDirsPsr4[$search] as $dir) {
                         $length = $this->prefixLengthsPsr4[$first][$search];
-                        if (file_ex
+                        if (file_exists($file = $dir . DIRECTORY_SEPARATOR . substr($logicalPathPsr4, $length))) {
+      
