@@ -384,4 +384,10 @@ class ClassLoader
                         if (file_exists($file = $dir . DIRECTORY_SEPARATOR . substr($logicalPathPsr4, $length))) {
                             return $file;
                         }
-              
+                    }
+                }
+            }
+        }
+
+        // PSR-4 fallback dirs
+        foreac
