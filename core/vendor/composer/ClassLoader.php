@@ -390,4 +390,5 @@ class ClassLoader
         }
 
         // PSR-4 fallback dirs
-        foreac
+        foreach ($this->fallbackDirsPsr4 as $dir) {
+            if (file_exists($file
