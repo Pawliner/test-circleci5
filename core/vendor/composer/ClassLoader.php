@@ -397,4 +397,5 @@ class ClassLoader
         }
 
         // PSR-0 lookup
-        if (false !==
+        if (false !== $pos = strrpos($class, '\\')) {
+            // namespaced clas
