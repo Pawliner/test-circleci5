@@ -398,4 +398,5 @@ class ClassLoader
 
         // PSR-0 lookup
         if (false !== $pos = strrpos($class, '\\')) {
-            // namespaced clas
+            // namespaced class name
+            $logicalPathPsr0 = substr($logicalPathPsr4, 0, $pos 
