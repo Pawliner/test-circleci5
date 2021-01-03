@@ -413,4 +413,9 @@ class ClassLoader
                         if (file_exists($file = $dir . DIRECTORY_SEPARATOR . $logicalPathPsr0)) {
                             return $file;
                         }
-  
+                    }
+                }
+            }
+        }
+
+        // PSR-0 fallback d
