@@ -418,4 +418,6 @@ class ClassLoader
             }
         }
 
-        // PSR-0 fallback d
+        // PSR-0 fallback dirs
+        foreach ($this->fallbackDirsPsr0 as $dir) {
+            if (file_exists($file = $
