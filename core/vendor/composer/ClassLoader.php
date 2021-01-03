@@ -426,4 +426,4 @@ class ClassLoader
         }
 
         // PSR-0 include paths.
-        if ($this->useI
+        if ($this->useIncludePath && $file = stream_resolve_include_path($logicalP
