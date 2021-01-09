@@ -434,3 +434,7 @@ class ClassLoader
     }
 }
 
+/**
+ * Scope isolated include.
+ *
+ * Prevents access to $this/self from incl
