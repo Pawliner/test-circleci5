@@ -15,4 +15,8 @@ class ComposerAutoloaderInit82c91dc3983c1c2ce8fc9d4263765de4
 
     public static function getLoader()
     {
-        if (null !== self:
+        if (null !== self::$loader) {
+            return self::$loader;
+        }
+
+        spl_autol
