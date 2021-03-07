@@ -19,4 +19,5 @@ class ComposerAutoloaderInit82c91dc3983c1c2ce8fc9d4263765de4
             return self::$loader;
         }
 
-        spl_autoload_register(array('ComposerAutoloaderInit82c91dc3983c1c2ce8fc9d4263765de4', 'loadCla
+        spl_autoload_register(array('ComposerAutoloaderInit82c91dc3983c1c2ce8fc9d4263765de4', 'loadClassLoader'), true, true);
+        self::$loader = $loader = new \Composer\Autol
