@@ -21,4 +21,6 @@ class ComposerAutoloaderInit82c91dc3983c1c2ce8fc9d4263765de4
 
         spl_autoload_register(array('ComposerAutoloaderInit82c91dc3983c1c2ce8fc9d4263765de4', 'loadClassLoader'), true, true);
         self::$loader = $loader = new \Composer\Autoload\ClassLoader();
-        spl_autoload_unregister(array('Co
+        spl_autoload_unregister(array('ComposerAutoloaderInit82c91dc3983c1c2ce8fc9d4263765de4', 'loadClassLoader'));
+
+  
