@@ -25,4 +25,6 @@ class ComposerAutoloaderInit82c91dc3983c1c2ce8fc9d4263765de4
 
         $useStaticLoader = PHP_VERSION_ID >= 50600 && !defined('HHVM_VERSION') && (!function_exists('zend_loader_file_encoded') || !zend_loader_file_encoded());
         if ($useStaticLoader) {
-            require_once __
+            require_once __DIR__ . '/autoload_static.php';
+
+            call_user_func(\Composer\Autoloa
