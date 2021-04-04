@@ -9,4 +9,9 @@ class ComposerStaticInit82c91dc3983c1c2ce8fc9d4263765de4
     public static $prefixLengthsPsr4 = array (
         'C' => 
         array (
-            'Cur
+            'Curl\\' => 5,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+       
