@@ -26,4 +26,6 @@ class ComposerStaticInit82c91dc3983c1c2ce8fc9d4263765de4
             $loader->prefixLengthsPsr4 = ComposerStaticInit82c91dc3983c1c2ce8fc9d4263765de4::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit82c91dc3983c1c2ce8fc9d4263765de4::$prefixDirsPsr4;
 
-        }, null, ClassLoader
+        }, null, ClassLoader::class);
+    }
+}
