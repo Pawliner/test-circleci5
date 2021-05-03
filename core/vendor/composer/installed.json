@@ -43,3 +43,20 @@
         "description": "PHP Curl Class makes it easy to send HTTP requests and integrate with web APIs.",
         "homepage": "https://github.com/php-curl-class/php-curl-class",
         "keywords": [
+            "api",
+            "class",
+            "client",
+            "curl",
+            "framework",
+            "http",
+            "http client",
+            "json",
+            "php",
+            "requests",
+            "rest",
+            "restful",
+            "web service",
+            "xml"
+        ]
+    }
+]
