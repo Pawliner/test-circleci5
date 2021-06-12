@@ -92,3 +92,64 @@ if ($curl->error) {
 var_dump($curl->requestHeaders);
 var_dump($curl->responseHeaders);
 ```
+
+```php
+$curl = new Curl();
+$curl->setOpt(CURLOPT_FOLLOWLOCATION, true);
+$curl->get('https://shortn.example.com/bHbVsP');
+```
+
+```php
+$curl = new Curl();
+$curl->put('https://api.example.com/user/', array(
+    'first_name' => 'Zach',
+    'last_name' => 'Borboa',
+));
+```
+
+```php
+$curl = new Curl();
+$curl->patch('https://api.example.com/profile/', array(
+    'image' => '@path/to/file.jpg',
+));
+```
+
+```php
+$curl = new Curl();
+$curl->patch('https://api.example.com/profile/', array(
+    'image' => new CURLFile('path/to/file.jpg'),
+));
+```
+
+```php
+$curl = new Curl();
+$curl->delete('https://api.example.com/user/', array(
+    'id' => '1234',
+));
+```
+
+```php
+// Enable all supported encoding types and download a file.
+$curl = new Curl();
+$curl->setOpt(CURLOPT_ENCODING , '');
+$curl->download('https://www.example.com/file.bin', '/tmp/myfile.bin');
+```
+
+```php
+// Case-insensitive access to headers.
+$curl = new Curl();
+$curl->download('https://www.example.com/image.png', '/tmp/myimage.png');
+echo $curl->responseHeaders['Content-Type'] . "\n"; // image/png
+echo $curl->responseHeaders['CoNTeNT-TyPE'] . "\n"; // image/png
+```
+
+```php
+// Clean up.
+$curl->close();
+```
+
+```php
+// Example access to curl object.
+curl_set_opt($curl->curl, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1');
+curl_close($curl->curl);
+```
