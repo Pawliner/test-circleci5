@@ -234,3 +234,88 @@ Curl::setDefaultTimeout()
 Curl::setDefaultUserAgent()
 Curl::setDefaultXmlDecoder()
 Curl::setDigestAuthentication($username, $password = '')
+Curl::setHeader($key, $value)
+Curl::setHeaders($headers)
+Curl::setJsonDecoder($mixed)
+Curl::setMaxFilesize($bytes)
+Curl::setOpt($option, $value)
+Curl::setOpts($options)
+Curl::setPort($port)
+Curl::setReferer($referer)
+Curl::setReferrer($referrer)
+Curl::setRetry($mixed)
+Curl::setTimeout($seconds)
+Curl::setUrl($url, $mixed_data = '')
+Curl::setUserAgent($user_agent)
+Curl::setXmlDecoder($mixed)
+Curl::success($callback)
+Curl::unsetHeader($key)
+Curl::verbose($on = true, $output = STDERR)
+MultiCurl::__construct($base_url = null)
+MultiCurl::__destruct()
+MultiCurl::addCurl(Curl $curl)
+MultiCurl::addDelete($url, $query_parameters = array(), $data = array())
+MultiCurl::addDownload($url, $mixed_filename)
+MultiCurl::addGet($url, $data = array())
+MultiCurl::addHead($url, $data = array())
+MultiCurl::addOptions($url, $data = array())
+MultiCurl::addPatch($url, $data = array())
+MultiCurl::addPost($url, $data = array(), $follow_303_with_post = false)
+MultiCurl::addPut($url, $data = array())
+MultiCurl::addSearch($url, $data = array())
+MultiCurl::beforeSend($callback)
+MultiCurl::close()
+MultiCurl::complete($callback)
+MultiCurl::error($callback)
+MultiCurl::getOpt($option)
+MultiCurl::removeHeader($key)
+MultiCurl::setBasicAuthentication($username, $password = '')
+MultiCurl::setConcurrency($concurrency)
+MultiCurl::setConnectTimeout($seconds)
+MultiCurl::setCookie($key, $value)
+MultiCurl::setCookieFile($cookie_file)
+MultiCurl::setCookieJar($cookie_jar)
+MultiCurl::setCookieString($string)
+MultiCurl::setCookies($cookies)
+MultiCurl::setDigestAuthentication($username, $password = '')
+MultiCurl::setHeader($key, $value)
+MultiCurl::setHeaders($headers)
+MultiCurl::setJsonDecoder($mixed)
+MultiCurl::setOpt($option, $value)
+MultiCurl::setOpts($options)
+MultiCurl::setPort($port)
+MultiCurl::setReferer($referer)
+MultiCurl::setReferrer($referrer)
+MultiCurl::setRetry($mixed)
+MultiCurl::setTimeout($seconds)
+MultiCurl::setUrl($url)
+MultiCurl::setUserAgent($user_agent)
+MultiCurl::setXmlDecoder($mixed)
+MultiCurl::start()
+MultiCurl::success($callback)
+MultiCurl::unsetHeader($key)
+MultiCurl::verbose($on = true, $output = STDERR)
+```
+
+### Security
+
+See [SECURITY](https://github.com/php-curl-class/php-curl-class/blob/master/SECURITY.md) for security considerations.
+
+### Troubleshooting
+
+See [TROUBLESHOOTING](https://github.com/php-curl-class/php-curl-class/blob/master/TROUBLESHOOTING.md) for troubleshooting.
+
+### Run Tests
+
+To run tests:
+
+    $ git clone https://github.com/php-curl-class/php-curl-class.git
+    $ cd php-curl-class/
+    $ composer update
+    $ ./tests/run.sh
+
+### Contribute
+1. Check for open issues or open a new issue to start a discussion around a bug or feature.
+1. Fork the repository on GitHub to start making your changes.
+1. Write one or more tests for the new feature or that expose the bug.
+1. Make code changes to implement the feature or fix the bug.
