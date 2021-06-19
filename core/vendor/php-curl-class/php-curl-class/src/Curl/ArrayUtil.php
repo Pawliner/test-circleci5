@@ -12,4 +12,6 @@ class ArrayUtil
      *
      * @return boolean
      */
-    public static 
+    public static function is_array_assoc($array)
+    {
+        return (bool)count(array_filter(
