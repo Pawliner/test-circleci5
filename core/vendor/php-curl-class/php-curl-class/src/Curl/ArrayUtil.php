@@ -18,4 +18,8 @@ class ArrayUtil
     }
 
     /**
+     * Is Array Multidim
+     *
+     * @access public
+     * @param  $array
      *
