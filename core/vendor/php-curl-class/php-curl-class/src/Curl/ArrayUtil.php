@@ -7,4 +7,9 @@ class ArrayUtil
     /**
      * Is Array Assoc
      *
-     * @access publ
+     * @access public
+     * @param  $array
+     *
+     * @return boolean
+     */
+    public static 
