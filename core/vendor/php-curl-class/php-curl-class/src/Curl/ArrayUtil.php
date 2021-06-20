@@ -23,3 +23,8 @@ class ArrayUtil
      * @access public
      * @param  $array
      *
+     * @return boolean
+     */
+    public static function is_array_multidim($array)
+    {
+    
