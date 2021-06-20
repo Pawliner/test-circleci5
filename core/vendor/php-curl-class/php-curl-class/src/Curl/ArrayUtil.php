@@ -27,4 +27,8 @@ class ArrayUtil
      */
     public static function is_array_multidim($array)
     {
-    
+        if (!is_array($array)) {
+            return false;
+        }
+
+        
