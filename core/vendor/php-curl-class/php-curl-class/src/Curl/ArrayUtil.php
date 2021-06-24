@@ -35,4 +35,8 @@ class ArrayUtil
     }
 
     /**
-     * Array Flat
+     * Array Flatten Multidim
+     *
+     * @access public
+     * @param  $array
+     * @para
