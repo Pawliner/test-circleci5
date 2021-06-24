@@ -31,4 +31,8 @@ class ArrayUtil
             return false;
         }
 
-        
+        return (bool)count(array_filter($array, 'is_array'));
+    }
+
+    /**
+     * Array Flat
