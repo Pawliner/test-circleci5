@@ -39,4 +39,8 @@ class ArrayUtil
      *
      * @access public
      * @param  $array
-     * @para
+     * @param  $prefix
+     *
+     * @return array
+     */
+    public static function arra
