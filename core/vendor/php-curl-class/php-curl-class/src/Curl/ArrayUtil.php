@@ -43,4 +43,6 @@ class ArrayUtil
      *
      * @return array
      */
-    public static function arra
+    public static function array_flatten_multidim($array, $prefix = false)
+    {
+        $return = a
