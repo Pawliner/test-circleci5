@@ -45,4 +45,6 @@ class ArrayUtil
      */
     public static function array_flatten_multidim($array, $prefix = false)
     {
-        $return = a
+        $return = array();
+        if (is_array($array) || is_object($array)) {
+            if (empty(
