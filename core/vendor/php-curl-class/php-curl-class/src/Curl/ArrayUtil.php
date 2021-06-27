@@ -50,3 +50,5 @@ class ArrayUtil
             if (empty($array)) {
                 $return[$prefix] = '';
             } else {
+                foreach ($array as $key => $value) {
+            
