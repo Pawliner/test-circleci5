@@ -47,4 +47,6 @@ class ArrayUtil
     {
         $return = array();
         if (is_array($array) || is_object($array)) {
-            if (empty(
+            if (empty($array)) {
+                $return[$prefix] = '';
+            } else {
