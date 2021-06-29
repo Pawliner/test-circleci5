@@ -51,4 +51,5 @@ class ArrayUtil
                 $return[$prefix] = '';
             } else {
                 foreach ($array as $key => $value) {
-            
+                    if (is_scalar($value)) {
+                        if ($prefix) 
