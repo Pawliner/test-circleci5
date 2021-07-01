@@ -52,4 +52,5 @@ class ArrayUtil
             } else {
                 foreach ($array as $key => $value) {
                     if (is_scalar($value)) {
-                        if ($prefix) 
+                        if ($prefix) {
+                            $return[$prefix . '[' . $key . ']'] = $va
