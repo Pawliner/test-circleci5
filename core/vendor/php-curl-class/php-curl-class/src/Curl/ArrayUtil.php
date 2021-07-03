@@ -55,4 +55,7 @@ class ArrayUtil
                         if ($prefix) {
                             $return[$prefix . '[' . $key . ']'] = $value;
                         } else {
-                            $return[$key] = $valu
+                            $return[$key] = $value;
+                        }
+                    } else {
+                   
