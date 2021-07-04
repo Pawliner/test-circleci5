@@ -59,4 +59,6 @@ class ArrayUtil
                         }
                     } else {
                         if ($value instanceof \CURLFile) {
-                           
+                            $return[$key] = $value;
+                        } else {
+          
