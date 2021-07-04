@@ -62,4 +62,5 @@ class ArrayUtil
                             $return[$key] = $value;
                         } else {
                             $return = array_merge(
-                                $ret
+                                $return,
+                                self::array_flatten_mul
