@@ -61,4 +61,5 @@ class ArrayUtil
                         if ($value instanceof \CURLFile) {
                             $return[$key] = $value;
                         } else {
-          
+                            $return = array_merge(
+                                $ret
