@@ -65,4 +65,5 @@ class ArrayUtil
                                 $return,
                                 self::array_flatten_multidim(
                                     $value,
-                     
+                                    $prefix ? $prefix . '[' . $key . ']' : $key
+         
