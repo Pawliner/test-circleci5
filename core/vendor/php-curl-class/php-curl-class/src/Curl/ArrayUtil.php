@@ -63,4 +63,6 @@ class ArrayUtil
                         } else {
                             $return = array_merge(
                                 $return,
-                                self::array_flatten_mul
+                                self::array_flatten_multidim(
+                                    $value,
+                     
