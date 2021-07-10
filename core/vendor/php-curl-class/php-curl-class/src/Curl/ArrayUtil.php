@@ -66,4 +66,6 @@ class ArrayUtil
                                 self::array_flatten_multidim(
                                     $value,
                                     $prefix ? $prefix . '[' . $key . ']' : $key
-         
+                                )
+                            );
+        
