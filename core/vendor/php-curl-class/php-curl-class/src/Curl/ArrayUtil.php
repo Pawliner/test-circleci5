@@ -68,4 +68,8 @@ class ArrayUtil
                                     $prefix ? $prefix . '[' . $key . ']' : $key
                                 )
                             );
-        
+                        }
+                    }
+                }
+            }
+       
