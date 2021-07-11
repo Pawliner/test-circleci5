@@ -74,4 +74,7 @@ class ArrayUtil
             }
         } elseif ($array === null) {
             $return[$prefix] = $array;
-     
+        }
+        return $return;
+    }
+}
