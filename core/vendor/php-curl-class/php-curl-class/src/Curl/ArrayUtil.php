@@ -72,4 +72,6 @@ class ArrayUtil
                     }
                 }
             }
-       
+        } elseif ($array === null) {
+            $return[$prefix] = $array;
+     
