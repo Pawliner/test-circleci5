@@ -91,3 +91,79 @@ class CaseInsensitiveArray implements \ArrayAccess, \Countable, \Iterator
      * @access public
      */
     public function offsetExists($offset)
+    {
+        return (bool) array_key_exists(strtolower($offset), $this->data);
+    }
+
+    /**
+     * Offset Unset
+     *
+     * Unsets the specified offset. Converts the provided offset to lowercase,
+     * and unsets the Case-Sensitive Key, as well as the stored data.
+     *
+     * @see https://secure.php.net/manual/en/arrayaccess.offsetunset.php
+     *
+     * @param string $offset The offset to unset.
+     *
+     * @return void
+     *
+     * @access public
+     */
+    public function offsetUnset($offset)
+    {
+        $offsetlower = strtolower($offset);
+        unset($this->data[$offsetlower]);
+        unset($this->keys[$offsetlower]);
+    }
+
+    /**
+     * Offset Get
+     *
+     * Return the stored data at the provided offset. The offset is converted to
+     * lowercase and the lookup is done on the Data store directly.
+     *
+     * @see https://secure.php.net/manual/en/arrayaccess.offsetget.php
+     *
+     * @param string $offset Offset to lookup.
+     *
+     * @return mixed The data stored at the offset.
+     *
+     * @access public
+     */
+    public function offsetGet($offset)
+    {
+        $offsetlower = strtolower($offset);
+        return isset($this->data[$offsetlower]) ? $this->data[$offsetlower] : null;
+    }
+
+    /**
+     * Count
+     *
+     * @see https://secure.php.net/manual/en/countable.count.php
+     *
+     * @param void
+     *
+     * @return int The number of elements stored in the Array.
+     *
+     * @access public
+     */
+    public function count()
+    {
+        return (int) count($this->data);
+    }
+
+    /**
+     * Current
+     *
+     * @see https://secure.php.net/manual/en/iterator.current.php
+     *
+     * @param void
+     *
+     * @return mixed Data at the current position.
+     *
+     * @access public
+     */
+    public function current()
+    {
+        return current($this->data);
+    }
