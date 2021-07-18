@@ -167,3 +167,67 @@ class CaseInsensitiveArray implements \ArrayAccess, \Countable, \Iterator
     {
         return current($this->data);
     }
+
+    /**
+     * Next
+     *
+     * @see https://secure.php.net/manual/en/iterator.next.php
+     *
+     * @param void
+     *
+     * @return void
+     *
+     * @access public
+     */
+    public function next()
+    {
+        next($this->data);
+    }
+
+    /**
+     * Key
+     *
+     * @see https://secure.php.net/manual/en/iterator.key.php
+     *
+     * @param void
+     *
+     * @return mixed Case-Sensitive key at current position.
+     *
+     * @access public
+     */
+    public function key()
+    {
+        $key = key($this->data);
+        return isset($this->keys[$key]) ? $this->keys[$key] : $key;
+    }
+
+    /**
+     * Valid
+     *
+     * @see https://secure.php.net/manual/en/iterator.valid.php
+     *
+     * @return bool If the current position is valid.
+     *
+     * @access public
+     */
+    public function valid()
+    {
+        return (bool) !(key($this->data) === null);
+    }
+
+    /**
+     * Rewind
+     *
+     * @see https://secure.php.net/manual/en/iterator.rewind.php
+     *
+     * @param void
+     *
+     * @return void
+     *
+     * @access public
+     */
+    public function rewind()
+    {
+        reset($this->data);
+    }
+}
