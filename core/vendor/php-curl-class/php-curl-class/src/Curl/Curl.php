@@ -92,3 +92,94 @@ class Curl
     );
 
     private static $deferredProperties = array(
+        'effectiveUrl',
+        'rfc2616',
+        'rfc6265',
+        'totalTime',
+    );
+
+    /**
+     * Construct
+     *
+     * @access public
+     * @param  $base_url
+     * @throws \ErrorException
+     */
+    public function __construct($base_url = null)
+    {
+        if (!extension_loaded('curl')) {
+            throw new \ErrorException('cURL library is not loaded');
+        }
+
+        $this->curl = curl_init();
+        $this->id = uniqid('', true);
+        $this->setDefaultUserAgent();
+        $this->setDefaultTimeout();
+        $this->setOpt(CURLINFO_HEADER_OUT, true);
+
+        // Create a placeholder to temporarily store the header callback data.
+        $header_callback_data = new \stdClass();
+        $header_callback_data->rawResponseHeaders = '';
+        $header_callback_data->responseCookies = array();
+        $this->headerCallbackData = $header_callback_data;
+        $this->setOpt(CURLOPT_HEADERFUNCTION, $this->createHeaderCallback($header_callback_data));
+
+        $this->setOpt(CURLOPT_RETURNTRANSFER, true);
+        $this->headers = new CaseInsensitiveArray();
+        $this->setUrl($base_url);
+    }
+
+    /**
+     * Before Send
+     *
+     * @access public
+     * @param  $callback
+     */
+    public function beforeSend($callback)
+    {
+        $this->beforeSendFunction = $callback;
+    }
+
+    /**
+     * Build Post Data
+     *
+     * @access public
+     * @param  $data
+     *
+     * @return array|string
+     */
+    public function buildPostData($data)
+    {
+        $binary_data = false;
+        if (is_array($data)) {
+            // Return JSON-encoded string when the request's content-type is JSON.
+            if (isset($this->headers['Content-Type']) &&
+                preg_match($this->jsonPattern, $this->headers['Content-Type'])) {
+                $json_str = json_encode($data);
+                if (!($json_str === false)) {
+                    $data = $json_str;
+                }
+            } else {
+                // Manually build a single-dimensional array from a multi-dimensional array as using curl_setopt($ch,
+                // CURLOPT_POSTFIELDS, $data) doesn't correctly handle multi-dimensional arrays when files are
+                // referenced.
+                if (ArrayUtil::is_array_multidim($data)) {
+                    $data = ArrayUtil::array_flatten_multidim($data);
+                }
+
+                // Modify array values to ensure any referenced files are properly handled depending on the support of
+                // the @filename API or CURLFile usage. This also fixes the warning "curl_setopt(): The usage of the
+                // @filename API for file uploading is deprecated. Please use the CURLFile class instead". Ignore
+                // non-file values prefixed with the @ character.
+                foreach ($data as $key => $value) {
+                    if (is_string($value) && strpos($value, '@') === 0 && is_file(substr($value, 1))) {
+                        $binary_data = true;
+                        if (class_exists('CURLFile')) {
+                            $data[$key] = new \CURLFile(substr($value, 1));
+                        }
+                    } elseif ($value instanceof \CURLFile) {
+                        $binary_data = true;
+                    }
+                }
+            }
+        }
