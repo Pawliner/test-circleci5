@@ -183,3 +183,77 @@ class Curl
                 }
             }
         }
+
+        if (!$binary_data && (is_array($data) || is_object($data))) {
+            $data = http_build_query($data, '', '&');
+        }
+
+        return $data;
+    }
+
+    /**
+     * Call
+     *
+     * @access public
+     */
+    public function call()
+    {
+        $args = func_get_args();
+        $function = array_shift($args);
+        if (is_callable($function)) {
+            array_unshift($args, $this);
+            call_user_func_array($function, $args);
+        }
+    }
+
+    /**
+     * Close
+     *
+     * @access public
+     */
+    public function close()
+    {
+        if (is_resource($this->curl)) {
+            curl_close($this->curl);
+        }
+        $this->options = null;
+        $this->jsonDecoder = null;
+        $this->jsonDecoderArgs = null;
+        $this->xmlDecoder = null;
+        $this->defaultDecoder = null;
+    }
+
+    /**
+     * Complete
+     *
+     * @access public
+     * @param  $callback
+     */
+    public function complete($callback)
+    {
+        $this->completeFunction = $callback;
+    }
+
+    /**
+     * Progress
+     *
+     * @access public
+     * @param  $callback
+     */
+    public function progress($callback)
+    {
+        $this->setOpt(CURLOPT_PROGRESSFUNCTION, $callback);
+        $this->setOpt(CURLOPT_NOPROGRESS, false);
+    }
+
+    /**
+     * Delete
+     *
+     * @access public
+     * @param  $url
+     * @param  $query_parameters
+     * @param  $data
+     *
+     * @return mixed
+     */
+    public function delete($url, $query_parameters = array(), $data = array())
