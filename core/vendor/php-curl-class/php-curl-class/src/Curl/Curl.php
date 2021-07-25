@@ -257,3 +257,74 @@ class Curl
      * @return mixed
      */
     public function delete($url, $query_parameters = array(), $data = array())
+    {
+        if (is_array($url)) {
+            $data = $query_parameters;
+            $query_parameters = $url;
+            $url = (string)$this->url;
+        }
+
+        $this->setUrl($url, $query_parameters);
+        $this->setOpt(CURLOPT_CUSTOMREQUEST, 'DELETE');
+        $this->setOpt(CURLOPT_POSTFIELDS, $this->buildPostData($data));
+        return $this->exec();
+    }
+
+    /**
+     * Download
+     *
+     * @access public
+     * @param  $url
+     * @param  $mixed_filename
+     *
+     * @return boolean
+     */
+    public function download($url, $mixed_filename)
+    {
+        if (is_callable($mixed_filename)) {
+            $this->downloadCompleteFunction = $mixed_filename;
+            $this->fileHandle = tmpfile();
+        } else {
+            $filename = $mixed_filename;
+
+            // Use a temporary file when downloading. Not using a temporary file can cause an error when an existing
+            // file has already fully completed downloading and a new download is started with the same destination save
+            // path. The download request will include header "Range: bytes=$filesize-" which is syntactically valid,
+            // but unsatisfiable.
+            $download_filename = $filename . '.pccdownload';
+
+            $mode = 'wb';
+            // Attempt to resume download only when a temporary download file exists and is not empty.
+            if (file_exists($download_filename) && $filesize = filesize($download_filename)) {
+                $mode = 'ab';
+                $first_byte_position = $filesize;
+                $range = $first_byte_position . '-';
+                $this->setOpt(CURLOPT_RANGE, $range);
+            }
+            $this->fileHandle = fopen($download_filename, $mode);
+
+            // Move the downloaded temporary file to the destination save path.
+            $this->downloadCompleteFunction = function ($instance, $fh) use ($download_filename, $filename) {
+                // Close the open file handle before renaming the file.
+                if (is_resource($fh)) {
+                    fclose($fh);
+                }
+
+                rename($download_filename, $filename);
+            };
+        }
+
+        $this->setOpt(CURLOPT_FILE, $this->fileHandle);
+        $this->get($url);
+
+        return ! $this->error;
+    }
+
+    /**
+     * Error
+     *
+     * @access public
+     * @param  $callback
+     */
+    public function error($callback)
+    {
