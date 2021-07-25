@@ -388,3 +388,77 @@ class Curl
                 $this->httpErrorMessage = $this->responseHeaders['Status-Line'];
             }
         }
+        $this->errorMessage = $this->curlError ? $this->curlErrorMessage : $this->httpErrorMessage;
+
+        // Reset select deferred properties so that they may be recalculated.
+        unset($this->effectiveUrl);
+        unset($this->totalTime);
+
+        // Reset content-length possibly set from a PUT or SEARCH request.
+        $this->unsetHeader('Content-Length');
+
+        // Reset nobody setting possibly set from a HEAD request.
+        $this->setOpt(CURLOPT_NOBODY, false);
+
+        // Allow multicurl to attempt retry as needed.
+        if ($this->isChildOfMultiCurl) {
+            return;
+        }
+
+        if ($this->attemptRetry()) {
+            return $this->exec($ch);
+        }
+
+        $this->execDone();
+
+        return $this->response;
+    }
+
+    public function execDone()
+    {
+        if ($this->error) {
+            $this->call($this->errorFunction);
+        } else {
+            $this->call($this->successFunction);
+        }
+
+        $this->call($this->completeFunction);
+
+        // Close open file handles and reset the curl instance.
+        if (!($this->fileHandle === null)) {
+            $this->downloadComplete($this->fileHandle);
+        }
+    }
+
+    /**
+     * Get
+     *
+     * @access public
+     * @param  $url
+     * @param  $data
+     *
+     * @return mixed Returns the value provided by exec.
+     */
+    public function get($url, $data = array())
+    {
+        if (is_array($url)) {
+            $data = $url;
+            $url = (string)$this->url;
+        }
+        $this->setUrl($url, $data);
+        $this->setOpt(CURLOPT_CUSTOMREQUEST, 'GET');
+        $this->setOpt(CURLOPT_HTTPGET, true);
+        return $this->exec();
+    }
+
+    /**
+     * Get Info
+     *
+     * @access public
+     * @param  $opt
+     *
+     * @return mixed
+     */
+    public function getInfo($opt = null)
+    {
+        $args = array();
