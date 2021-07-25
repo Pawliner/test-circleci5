@@ -328,3 +328,63 @@ class Curl
      */
     public function error($callback)
     {
+        $this->errorFunction = $callback;
+    }
+
+    /**
+     * Exec
+     *
+     * @access public
+     * @param  $ch
+     *
+     * @return mixed Returns the value provided by parseResponse.
+     */
+    public function exec($ch = null)
+    {
+        $this->attempts += 1;
+
+        if ($ch === null) {
+            $this->responseCookies = array();
+            $this->call($this->beforeSendFunction);
+            $this->rawResponse = curl_exec($this->curl);
+            $this->curlErrorCode = curl_errno($this->curl);
+            $this->curlErrorMessage = curl_error($this->curl);
+        } else {
+            $this->rawResponse = curl_multi_getcontent($ch);
+            $this->curlErrorMessage = curl_error($ch);
+        }
+        $this->curlError = !($this->curlErrorCode === 0);
+
+        // Transfer the header callback data and release the temporary store to avoid memory leak.
+        $this->rawResponseHeaders = $this->headerCallbackData->rawResponseHeaders;
+        $this->responseCookies = $this->headerCallbackData->responseCookies;
+        $this->headerCallbackData->rawResponseHeaders = null;
+        $this->headerCallbackData->responseCookies = null;
+
+        // Include additional error code information in error message when possible.
+        if ($this->curlError && function_exists('curl_strerror')) {
+            $this->curlErrorMessage =
+                curl_strerror($this->curlErrorCode) . (
+                    empty($this->curlErrorMessage) ? '' : ': ' . $this->curlErrorMessage
+                );
+        }
+
+        $this->httpStatusCode = $this->getInfo(CURLINFO_HTTP_CODE);
+        $this->httpError = in_array(floor($this->httpStatusCode / 100), array(4, 5));
+        $this->error = $this->curlError || $this->httpError;
+        $this->errorCode = $this->error ? ($this->curlError ? $this->curlErrorCode : $this->httpStatusCode) : 0;
+
+        // NOTE: CURLINFO_HEADER_OUT set to true is required for requestHeaders
+        // to not be empty (e.g. $curl->setOpt(CURLINFO_HEADER_OUT, true);).
+        if ($this->getOpt(CURLINFO_HEADER_OUT) === true) {
+            $this->requestHeaders = $this->parseRequestHeaders($this->getInfo(CURLINFO_HEADER_OUT));
+        }
+        $this->responseHeaders = $this->parseResponseHeaders($this->rawResponseHeaders);
+        $this->response = $this->parseResponse($this->responseHeaders, $this->rawResponse);
+
+        $this->httpErrorMessage = '';
+        if ($this->error) {
+            if (isset($this->responseHeaders['Status-Line'])) {
+                $this->httpErrorMessage = $this->responseHeaders['Status-Line'];
+            }
+        }
