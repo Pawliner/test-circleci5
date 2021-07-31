@@ -462,3 +462,83 @@ class Curl
     public function getInfo($opt = null)
     {
         $args = array();
+        $args[] = $this->curl;
+
+        if (func_num_args()) {
+            $args[] = $opt;
+        }
+
+        return call_user_func_array('curl_getinfo', $args);
+    }
+
+    /**
+     * Get Opt
+     *
+     * @access public
+     * @param  $option
+     *
+     * @return mixed
+     */
+    public function getOpt($option)
+    {
+        return isset($this->options[$option]) ? $this->options[$option] : null;
+    }
+
+    /**
+     * Head
+     *
+     * @access public
+     * @param  $url
+     * @param  $data
+     *
+     * @return mixed
+     */
+    public function head($url, $data = array())
+    {
+        if (is_array($url)) {
+            $data = $url;
+            $url = (string)$this->url;
+        }
+        $this->setUrl($url, $data);
+        $this->setOpt(CURLOPT_CUSTOMREQUEST, 'HEAD');
+        $this->setOpt(CURLOPT_NOBODY, true);
+        return $this->exec();
+    }
+
+    /**
+     * Options
+     *
+     * @access public
+     * @param  $url
+     * @param  $data
+     *
+     * @return mixed
+     */
+    public function options($url, $data = array())
+    {
+        if (is_array($url)) {
+            $data = $url;
+            $url = (string)$this->url;
+        }
+        $this->setUrl($url, $data);
+        $this->setOpt(CURLOPT_CUSTOMREQUEST, 'OPTIONS');
+        return $this->exec();
+    }
+
+    /**
+     * Patch
+     *
+     * @access public
+     * @param  $url
+     * @param  $data
+     *
+     * @return mixed
+     */
+    public function patch($url, $data = array())
+    {
+        if (is_array($url)) {
+            $data = $url;
+            $url = (string)$this->url;
+        }
+
+        if (is_array($data) && empty($data)) {
