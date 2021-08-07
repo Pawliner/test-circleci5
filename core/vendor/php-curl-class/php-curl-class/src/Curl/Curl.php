@@ -619,3 +619,72 @@ class Curl
      * @return mixed
      */
     public function put($url, $data = array())
+    {
+        if (is_array($url)) {
+            $data = $url;
+            $url = (string)$this->url;
+        }
+        $this->setUrl($url);
+        $this->setOpt(CURLOPT_CUSTOMREQUEST, 'PUT');
+        $put_data = $this->buildPostData($data);
+        if (empty($this->options[CURLOPT_INFILE]) && empty($this->options[CURLOPT_INFILESIZE])) {
+            if (is_string($put_data)) {
+                $this->setHeader('Content-Length', strlen($put_data));
+            }
+        }
+        if (!empty($put_data)) {
+            $this->setOpt(CURLOPT_POSTFIELDS, $put_data);
+        }
+        return $this->exec();
+    }
+
+    /**
+     * Search
+     *
+     * @access public
+     * @param  $url
+     * @param  $data
+     *
+     * @return mixed
+     */
+    public function search($url, $data = array())
+    {
+        if (is_array($url)) {
+            $data = $url;
+            $url = (string)$this->url;
+        }
+        $this->setUrl($url);
+        $this->setOpt(CURLOPT_CUSTOMREQUEST, 'SEARCH');
+        $put_data = $this->buildPostData($data);
+        if (empty($this->options[CURLOPT_INFILE]) && empty($this->options[CURLOPT_INFILESIZE])) {
+            if (is_string($put_data)) {
+                $this->setHeader('Content-Length', strlen($put_data));
+            }
+        }
+        if (!empty($put_data)) {
+            $this->setOpt(CURLOPT_POSTFIELDS, $put_data);
+        }
+        return $this->exec();
+    }
+
+    /**
+     * Set Basic Authentication
+     *
+     * @access public
+     * @param  $username
+     * @param  $password
+     */
+    public function setBasicAuthentication($username, $password = '')
+    {
+        $this->setOpt(CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        $this->setOpt(CURLOPT_USERPWD, $username . ':' . $password);
+    }
+
+    /**
+     * Set Digest Authentication
+     *
+     * @access public
+     * @param  $username
+     * @param  $password
+     */
+    public function setDigestAuthentication($username, $password = '')
