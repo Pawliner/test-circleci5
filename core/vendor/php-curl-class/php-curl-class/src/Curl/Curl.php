@@ -688,3 +688,77 @@ class Curl
      * @param  $password
      */
     public function setDigestAuthentication($username, $password = '')
+    {
+        $this->setOpt(CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
+        $this->setOpt(CURLOPT_USERPWD, $username . ':' . $password);
+    }
+
+    /**
+     * Set Cookie
+     *
+     * @access public
+     * @param  $key
+     * @param  $value
+     */
+    public function setCookie($key, $value)
+    {
+        $this->setEncodedCookie($key, $value);
+        $this->buildCookies();
+    }
+
+    /**
+     * Set Cookies
+     *
+     * @access public
+     * @param  $cookies
+     */
+    public function setCookies($cookies)
+    {
+        foreach ($cookies as $key => $value) {
+            $this->setEncodedCookie($key, $value);
+        }
+        $this->buildCookies();
+    }
+
+    /**
+     * Get Cookie
+     *
+     * @access public
+     * @param  $key
+     *
+     * @return mixed
+     */
+    public function getCookie($key)
+    {
+        return $this->getResponseCookie($key);
+    }
+
+    /**
+     * Get Response Cookie
+     *
+     * @access public
+     * @param  $key
+     *
+     * @return mixed
+     */
+    public function getResponseCookie($key)
+    {
+        return isset($this->responseCookies[$key]) ? $this->responseCookies[$key] : null;
+    }
+
+    /**
+     * Get Response Cookies
+     *
+     * @access public
+     *
+     * @return array
+     */
+    public function getResponseCookies()
+    {
+        return $this->responseCookies;
+    }
+
+    /**
+     * Set Max Filesize
+     *
+     * @access public
