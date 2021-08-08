@@ -843,3 +843,61 @@ class Curl
     {
         return $this->setOpt(CURLOPT_COOKIEJAR, $cookie_jar);
     }
+
+    /**
+     * Set Default JSON Decoder
+     *
+     * @access public
+     * @param  $assoc
+     * @param  $depth
+     * @param  $options
+     */
+    public function setDefaultJsonDecoder()
+    {
+        $this->jsonDecoder = '\Curl\Decoder::decodeJson';
+        $this->jsonDecoderArgs = func_get_args();
+    }
+
+    /**
+     * Set Default XML Decoder
+     *
+     * @access public
+     */
+    public function setDefaultXmlDecoder()
+    {
+        $this->xmlDecoder = '\Curl\Decoder::decodeXml';
+    }
+
+    /**
+     * Set Default Decoder
+     *
+     * @access public
+     * @param  $mixed boolean|callable|string
+     */
+    public function setDefaultDecoder($mixed = 'json')
+    {
+        if ($mixed === false) {
+            $this->defaultDecoder = false;
+        } elseif (is_callable($mixed)) {
+            $this->defaultDecoder = $mixed;
+        } else {
+            if ($mixed === 'json') {
+                $this->defaultDecoder = $this->jsonDecoder;
+            } elseif ($mixed === 'xml') {
+                $this->defaultDecoder = $this->xmlDecoder;
+            }
+        }
+    }
+
+    /**
+     * Set Default Timeout
+     *
+     * @access public
+     */
+    public function setDefaultTimeout()
+    {
+        $this->setTimeout(self::DEFAULT_TIMEOUT);
+    }
+
+    /**
+     * Set Default User Agent
