@@ -1056,3 +1056,62 @@ class Curl
     /**
      * Set Retry
      *
+     * Number of retries to attempt or decider callable. Maximum number of
+     * attempts is $maximum_number_of_retries + 1.
+     *
+     * @access public
+     * @param  $mixed
+     */
+    public function setRetry($mixed)
+    {
+        if (is_callable($mixed)) {
+            $this->retryDecider = $mixed;
+        } elseif (is_int($mixed)) {
+            $maximum_number_of_retries = $mixed;
+            $this->remainingRetries = $maximum_number_of_retries;
+        }
+    }
+
+    /**
+     * Set Timeout
+     *
+     * @access public
+     * @param  $seconds
+     */
+    public function setTimeout($seconds)
+    {
+        $this->setOpt(CURLOPT_TIMEOUT, $seconds);
+    }
+
+    /**
+     * Set Url
+     *
+     * @access public
+     * @param  $url
+     * @param  $mixed_data
+     */
+    public function setUrl($url, $mixed_data = '')
+    {
+        $built_url = $this->buildUrl($url, $mixed_data);
+
+        if ($this->url === null) {
+            $this->url = (string)new Url($built_url);
+        } else {
+            $this->url = (string)new Url($this->url, $built_url);
+        }
+
+        $this->setOpt(CURLOPT_URL, $this->url);
+    }
+
+    /**
+     * Set User Agent
+     *
+     * @access public
+     * @param  $user_agent
+     */
+    public function setUserAgent($user_agent)
+    {
+        $this->setOpt(CURLOPT_USERAGENT, $user_agent);
+    }
+
+    /**
