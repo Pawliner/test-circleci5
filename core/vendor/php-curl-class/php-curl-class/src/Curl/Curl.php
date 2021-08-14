@@ -976,3 +976,83 @@ class Curl
      * @access public
      * @param  $mixed boolean|callable
      */
+    public function setXmlDecoder($mixed)
+    {
+        if ($mixed === false) {
+            $this->xmlDecoder = false;
+        } elseif (is_callable($mixed)) {
+            $this->xmlDecoder = $mixed;
+        }
+    }
+
+    /**
+     * Set Opt
+     *
+     * @access public
+     * @param  $option
+     * @param  $value
+     *
+     * @return boolean
+     */
+    public function setOpt($option, $value)
+    {
+        $required_options = array(
+            CURLOPT_RETURNTRANSFER => 'CURLOPT_RETURNTRANSFER',
+        );
+
+        if (in_array($option, array_keys($required_options), true) && !($value === true)) {
+            trigger_error($required_options[$option] . ' is a required option', E_USER_WARNING);
+        }
+
+        $success = curl_setopt($this->curl, $option, $value);
+        if ($success) {
+            $this->options[$option] = $value;
+        }
+        return $success;
+    }
+
+    /**
+     * Set Opts
+     *
+     * @access public
+     * @param  $options
+     *
+     * @return boolean
+     *   Returns true if all options were successfully set. If an option could not be successfully set, false is
+     *   immediately returned, ignoring any future options in the options array. Similar to curl_setopt_array().
+     */
+    public function setOpts($options)
+    {
+        foreach ($options as $option => $value) {
+            if (!$this->setOpt($option, $value)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Set Referer
+     *
+     * @access public
+     * @param  $referer
+     */
+    public function setReferer($referer)
+    {
+        $this->setReferrer($referer);
+    }
+
+    /**
+     * Set Referrer
+     *
+     * @access public
+     * @param  $referrer
+     */
+    public function setReferrer($referrer)
+    {
+        $this->setOpt(CURLOPT_REFERER, $referrer);
+    }
+
+    /**
+     * Set Retry
+     *
