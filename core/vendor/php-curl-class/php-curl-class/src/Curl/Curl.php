@@ -901,3 +901,78 @@ class Curl
 
     /**
      * Set Default User Agent
+     *
+     * @access public
+     */
+    public function setDefaultUserAgent()
+    {
+        $user_agent = 'PHP-Curl-Class/' . self::VERSION . ' (+https://github.com/php-curl-class/php-curl-class)';
+        $user_agent .= ' PHP/' . PHP_VERSION;
+        $curl_version = curl_version();
+        $user_agent .= ' curl/' . $curl_version['version'];
+        $this->setUserAgent($user_agent);
+    }
+
+    /**
+     * Set Header
+     *
+     * Add extra header to include in the request.
+     *
+     * @access public
+     * @param  $key
+     * @param  $value
+     */
+    public function setHeader($key, $value)
+    {
+        $this->headers[$key] = $value;
+        $headers = array();
+        foreach ($this->headers as $key => $value) {
+            $headers[] = $key . ': ' . $value;
+        }
+        $this->setOpt(CURLOPT_HTTPHEADER, $headers);
+    }
+
+    /**
+     * Set Headers
+     *
+     * Add extra headers to include in the request.
+     *
+     * @access public
+     * @param  $headers
+     */
+    public function setHeaders($headers)
+    {
+        foreach ($headers as $key => $value) {
+            $this->headers[$key] = $value;
+        }
+
+        $headers = array();
+        foreach ($this->headers as $key => $value) {
+            $headers[] = $key . ': ' . $value;
+        }
+        $this->setOpt(CURLOPT_HTTPHEADER, $headers);
+    }
+
+    /**
+     * Set JSON Decoder
+     *
+     * @access public
+     * @param  $mixed boolean|callable
+     */
+    public function setJsonDecoder($mixed)
+    {
+        if ($mixed === false) {
+            $this->jsonDecoder = false;
+            $this->jsonDecoderArgs = array();
+        } elseif (is_callable($mixed)) {
+            $this->jsonDecoder = $mixed;
+            $this->jsonDecoderArgs = array();
+        }
+    }
+
+    /**
+     * Set XML Decoder
+     *
+     * @access public
+     * @param  $mixed boolean|callable
+     */
