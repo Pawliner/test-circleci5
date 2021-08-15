@@ -1115,3 +1115,82 @@ class Curl
     }
 
     /**
+     * Attempt Retry
+     *
+     * @access public
+     */
+    public function attemptRetry()
+    {
+        $attempt_retry = false;
+        if ($this->error) {
+            if ($this->retryDecider === null) {
+                $attempt_retry = $this->remainingRetries >= 1;
+            } else {
+                $attempt_retry = call_user_func($this->retryDecider, $this);
+            }
+            if ($attempt_retry) {
+                $this->retries += 1;
+                if ($this->remainingRetries) {
+                    $this->remainingRetries -= 1;
+                }
+            }
+        }
+        return $attempt_retry;
+    }
+
+    /**
+     * Success
+     *
+     * @access public
+     * @param  $callback
+     */
+    public function success($callback)
+    {
+        $this->successFunction = $callback;
+    }
+
+    /**
+     * Unset Header
+     *
+     * Remove extra header previously set using Curl::setHeader().
+     *
+     * @access public
+     * @param  $key
+     */
+    public function unsetHeader($key)
+    {
+        unset($this->headers[$key]);
+        $headers = array();
+        foreach ($this->headers as $key => $value) {
+            $headers[] = $key . ': ' . $value;
+        }
+        $this->setOpt(CURLOPT_HTTPHEADER, $headers);
+    }
+
+    /**
+     * Remove Header
+     *
+     * Remove an internal header from the request.
+     * Using `curl -H "Host:" ...' is equivalent to $curl->removeHeader('Host');.
+     *
+     * @access public
+     * @param  $key
+     */
+    public function removeHeader($key)
+    {
+        $this->setHeader($key, '');
+    }
+
+    /**
+     * Verbose
+     *
+     * @access public
+     * @param  bool $on
+     * @param  resource $output
+     */
+    public function verbose($on = true, $output = STDERR)
+    {
+        // Turn off CURLINFO_HEADER_OUT for verbose to work. This has the side
+        // effect of causing Curl::requestHeaders to be empty.
+        if ($on) {
+            $this->setOpt(CURLINFO_HEADER_OUT, false);
