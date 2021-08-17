@@ -1194,3 +1194,82 @@ class Curl
         // effect of causing Curl::requestHeaders to be empty.
         if ($on) {
             $this->setOpt(CURLINFO_HEADER_OUT, false);
+        }
+        $this->setOpt(CURLOPT_VERBOSE, $on);
+        $this->setOpt(CURLOPT_STDERR, $output);
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        $this->close();
+    }
+
+    public function __get($name)
+    {
+        $return = null;
+        if (in_array($name, self::$deferredProperties) && is_callable(array($this, $getter = '__get_' . $name))) {
+            $return = $this->$name = $this->$getter();
+        }
+        return $return;
+    }
+
+    /**
+     * Get Effective Url
+     *
+     * @access private
+     */
+    private function __get_effectiveUrl()
+    {
+        return $this->getInfo(CURLINFO_EFFECTIVE_URL);
+    }
+
+    /**
+     * Get RFC 2616
+     *
+     * @access private
+     */
+    private function __get_rfc2616()
+    {
+        return array_fill_keys(self::$RFC2616, true);
+    }
+
+    /**
+     * Get RFC 6265
+     *
+     * @access private
+     */
+    private function __get_rfc6265()
+    {
+        return array_fill_keys(self::$RFC6265, true);
+    }
+
+    /**
+     * Get Total Time
+     *
+     * @access private
+     */
+    private function __get_totalTime()
+    {
+        return $this->getInfo(CURLINFO_TOTAL_TIME);
+    }
+
+    /**
+     * Build Cookies
+     *
+     * @access private
+     */
+    private function buildCookies()
+    {
+        // Avoid using http_build_query() as unnecessary encoding is performed.
+        // http_build_query($this->cookies, '', '; ');
+        $this->setOpt(CURLOPT_COOKIE, implode('; ', array_map(function ($k, $v) {
+            return $k . '=' . $v;
+        }, array_keys($this->cookies), array_values($this->cookies))));
+    }
+
+    /**
