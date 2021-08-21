@@ -1346,3 +1346,82 @@ class Curl
         // Reset CURLOPT_RETURNTRANSFER to tell cURL to return subsequent
         // responses as the return value of curl_exec(). Without this,
         // curl_exec() will revert to returning boolean values.
+        $this->setOpt(CURLOPT_RETURNTRANSFER, true);
+    }
+
+    /**
+     * Parse Headers
+     *
+     * @access private
+     * @param  $raw_headers
+     *
+     * @return array
+     */
+    private function parseHeaders($raw_headers)
+    {
+        $raw_headers = preg_split('/\r\n/', $raw_headers, null, PREG_SPLIT_NO_EMPTY);
+        $http_headers = new CaseInsensitiveArray();
+
+        $raw_headers_count = count($raw_headers);
+        for ($i = 1; $i < $raw_headers_count; $i++) {
+            list($key, $value) = explode(':', $raw_headers[$i], 2);
+            $key = trim($key);
+            $value = trim($value);
+            // Use isset() as array_key_exists() and ArrayAccess are not compatible.
+            if (isset($http_headers[$key])) {
+                $http_headers[$key] .= ',' . $value;
+            } else {
+                $http_headers[$key] = $value;
+            }
+        }
+
+        return array(isset($raw_headers['0']) ? $raw_headers['0'] : '', $http_headers);
+    }
+
+    /**
+     * Parse Request Headers
+     *
+     * @access private
+     * @param  $raw_headers
+     *
+     * @return \Curl\CaseInsensitiveArray
+     */
+    private function parseRequestHeaders($raw_headers)
+    {
+        $request_headers = new CaseInsensitiveArray();
+        list($first_line, $headers) = $this->parseHeaders($raw_headers);
+        $request_headers['Request-Line'] = $first_line;
+        foreach ($headers as $key => $value) {
+            $request_headers[$key] = $value;
+        }
+        return $request_headers;
+    }
+
+    /**
+     * Parse Response
+     *
+     * @access private
+     * @param  $response_headers
+     * @param  $raw_response
+     *
+     * @return mixed
+     *   Provided the content-type is determined to be json or xml:
+     *     Returns stdClass object when the default json decoder is used and the content-type is json.
+     *     Returns SimpleXMLElement object when the default xml decoder is used and the content-type is xml.
+     */
+    private function parseResponse($response_headers, $raw_response)
+    {
+        $response = $raw_response;
+        if (isset($response_headers['Content-Type'])) {
+            if (preg_match($this->jsonPattern, $response_headers['Content-Type'])) {
+                if ($this->jsonDecoder) {
+                    $args = $this->jsonDecoderArgs;
+                    array_unshift($args, $response);
+                    $response = call_user_func_array($this->jsonDecoder, $args);
+                }
+            } elseif (preg_match($this->xmlPattern, $response_headers['Content-Type'])) {
+                if ($this->xmlDecoder) {
+                    $response = call_user_func($this->xmlDecoder, $response);
+                }
+            } else {
+                if ($this->defaultDecoder) {
