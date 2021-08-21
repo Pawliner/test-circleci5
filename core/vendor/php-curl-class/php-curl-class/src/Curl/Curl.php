@@ -1425,3 +1425,69 @@ class Curl
                 }
             } else {
                 if ($this->defaultDecoder) {
+                    $response = call_user_func($this->defaultDecoder, $response);
+                }
+            }
+        }
+
+        return $response;
+    }
+
+    /**
+     * Parse Response Headers
+     *
+     * @access private
+     * @param  $raw_response_headers
+     *
+     * @return \Curl\CaseInsensitiveArray
+     */
+    private function parseResponseHeaders($raw_response_headers)
+    {
+        $response_header_array = explode("\r\n\r\n", $raw_response_headers);
+        $response_header  = '';
+        for ($i = count($response_header_array) - 1; $i >= 0; $i--) {
+            if (stripos($response_header_array[$i], 'HTTP/') === 0) {
+                $response_header = $response_header_array[$i];
+                break;
+            }
+        }
+
+        $response_headers = new CaseInsensitiveArray();
+        list($first_line, $headers) = $this->parseHeaders($response_header);
+        $response_headers['Status-Line'] = $first_line;
+        foreach ($headers as $key => $value) {
+            $response_headers[$key] = $value;
+        }
+        return $response_headers;
+    }
+
+    /**
+     * Set Encoded Cookie
+     *
+     * @access private
+     * @param  $key
+     * @param  $value
+     */
+    private function setEncodedCookie($key, $value)
+    {
+        $name_chars = array();
+        foreach (str_split($key) as $name_char) {
+            if (isset($this->rfc2616[$name_char])) {
+                $name_chars[] = $name_char;
+            } else {
+                $name_chars[] = rawurlencode($name_char);
+            }
+        }
+
+        $value_chars = array();
+        foreach (str_split($value) as $value_char) {
+            if (isset($this->rfc6265[$value_char])) {
+                $value_chars[] = $value_char;
+            } else {
+                $value_chars[] = rawurlencode($value_char);
+            }
+        }
+
+        $this->cookies[implode('', $name_chars)] = implode('', $value_chars);
+    }
+}
