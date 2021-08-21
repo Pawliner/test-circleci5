@@ -1,3 +1,10 @@
 <?php
 
-namespace Cu
+namespace Curl;
+
+class Decoder
+{
+    /**
+     * Decode JSON
+     *
+     * @access publ
