@@ -7,4 +7,8 @@ class Decoder
     /**
      * Decode JSON
      *
-     * @access publ
+     * @access public
+     * @param  $json
+     * @param  $assoc
+     * @param  $depth
+  
