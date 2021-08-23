@@ -13,4 +13,8 @@ class Decoder
      * @param  $depth
      * @param  $options
      */
-    public static function decodeJson
+    public static function decodeJson()
+    {
+        $args = func_get_args();
+
+        // Call json_dec
