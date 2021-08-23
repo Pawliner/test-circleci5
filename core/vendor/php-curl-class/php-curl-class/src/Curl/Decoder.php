@@ -11,4 +11,6 @@ class Decoder
      * @param  $json
      * @param  $assoc
      * @param  $depth
-  
+     * @param  $options
+     */
+    public static function decodeJson
