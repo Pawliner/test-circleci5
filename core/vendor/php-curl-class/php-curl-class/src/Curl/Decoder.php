@@ -17,4 +17,5 @@ class Decoder
     {
         $args = func_get_args();
 
-        // Call json_dec
+        // Call json_decode() without the $options parameter in PHP
+        // versions less than 5.4.0 as t
