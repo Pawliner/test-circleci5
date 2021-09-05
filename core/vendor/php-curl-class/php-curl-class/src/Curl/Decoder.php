@@ -21,4 +21,7 @@ class Decoder
         // versions less than 5.4.0 as the $options parameter was added in
         // PHP version 5.4.0.
         if (version_compare(PHP_VERSION, '5.4.0', '<')) {
-            $args = arra
+            $args = array_slice($args, 0, 3);
+        }
+
+        $response = call_user_func_array('jso
