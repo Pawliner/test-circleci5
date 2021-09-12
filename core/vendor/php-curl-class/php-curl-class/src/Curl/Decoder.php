@@ -24,4 +24,6 @@ class Decoder
             $args = array_slice($args, 0, 3);
         }
 
-        $response = call_user_func_array('jso
+        $response = call_user_func_array('json_decode', $args);
+        if ($response === null) {
+           
