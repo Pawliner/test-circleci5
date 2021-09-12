@@ -32,4 +32,9 @@ class Decoder
     }
 
     /**
- 
+     * Decode XML
+     *
+     * @access public
+     * @param  $response
+     */
+    public 
