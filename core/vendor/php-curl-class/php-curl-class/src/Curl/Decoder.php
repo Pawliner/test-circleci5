@@ -26,4 +26,10 @@ class Decoder
 
         $response = call_user_func_array('json_decode', $args);
         if ($response === null) {
-           
+            $response = $args['0'];
+        }
+        return $response;
+    }
+
+    /**
+ 
