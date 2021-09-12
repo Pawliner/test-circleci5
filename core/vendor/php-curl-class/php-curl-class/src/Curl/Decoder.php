@@ -37,4 +37,6 @@ class Decoder
      * @access public
      * @param  $response
      */
-    public 
+    public static function decodeXml($response)
+    {
+        $xml_obj = @simplex
