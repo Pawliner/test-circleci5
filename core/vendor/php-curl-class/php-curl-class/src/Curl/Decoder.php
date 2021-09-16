@@ -39,4 +39,6 @@ class Decoder
      */
     public static function decodeXml($response)
     {
-        $xml_obj = @simplex
+        $xml_obj = @simplexml_load_string($response);
+        if (!($xml_obj === false)) {
+           
