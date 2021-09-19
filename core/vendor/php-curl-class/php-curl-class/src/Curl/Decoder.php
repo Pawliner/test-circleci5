@@ -41,4 +41,8 @@ class Decoder
     {
         $xml_obj = @simplexml_load_string($response);
         if (!($xml_obj === false)) {
-           
+            $response = $xml_obj;
+        }
+        return $response;
+    }
+}
