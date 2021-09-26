@@ -5,4 +5,7 @@ namespace Curl;
 class MultiCurl
 {
     public $baseUrl = null;
-    public 
+    public $multiCurl;
+
+    private $curls = array();
+    private $activeCurls = a
