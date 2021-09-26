@@ -8,4 +8,7 @@ class MultiCurl
     public $multiCurl;
 
     private $curls = array();
-    private $activeCurls = a
+    private $activeCurls = array();
+    private $isStarted = false;
+    private $concurrency = 25;
+    private $n
