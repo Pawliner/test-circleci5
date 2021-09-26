@@ -11,4 +11,7 @@ class MultiCurl
     private $activeCurls = array();
     private $isStarted = false;
     private $concurrency = 25;
-    private $n
+    private $nextCurlId = 0;
+
+    private $beforeSendFunction = null;
+    private $successFunction 
