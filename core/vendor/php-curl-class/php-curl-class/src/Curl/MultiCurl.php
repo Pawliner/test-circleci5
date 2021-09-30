@@ -14,4 +14,6 @@ class MultiCurl
     private $nextCurlId = 0;
 
     private $beforeSendFunction = null;
-    private $successFunction 
+    private $successFunction = null;
+    private $errorFunction = null;
+    private $completeFunction = 
