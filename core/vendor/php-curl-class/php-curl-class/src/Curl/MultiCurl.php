@@ -16,4 +16,9 @@ class MultiCurl
     private $beforeSendFunction = null;
     private $successFunction = null;
     private $errorFunction = null;
-    private $completeFunction = 
+    private $completeFunction = null;
+
+    private $retry = null;
+
+    private $cookies = array();
+   
