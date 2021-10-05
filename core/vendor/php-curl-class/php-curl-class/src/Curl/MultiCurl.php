@@ -24,4 +24,8 @@ class MultiCurl
     private $headers = array();
     private $options = array();
 
-    pr
+    private $jsonDecoder = null;
+    private $xmlDecoder = null;
+
+    /**
+     * Con
