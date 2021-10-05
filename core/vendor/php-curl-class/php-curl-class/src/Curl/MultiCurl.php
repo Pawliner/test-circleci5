@@ -21,4 +21,7 @@ class MultiCurl
     private $retry = null;
 
     private $cookies = array();
-   
+    private $headers = array();
+    private $options = array();
+
+    pr
