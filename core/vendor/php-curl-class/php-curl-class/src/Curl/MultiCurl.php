@@ -33,4 +33,6 @@ class MultiCurl
      * @access public
      * @param  $base_url
      */
-    public funct
+    public function __construct($base_url = null)
+    {
+        $this->multiCurl = curl_multi_ini
