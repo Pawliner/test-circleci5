@@ -28,4 +28,9 @@ class MultiCurl
     private $xmlDecoder = null;
 
     /**
-     * Con
+     * Construct
+     *
+     * @access public
+     * @param  $base_url
+     */
+    public funct
