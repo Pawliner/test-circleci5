@@ -35,4 +35,6 @@ class MultiCurl
      */
     public function __construct($base_url = null)
     {
-        $this->multiCurl = curl_multi_ini
+        $this->multiCurl = curl_multi_init();
+        $this->headers = new CaseInsensitiveArray();
+       
