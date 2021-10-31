@@ -37,4 +37,9 @@ class MultiCurl
     {
         $this->multiCurl = curl_multi_init();
         $this->headers = new CaseInsensitiveArray();
-       
+        $this->setUrl($base_url);
+    }
+
+    /**
+     * Add Delete
+     *
