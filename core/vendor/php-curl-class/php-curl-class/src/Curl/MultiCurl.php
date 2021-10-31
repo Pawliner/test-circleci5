@@ -45,4 +45,9 @@ class MultiCurl
      *
      * @access public
      * @param  $url
-     * @param  $query_para
+     * @param  $query_parameters
+     * @param  $data
+     *
+     * @return object
+     */
+    public f
