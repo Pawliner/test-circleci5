@@ -43,3 +43,6 @@ class MultiCurl
     /**
      * Add Delete
      *
+     * @access public
+     * @param  $url
+     * @param  $query_para
