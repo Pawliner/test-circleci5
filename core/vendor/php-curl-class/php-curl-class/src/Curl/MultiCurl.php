@@ -50,4 +50,5 @@ class MultiCurl
      *
      * @return object
      */
-    public f
+    public function addDelete($url, $query_parameters = array(), $data = array())
+  
