@@ -51,4 +51,7 @@ class MultiCurl
      * @return object
      */
     public function addDelete($url, $query_parameters = array(), $data = array())
-  
+    {
+        if (is_array($url)) {
+            $data = $query_parameters;
+            $query
