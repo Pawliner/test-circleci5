@@ -54,4 +54,7 @@ class MultiCurl
     {
         if (is_array($url)) {
             $data = $query_parameters;
-            $query
+            $query_parameters = $url;
+            $url = $this->baseUrl;
+        }
+    
