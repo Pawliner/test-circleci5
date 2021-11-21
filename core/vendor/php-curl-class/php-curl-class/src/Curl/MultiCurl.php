@@ -57,4 +57,6 @@ class MultiCurl
             $query_parameters = $url;
             $url = $this->baseUrl;
         }
-    
+        $curl = new Curl();
+        $curl->setUrl($url, $query_parameters);
+        
