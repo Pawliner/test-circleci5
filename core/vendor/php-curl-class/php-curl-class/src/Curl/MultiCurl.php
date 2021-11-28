@@ -59,4 +59,5 @@ class MultiCurl
         }
         $curl = new Curl();
         $curl->setUrl($url, $query_parameters);
-        
+        $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'DELETE');
+        $curl->setOpt(CURL
