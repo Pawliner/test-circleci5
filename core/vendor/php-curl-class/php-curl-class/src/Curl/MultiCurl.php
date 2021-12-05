@@ -68,4 +68,8 @@ class MultiCurl
     /**
      * Add Download
      *
-     * @a
+     * @access public
+     * @param  $url
+     * @param  $mixed_filename
+     *
+     * @return ob
