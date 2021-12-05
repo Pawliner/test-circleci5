@@ -61,4 +61,11 @@ class MultiCurl
         $curl->setUrl($url, $query_parameters);
         $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'DELETE');
         $curl->setOpt(CURLOPT_POSTFIELDS, $curl->buildPostData($data));
-        $this->queueHandle($cu
+        $this->queueHandle($curl);
+        return $curl;
+    }
+
+    /**
+     * Add Download
+     *
+     * @a
