@@ -76,4 +76,7 @@ class MultiCurl
      */
     public function addDownload($url, $mixed_filename)
     {
-    
+        $curl = new Curl();
+        $curl->setUrl($url);
+
+        // Use tmpfi
