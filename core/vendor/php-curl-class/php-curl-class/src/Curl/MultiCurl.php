@@ -72,4 +72,8 @@ class MultiCurl
      * @param  $url
      * @param  $mixed_filename
      *
-     * @return ob
+     * @return object
+     */
+    public function addDownload($url, $mixed_filename)
+    {
+    
