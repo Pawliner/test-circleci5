@@ -79,4 +79,5 @@ class MultiCurl
         $curl = new Curl();
         $curl->setUrl($url);
 
-        // Use tmpfi
+        // Use tmpfile() or php://temp to avoid "Too many open files" error.
+        if (is_callable($mixed_filen
