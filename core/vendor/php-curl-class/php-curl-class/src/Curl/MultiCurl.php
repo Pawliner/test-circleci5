@@ -82,4 +82,6 @@ class MultiCurl
         // Use tmpfile() or php://temp to avoid "Too many open files" error.
         if (is_callable($mixed_filename)) {
             $callback = $mixed_filename;
-            $curl->downloadCompleteFu
+            $curl->downloadCompleteFunction = $callback;
+            $curl->fileHandle = tmpfile();
+   
