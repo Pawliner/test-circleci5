@@ -86,4 +86,4 @@ class MultiCurl
             $curl->fileHandle = tmpfile();
         } else {
             $filename = $mixed_filename;
-          
+            $curl->downloadCompleteFunction = function ($instance, $fh) use ($filename)
