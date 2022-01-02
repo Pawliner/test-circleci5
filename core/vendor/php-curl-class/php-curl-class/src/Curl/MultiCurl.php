@@ -88,4 +88,7 @@ class MultiCurl
             $filename = $mixed_filename;
             $curl->downloadCompleteFunction = function ($instance, $fh) use ($filename) {
                 file_put_contents($filename, stream_get_contents($fh));
-      
+            };
+            $curl->fileHandle = fopen('php://temp', 'wb');
+        }
+
