@@ -92,3 +92,5 @@ class MultiCurl
             $curl->fileHandle = fopen('php://temp', 'wb');
         }
 
+        $curl->setOpt(CURLOPT_FILE, $curl->fileHandle);
+        $curl->setO
