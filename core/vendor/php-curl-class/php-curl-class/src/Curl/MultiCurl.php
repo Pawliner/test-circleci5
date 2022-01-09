@@ -100,4 +100,8 @@ class MultiCurl
     }
 
     /**
-     
+     * Add Get
+     *
+     * @access public
+     * @param  $url
+    
