@@ -108,4 +108,7 @@ class MultiCurl
      *
      * @return object
      */
-    public fu
+    public function addGet($url, $data = array())
+    {
+        if (is_array($url)) {
+          
