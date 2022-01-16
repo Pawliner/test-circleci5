@@ -104,4 +104,8 @@ class MultiCurl
      *
      * @access public
      * @param  $url
-    
+     * @param  $data
+     *
+     * @return object
+     */
+    public fu
