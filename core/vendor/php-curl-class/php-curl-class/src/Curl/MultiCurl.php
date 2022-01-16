@@ -111,4 +111,7 @@ class MultiCurl
     public function addGet($url, $data = array())
     {
         if (is_array($url)) {
-          
+            $data = $url;
+            $url = $this->baseUrl;
+        }
+      
