@@ -114,4 +114,6 @@ class MultiCurl
             $data = $url;
             $url = $this->baseUrl;
         }
-      
+        $curl = new Curl();
+        $curl->setUrl($url, $data);
+        $curl->setOpt
