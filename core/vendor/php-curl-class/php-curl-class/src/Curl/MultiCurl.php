@@ -117,4 +117,10 @@ class MultiCurl
         $curl = new Curl();
         $curl->setUrl($url, $data);
         $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'GET');
-        $curl->setOpt(CURLOPT_HTTPGET, t
+        $curl->setOpt(CURLOPT_HTTPGET, true);
+        $this->queueHandle($curl);
+        return $curl;
+    }
+
+    /**
+     * Add He
