@@ -123,4 +123,8 @@ class MultiCurl
     }
 
     /**
-     * Add He
+     * Add Head
+     *
+     * @access public
+     * @param  $url
+     * @param  $dat
