@@ -127,4 +127,8 @@ class MultiCurl
      *
      * @access public
      * @param  $url
-     * @param  $dat
+     * @param  $data
+     *
+     * @return object
+     */
+    public function addHea
