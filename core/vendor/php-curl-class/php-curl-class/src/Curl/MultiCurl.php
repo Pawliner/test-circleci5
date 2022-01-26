@@ -131,4 +131,6 @@ class MultiCurl
      *
      * @return object
      */
-    public function addHea
+    public function addHead($url, $data = array())
+    {
+        if (is_array($url)) 
