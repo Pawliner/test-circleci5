@@ -133,4 +133,6 @@ class MultiCurl
      */
     public function addHead($url, $data = array())
     {
-        if (is_array($url)) 
+        if (is_array($url)) {
+            $data = $url;
+            $url = $this->baseUrl;
