@@ -139,3 +139,5 @@ class MultiCurl
         }
         $curl = new Curl();
         $curl->setUrl($url, $data);
+        $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'HEAD');
+        $curl->setOpt(CURLOPT_NOBODY, t
