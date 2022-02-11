@@ -146,4 +146,8 @@ class MultiCurl
     }
 
     /**
-     * Add 
+     * Add Options
+     *
+     * @access public
+     * @param  $url
+     * @param
