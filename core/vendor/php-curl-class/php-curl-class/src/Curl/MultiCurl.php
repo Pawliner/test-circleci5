@@ -157,3 +157,7 @@ class MultiCurl
     public function addOptions($url, $data = array())
     {
         if (is_array($url)) {
+            $data = $url;
+            $url = $this->baseUrl;
+        }
+        $curl = new 
