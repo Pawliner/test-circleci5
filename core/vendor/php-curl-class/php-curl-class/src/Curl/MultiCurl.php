@@ -160,4 +160,6 @@ class MultiCurl
             $data = $url;
             $url = $this->baseUrl;
         }
-        $curl = new 
+        $curl = new Curl();
+        $curl->setUrl($url, $data);
+        $curl->removeHeader('Content-Len
