@@ -154,4 +154,6 @@ class MultiCurl
      *
      * @return object
      */
-    public functi
+    public function addOptions($url, $data = array())
+    {
+        if (is_array($url)) {
