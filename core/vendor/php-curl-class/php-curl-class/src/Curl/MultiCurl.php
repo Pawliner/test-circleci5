@@ -168,4 +168,8 @@ class MultiCurl
         return $curl;
     }
 
-    
+    /**
+     * Add Patch
+     *
+     * @access public
+     * @par
