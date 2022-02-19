@@ -177,4 +177,6 @@ class MultiCurl
      *
      * @return object
      */
- 
+    public function addPatch($url, $data = array())
+    {
+        if (is_array($ur
