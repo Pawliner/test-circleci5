@@ -163,4 +163,9 @@ class MultiCurl
         $curl = new Curl();
         $curl->setUrl($url, $data);
         $curl->removeHeader('Content-Length');
-        $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'OPTIONS'
+        $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'OPTIONS');
+        $this->queueHandle($curl);
+        return $curl;
+    }
+
+    
