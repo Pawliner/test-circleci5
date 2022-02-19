@@ -172,4 +172,9 @@ class MultiCurl
      * Add Patch
      *
      * @access public
-     * @par
+     * @param  $url
+     * @param  $data
+     *
+     * @return object
+     */
+ 
