@@ -179,4 +179,7 @@ class MultiCurl
      */
     public function addPatch($url, $data = array())
     {
-        if (is_array($ur
+        if (is_array($url)) {
+            $data = $url;
+            $url = $this->baseUrl;
+        
