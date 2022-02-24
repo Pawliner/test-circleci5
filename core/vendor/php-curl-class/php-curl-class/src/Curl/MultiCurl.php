@@ -198,4 +198,5 @@ class MultiCurl
      * @access public
      * @param  $url
      * @param  $data
-     * @param  
+     * @param  $follow_303_with_post
+     *     If true, will cause 303 redirect
