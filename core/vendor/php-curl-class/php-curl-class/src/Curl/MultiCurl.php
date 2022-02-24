@@ -195,4 +195,7 @@ class MultiCurl
     /**
      * Add Post
      *
-     * @acce
+     * @access public
+     * @param  $url
+     * @param  $data
+     * @param  
