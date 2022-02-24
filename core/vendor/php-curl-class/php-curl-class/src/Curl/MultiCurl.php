@@ -186,4 +186,6 @@ class MultiCurl
         $curl = new Curl();
         $curl->setUrl($url);
         $curl->removeHeader('Content-Length');
-        $curl->setOpt(CURLOPT_CUSTOMRE
+        $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'PATCH');
+        $curl->setOpt(CURLOPT_POSTFIELDS, $data);
+        $this->queu
