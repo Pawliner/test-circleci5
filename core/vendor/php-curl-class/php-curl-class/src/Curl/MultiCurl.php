@@ -188,4 +188,11 @@ class MultiCurl
         $curl->removeHeader('Content-Length');
         $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'PATCH');
         $curl->setOpt(CURLOPT_POSTFIELDS, $data);
-        $this->queu
+        $this->queueHandle($curl);
+        return $curl;
+    }
+
+    /**
+     * Add Post
+     *
+     * @acce
