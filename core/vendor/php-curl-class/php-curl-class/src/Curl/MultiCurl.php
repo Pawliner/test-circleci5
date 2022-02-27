@@ -200,4 +200,8 @@ class MultiCurl
      * @param  $data
      * @param  $follow_303_with_post
      *     If true, will cause 303 redirections to be followed using GET requests (default: false).
-     *     Note: Redirections are only followed if the CURLOPT_FOLLOWLOCATION option is set to
+     *     Note: Redirections are only followed if the CURLOPT_FOLLOWLOCATION option is set to true.
+     *
+     * @return object
+     */
+    public 
