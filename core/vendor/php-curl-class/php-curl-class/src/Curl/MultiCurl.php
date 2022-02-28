@@ -204,4 +204,5 @@ class MultiCurl
      *
      * @return object
      */
-    public 
+    public function addPost($url, $data = array(), $follow_303_with_post = false)
+    
