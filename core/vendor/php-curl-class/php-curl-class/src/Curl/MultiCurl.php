@@ -208,4 +208,8 @@ class MultiCurl
     {
         if (is_array($url)) {
             $follow_303_with_post = (bool)$data;
-            
+            $data = $url;
+            $url = $this->baseUrl;
+        }
+
+      
