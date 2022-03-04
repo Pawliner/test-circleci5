@@ -212,4 +212,7 @@ class MultiCurl
             $url = $this->baseUrl;
         }
 
-      
+        $curl = new Curl();
+
+        if (is_array($data) && empty($data)) {
+   
