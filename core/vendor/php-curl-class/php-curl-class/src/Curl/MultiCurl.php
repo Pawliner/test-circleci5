@@ -215,4 +215,7 @@ class MultiCurl
         $curl = new Curl();
 
         if (is_array($data) && empty($data)) {
-   
+            $curl->removeHeader('Content-Length');
+        }
+
+        $curl->setUrl($u
