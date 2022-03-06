@@ -218,4 +218,7 @@ class MultiCurl
             $curl->removeHeader('Content-Length');
         }
 
-        $curl->setUrl($u
+        $curl->setUrl($url);
+
+        /*
+         * For post-redirect-get requests, the CURLOPT_CUSTOMR
