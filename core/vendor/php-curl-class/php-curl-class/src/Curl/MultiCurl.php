@@ -222,4 +222,6 @@ class MultiCurl
 
         /*
          * For post-redirect-get requests, the CURLOPT_CUSTOMREQUEST option must not
-         * be set, otherwise cURL will perform POS
+         * be set, otherwise cURL will perform POST requests for redirections.
+         */
+        if (!$follow_303_with_post) {
