@@ -221,4 +221,5 @@ class MultiCurl
         $curl->setUrl($url);
 
         /*
-         * For post-redirect-get requests, the CURLOPT_CUSTOMR
+         * For post-redirect-get requests, the CURLOPT_CUSTOMREQUEST option must not
+         * be set, otherwise cURL will perform POS
