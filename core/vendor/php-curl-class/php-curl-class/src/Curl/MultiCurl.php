@@ -225,3 +225,7 @@ class MultiCurl
          * be set, otherwise cURL will perform POST requests for redirections.
          */
         if (!$follow_303_with_post) {
+            $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'POST');
+        }
+
+    
