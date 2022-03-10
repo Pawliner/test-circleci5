@@ -228,4 +228,5 @@ class MultiCurl
             $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'POST');
         }
 
-    
+        $curl->setOpt(CURLOPT_POST, true);
+        $curl->setOpt(CURLOPT_POSTFIELDS, $curl->
