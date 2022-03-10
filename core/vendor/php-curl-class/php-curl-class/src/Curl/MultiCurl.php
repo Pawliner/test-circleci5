@@ -229,4 +229,9 @@ class MultiCurl
         }
 
         $curl->setOpt(CURLOPT_POST, true);
-        $curl->setOpt(CURLOPT_POSTFIELDS, $curl->
+        $curl->setOpt(CURLOPT_POSTFIELDS, $curl->buildPostData($data));
+        $this->queueHandle($curl);
+        return $curl;
+    }
+
+ 
