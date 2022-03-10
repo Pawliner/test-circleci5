@@ -234,4 +234,8 @@ class MultiCurl
         return $curl;
     }
 
- 
+    /**
+     * Add Put
+     *
+     * @access public
+     * @par
