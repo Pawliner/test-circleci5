@@ -247,4 +247,7 @@ class MultiCurl
     {
         if (is_array($url)) {
             $data = $url;
-            $url = $this
+            $url = $this->baseUrl;
+        }
+        $curl = new Curl();
+        $curl->setUrl
