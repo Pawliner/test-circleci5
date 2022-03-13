@@ -238,4 +238,9 @@ class MultiCurl
      * Add Put
      *
      * @access public
-     * @par
+     * @param  $url
+     * @param  $data
+     *
+     * @return object
+     */
+    public 
