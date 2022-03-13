@@ -243,4 +243,6 @@ class MultiCurl
      *
      * @return object
      */
-    public 
+    public function addPut($url, $data = array())
+    {
+        if (is_arra
