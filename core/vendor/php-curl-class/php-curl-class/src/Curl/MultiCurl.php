@@ -250,4 +250,6 @@ class MultiCurl
             $url = $this->baseUrl;
         }
         $curl = new Curl();
-        $curl->setUrl
+        $curl->setUrl($url);
+        $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'PUT');
+        $put_data
