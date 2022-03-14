@@ -252,4 +252,6 @@ class MultiCurl
         $curl = new Curl();
         $curl->setUrl($url);
         $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'PUT');
-        $put_data
+        $put_data = $curl->buildPostData($data);
+        if (is_string($put_data)) {
+     
