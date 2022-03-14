@@ -254,4 +254,6 @@ class MultiCurl
         $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'PUT');
         $put_data = $curl->buildPostData($data);
         if (is_string($put_data)) {
-     
+            $curl->setHeader('Content-Length', strlen($put_data));
+        }
+        $
