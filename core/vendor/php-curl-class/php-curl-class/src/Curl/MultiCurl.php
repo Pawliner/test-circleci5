@@ -263,4 +263,8 @@ class MultiCurl
 
     /**
      * Add Search
-  
+     *
+     * @access public
+     * @param  $url
+     * @param  $data
+ 
