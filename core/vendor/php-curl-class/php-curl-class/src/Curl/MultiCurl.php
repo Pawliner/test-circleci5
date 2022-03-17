@@ -257,4 +257,10 @@ class MultiCurl
             $curl->setHeader('Content-Length', strlen($put_data));
         }
         $curl->setOpt(CURLOPT_POSTFIELDS, $put_data);
-        $this-
+        $this->queueHandle($curl);
+        return $curl;
+    }
+
+    /**
+     * Add Search
+  
