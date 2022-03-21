@@ -270,4 +270,8 @@ class MultiCurl
      *
      * @return object
      */
-    public function addSearch($u
+    public function addSearch($url, $data = array())
+    {
+        if (is_array($url)) {
+            $data = $url;
+ 
