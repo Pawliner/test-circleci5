@@ -278,4 +278,5 @@ class MultiCurl
         }
         $curl = new Curl();
         $curl->setUrl($url);
-        $curl->setOpt
+        $curl->setOpt(CURLOPT_CUSTOMREQUEST, 'SEARCH');
+        $put_data = $curl->buildP
