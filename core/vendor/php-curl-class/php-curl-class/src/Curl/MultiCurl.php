@@ -285,4 +285,10 @@ class MultiCurl
         }
         $curl->setOpt(CURLOPT_POSTFIELDS, $put_data);
         $this->queueHandle($curl);
-      
+        return $curl;
+    }
+
+    /**
+     * Add Curl
+     *
+     * Add a Curl instance to the handle qu
