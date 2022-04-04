@@ -283,4 +283,6 @@ class MultiCurl
         if (is_string($put_data)) {
             $curl->setHeader('Content-Length', strlen($put_data));
         }
-        $curl->s
+        $curl->setOpt(CURLOPT_POSTFIELDS, $put_data);
+        $this->queueHandle($curl);
+      
