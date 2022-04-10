@@ -296,4 +296,7 @@ class MultiCurl
      * @access public
      * @param  $curl
      *
- 
+     * @return object
+     */
+    public function addCurl(Curl $curl)
+    {
