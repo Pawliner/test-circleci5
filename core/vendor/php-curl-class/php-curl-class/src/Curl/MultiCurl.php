@@ -291,4 +291,9 @@ class MultiCurl
     /**
      * Add Curl
      *
-     * Add a Curl instance to the handle qu
+     * Add a Curl instance to the handle queue.
+     *
+     * @access public
+     * @param  $curl
+     *
+ 
