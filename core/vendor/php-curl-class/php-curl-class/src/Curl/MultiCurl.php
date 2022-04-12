@@ -302,3 +302,10 @@ class MultiCurl
     {
         $this->queueHandle($curl);
         return $curl;
+    }
+
+    /**
+     * Before Send
+     *
+     * @access public
+     * @param  $ca
