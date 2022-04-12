@@ -300,3 +300,5 @@ class MultiCurl
      */
     public function addCurl(Curl $curl)
     {
+        $this->queueHandle($curl);
+        return $curl;
