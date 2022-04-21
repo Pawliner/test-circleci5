@@ -312,4 +312,10 @@ class MultiCurl
      */
     public function beforeSend($callback)
     {
-        $this->before
+        $this->beforeSendFunction = $callback;
+    }
+
+    /**
+     * Close
+     *
+     * @access
