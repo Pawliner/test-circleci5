@@ -308,4 +308,8 @@ class MultiCurl
      * Before Send
      *
      * @access public
-     * @param  $ca
+     * @param  $callback
+     */
+    public function beforeSend($callback)
+    {
+        $this->before
