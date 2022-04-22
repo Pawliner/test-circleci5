@@ -322,4 +322,8 @@ class MultiCurl
      */
     public function close()
     {
-        foreach ($this->curls as $cur
+        foreach ($this->curls as $curl) {
+            $curl->close();
+        }
+
+        if (is_resource($this-
