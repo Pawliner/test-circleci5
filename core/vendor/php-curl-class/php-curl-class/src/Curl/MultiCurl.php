@@ -318,4 +318,8 @@ class MultiCurl
     /**
      * Close
      *
-     * @access
+     * @access public
+     */
+    public function close()
+    {
+        foreach ($this->curls as $cur
