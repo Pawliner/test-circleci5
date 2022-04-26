@@ -332,4 +332,7 @@ class MultiCurl
     }
 
     /**
-     * Co
+     * Complete
+     *
+     * @access public
+     * @param  $cal
