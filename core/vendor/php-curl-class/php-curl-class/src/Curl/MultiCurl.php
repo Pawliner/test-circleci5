@@ -339,4 +339,10 @@ class MultiCurl
      */
     public function complete($callback)
     {
-        $this->co
+        $this->completeFunction = $callback;
+    }
+
+    /**
+     * Error
+     *
+   
