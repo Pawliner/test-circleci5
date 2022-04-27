@@ -335,4 +335,8 @@ class MultiCurl
      * Complete
      *
      * @access public
-     * @param  $cal
+     * @param  $callback
+     */
+    public function complete($callback)
+    {
+        $this->co
