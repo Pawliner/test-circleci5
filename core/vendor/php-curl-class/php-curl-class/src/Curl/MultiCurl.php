@@ -345,4 +345,7 @@ class MultiCurl
     /**
      * Error
      *
-   
+     * @access public
+     * @param  $callback
+     */
+    public function error($callbac
