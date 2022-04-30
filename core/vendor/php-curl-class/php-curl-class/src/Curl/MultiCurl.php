@@ -348,4 +348,10 @@ class MultiCurl
      * @access public
      * @param  $callback
      */
-    public function error($callbac
+    public function error($callback)
+    {
+        $this->errorFunction = $callback;
+    }
+
+    /**
+   
