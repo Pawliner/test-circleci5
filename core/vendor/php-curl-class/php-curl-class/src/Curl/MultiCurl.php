@@ -354,4 +354,8 @@ class MultiCurl
     }
 
     /**
-   
+     * Get Opt
+     *
+     * @access public
+     * @param  $option
+  
