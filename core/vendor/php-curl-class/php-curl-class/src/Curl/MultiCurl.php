@@ -358,4 +358,9 @@ class MultiCurl
      *
      * @access public
      * @param  $option
-  
+     *
+     * @return mixed
+     */
+    public function getOpt($option)
+    {
+        return
