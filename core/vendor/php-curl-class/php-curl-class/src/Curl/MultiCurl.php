@@ -365,3 +365,8 @@ class MultiCurl
     {
         return isset($this->options[$option]) ? $this->options[$option] : null;
     }
+
+    /**
+     * Set Basic Authentication
+     *
+     * @access p
