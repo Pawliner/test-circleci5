@@ -363,4 +363,5 @@ class MultiCurl
      */
     public function getOpt($option)
     {
-        return
+        return isset($this->options[$option]) ? $this->options[$option] : null;
+    }
