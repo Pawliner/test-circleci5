@@ -369,4 +369,8 @@ class MultiCurl
     /**
      * Set Basic Authentication
      *
-     * @access p
+     * @access public
+     * @param  $username
+     * @param  $password
+     */
+  
