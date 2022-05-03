@@ -373,4 +373,6 @@ class MultiCurl
      * @param  $username
      * @param  $password
      */
-  
+    public function setBasicAuthentication($username, $password = '')
+    {
+     
