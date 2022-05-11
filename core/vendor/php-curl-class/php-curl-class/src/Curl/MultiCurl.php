@@ -381,4 +381,8 @@ class MultiCurl
 
     /**
      * Set Concurrency
-    
+     *
+     * @access public
+     * @param  $concurrency
+     */
+    public function setConcur
