@@ -376,4 +376,9 @@ class MultiCurl
     public function setBasicAuthentication($username, $password = '')
     {
         $this->setOpt(CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        $this->setOpt(CU
+        $this->setOpt(CURLOPT_USERPWD, $username . ':' . $password);
+    }
+
+    /**
+     * Set Concurrency
+    
