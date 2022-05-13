@@ -385,4 +385,9 @@ class MultiCurl
      * @access public
      * @param  $concurrency
      */
-    public function setConcur
+    public function setConcurrency($concurrency)
+    {
+        $this->concurrency = $concurrency;
+    }
+
+    
