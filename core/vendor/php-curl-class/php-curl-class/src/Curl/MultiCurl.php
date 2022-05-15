@@ -397,4 +397,6 @@ class MultiCurl
      * @param  $username
      * @param  $password
      */
-    public functio
+    public function setDigestAuthentication($username, $password = '')
+    {
+        $
