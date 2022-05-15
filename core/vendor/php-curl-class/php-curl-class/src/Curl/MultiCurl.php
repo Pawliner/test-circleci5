@@ -394,4 +394,7 @@ class MultiCurl
      * Set Digest Authentication
      *
      * @access public
-     * @
+     * @param  $username
+     * @param  $password
+     */
+    public functio
