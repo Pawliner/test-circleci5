@@ -399,4 +399,5 @@ class MultiCurl
      */
     public function setDigestAuthentication($username, $password = '')
     {
-        $
+        $this->setOpt(CURLOPT_HTTPAUTH, CURLAUTH_DIGEST);
+        $this->setOpt(CURL
