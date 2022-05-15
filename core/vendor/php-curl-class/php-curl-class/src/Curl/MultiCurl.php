@@ -390,4 +390,8 @@ class MultiCurl
         $this->concurrency = $concurrency;
     }
 
-    
+    /**
+     * Set Digest Authentication
+     *
+     * @access public
+     * @
