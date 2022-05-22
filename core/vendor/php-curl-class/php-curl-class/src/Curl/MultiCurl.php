@@ -408,4 +408,8 @@ class MultiCurl
      *
      * @access public
      * @param  $key
-     * @param
+     * @param  $value
+     */
+    public function setCookie($key, $value)
+    {
+       
