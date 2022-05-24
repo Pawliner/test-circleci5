@@ -412,4 +412,10 @@ class MultiCurl
      */
     public function setCookie($key, $value)
     {
-       
+        $this->cookies[$key] = $value;
+    }
+
+    /**
+     * Set Cookies
+     *
+     * @acces
