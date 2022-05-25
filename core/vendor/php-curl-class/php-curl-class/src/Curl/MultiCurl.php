@@ -418,4 +418,7 @@ class MultiCurl
     /**
      * Set Cookies
      *
-     * @acces
+     * @access public
+     * @param  $cookies
+     */
+    public function setCooki
