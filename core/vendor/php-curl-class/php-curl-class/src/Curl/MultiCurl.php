@@ -421,4 +421,7 @@ class MultiCurl
      * @access public
      * @param  $cookies
      */
-    public function setCooki
+    public function setCookies($cookies)
+    {
+        foreach ($cookies as $key => $value) {
+           
