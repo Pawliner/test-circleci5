@@ -429,4 +429,7 @@ class MultiCurl
     }
 
     /**
-   
+     * Set Port
+     *
+     * @access public
+     * @param  $por
