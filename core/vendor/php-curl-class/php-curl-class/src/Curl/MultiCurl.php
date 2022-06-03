@@ -432,4 +432,8 @@ class MultiCurl
      * Set Port
      *
      * @access public
-     * @param  $por
+     * @param  $port
+     */
+    public function setPort($port)
+    {
+        $this->s
