@@ -436,4 +436,8 @@ class MultiCurl
      */
     public function setPort($port)
     {
-        $this->s
+        $this->setOpt(CURLOPT_PORT, intval($port));
+    }
+
+    /**
+     * Set Connect
