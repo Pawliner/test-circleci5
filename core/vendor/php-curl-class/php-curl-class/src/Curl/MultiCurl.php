@@ -424,4 +424,9 @@ class MultiCurl
     public function setCookies($cookies)
     {
         foreach ($cookies as $key => $value) {
-           
+            $this->cookies[$key] = $value;
+        }
+    }
+
+    /**
+   
