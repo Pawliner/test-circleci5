@@ -440,4 +440,9 @@ class MultiCurl
     }
 
     /**
-     * Set Connect
+     * Set Connect Timeout
+     *
+     * @access public
+     * @param  $seconds
+     */
+  
