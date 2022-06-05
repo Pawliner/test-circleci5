@@ -445,4 +445,6 @@ class MultiCurl
      * @access public
      * @param  $seconds
      */
-  
+    public function setConnectTimeout($seconds)
+    {
+        $this->setOpt
