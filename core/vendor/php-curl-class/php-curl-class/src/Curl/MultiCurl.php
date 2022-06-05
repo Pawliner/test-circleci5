@@ -447,4 +447,8 @@ class MultiCurl
      */
     public function setConnectTimeout($seconds)
     {
-        $this->setOpt
+        $this->setOpt(CURLOPT_CONNECTTIMEOUT, $seconds);
+    }
+
+    /**
+     * Set
