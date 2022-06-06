@@ -451,4 +451,8 @@ class MultiCurl
     }
 
     /**
-     * Set
+     * Set Cookie String
+     *
+     * @access public
+     * @param  $string
+    
