@@ -458,4 +458,11 @@ class MultiCurl
      */
     public function setCookieString($string)
     {
-        $this->setOpt(CURLOPT_COOKIE
+        $this->setOpt(CURLOPT_COOKIE, $string);
+    }
+
+    /**
+     * Set Cookie File
+     *
+     * @access public
+    
