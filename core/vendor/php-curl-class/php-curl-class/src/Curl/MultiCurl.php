@@ -465,4 +465,6 @@ class MultiCurl
      * Set Cookie File
      *
      * @access public
-    
+     * @param  $cookie_file
+     */
+    public function setCookieFile($cook
