@@ -467,4 +467,8 @@ class MultiCurl
      * @access public
      * @param  $cookie_file
      */
-    public function setCookieFile($cook
+    public function setCookieFile($cookie_file)
+    {
+        $this->setOpt(CURLOPT_COOKIEFILE, $cookie_file);
+    }
+
