@@ -472,3 +472,8 @@ class MultiCurl
         $this->setOpt(CURLOPT_COOKIEFILE, $cookie_file);
     }
 
+    /**
+     * Set Cookie Jar
+     *
+     * @access public
+     * @param  $co
