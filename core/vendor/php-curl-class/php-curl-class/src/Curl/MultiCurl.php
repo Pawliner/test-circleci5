@@ -476,4 +476,8 @@ class MultiCurl
      * Set Cookie Jar
      *
      * @access public
-     * @param  $co
+     * @param  $cookie_jar
+     */
+    public function setCookieJar($cookie_jar)
+    {
+        $this->s
