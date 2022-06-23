@@ -485,3 +485,7 @@ class MultiCurl
 
     /**
      * Set Header
+     *
+     * Add extra header to include in the request.
+     *
+ 
