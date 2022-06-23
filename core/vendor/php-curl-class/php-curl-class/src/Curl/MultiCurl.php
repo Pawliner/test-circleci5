@@ -480,4 +480,8 @@ class MultiCurl
      */
     public function setCookieJar($cookie_jar)
     {
-        $this->s
+        $this->setOpt(CURLOPT_COOKIEJAR, $cookie_jar);
+    }
+
+    /**
+     * Set Header
