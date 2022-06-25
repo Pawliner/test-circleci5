@@ -492,4 +492,6 @@ class MultiCurl
      * @param  $key
      * @param  $value
      */
-    publi
+    public function setHeader($key, $value)
+    {
+        $this->header
