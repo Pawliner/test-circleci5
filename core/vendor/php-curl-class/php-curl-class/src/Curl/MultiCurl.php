@@ -488,4 +488,8 @@ class MultiCurl
      *
      * Add extra header to include in the request.
      *
- 
+     * @access public
+     * @param  $key
+     * @param  $value
+     */
+    publi
