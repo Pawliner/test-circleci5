@@ -494,4 +494,10 @@ class MultiCurl
      */
     public function setHeader($key, $value)
     {
-        $this->header
+        $this->headers[$key] = $value;
+    }
+
+    /**
+     * Set Headers
+     *
+     * Add ext
