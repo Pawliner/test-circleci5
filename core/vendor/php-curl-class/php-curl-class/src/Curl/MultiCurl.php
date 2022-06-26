@@ -500,4 +500,7 @@ class MultiCurl
     /**
      * Set Headers
      *
-     * Add ext
+     * Add extra headers to include in the request.
+     *
+     * @access public
+     * @param  $hea
