@@ -503,4 +503,8 @@ class MultiCurl
      * Add extra headers to include in the request.
      *
      * @access public
-     * @param  $hea
+     * @param  $headers
+     */
+    public function setHeaders($headers)
+    {
+        foreach ($he
