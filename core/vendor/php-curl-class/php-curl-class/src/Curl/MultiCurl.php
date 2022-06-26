@@ -507,4 +507,10 @@ class MultiCurl
      */
     public function setHeaders($headers)
     {
-        foreach ($he
+        foreach ($headers as $key => $value) {
+            $this->headers[$key] = $value;
+        }
+    }
+
+    /**
+  
