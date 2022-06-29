@@ -516,4 +516,6 @@ class MultiCurl
      * Set JSON Decoder
      *
      * @access public
-     * @param  $
+     * @param  $mixed boolean|callable
+     */
+    public function setJsonDecoder($mixed)
