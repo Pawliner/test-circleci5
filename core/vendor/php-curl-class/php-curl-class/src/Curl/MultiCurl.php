@@ -513,4 +513,7 @@ class MultiCurl
     }
 
     /**
-  
+     * Set JSON Decoder
+     *
+     * @access public
+     * @param  $
