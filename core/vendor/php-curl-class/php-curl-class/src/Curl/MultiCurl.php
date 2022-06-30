@@ -519,3 +519,6 @@ class MultiCurl
      * @param  $mixed boolean|callable
      */
     public function setJsonDecoder($mixed)
+    {
+        if ($mixed === false) {
+            $this->jsonDe
