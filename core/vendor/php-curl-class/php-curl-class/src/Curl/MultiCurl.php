@@ -529,4 +529,7 @@ class MultiCurl
 
     /**
      * Set XML Decoder
- 
+     *
+     * @access public
+     * @param  $mixed boolean|callable
+     */
