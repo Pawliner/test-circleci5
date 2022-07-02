@@ -523,4 +523,10 @@ class MultiCurl
         if ($mixed === false) {
             $this->jsonDecoder = false;
         } elseif (is_callable($mixed)) {
-            $t
+            $this->jsonDecoder = $mixed;
+        }
+    }
+
+    /**
+     * Set XML Decoder
+ 
