@@ -533,3 +533,8 @@ class MultiCurl
      * @access public
      * @param  $mixed boolean|callable
      */
+    public function setXmlDecoder($mixed)
+    {
+        if ($mixed === false) {
+            $this->xmlDecoder = false;
+      
