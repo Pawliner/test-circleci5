@@ -540,4 +540,11 @@ class MultiCurl
         } elseif (is_callable($mixed)) {
             $this->xmlDecoder = $mixed;
         }
-   
+    }
+
+    /**
+     * Set Opt
+     *
+     * @access public
+     * @param  $option
+     
