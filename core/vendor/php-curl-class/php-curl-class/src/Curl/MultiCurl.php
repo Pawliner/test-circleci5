@@ -537,4 +537,7 @@ class MultiCurl
     {
         if ($mixed === false) {
             $this->xmlDecoder = false;
-      
+        } elseif (is_callable($mixed)) {
+            $this->xmlDecoder = $mixed;
+        }
+   
