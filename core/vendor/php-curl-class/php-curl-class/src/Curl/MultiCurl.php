@@ -547,4 +547,6 @@ class MultiCurl
      *
      * @access public
      * @param  $option
-     
+     * @param  $value
+     */
+    public function setOpt($option, $value)
