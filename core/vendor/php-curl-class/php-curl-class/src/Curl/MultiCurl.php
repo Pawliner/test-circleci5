@@ -562,4 +562,7 @@ class MultiCurl
      */
     public function setOpts($options)
     {
-        foreach ($options as $option
+        foreach ($options as $option => $value) {
+            $this->setOpt($option, $value);
+        }
+   
