@@ -550,3 +550,8 @@ class MultiCurl
      * @param  $value
      */
     public function setOpt($option, $value)
+    {
+        $this->options[$option] = $value;
+    }
+
+    /**
