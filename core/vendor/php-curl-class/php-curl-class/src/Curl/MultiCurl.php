@@ -555,3 +555,8 @@ class MultiCurl
     }
 
     /**
+     * Set Opts
+     *
+     * @access public
+     * @param  $options
+ 
