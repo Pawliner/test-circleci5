@@ -559,4 +559,7 @@ class MultiCurl
      *
      * @access public
      * @param  $options
- 
+     */
+    public function setOpts($options)
+    {
+        foreach ($options as $option
