@@ -565,4 +565,10 @@ class MultiCurl
         foreach ($options as $option => $value) {
             $this->setOpt($option, $value);
         }
-   
+    }
+
+    /**
+     * Set Referer
+     *
+     * @access public
+     * @param  $
