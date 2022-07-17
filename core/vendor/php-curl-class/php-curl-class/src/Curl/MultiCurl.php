@@ -575,4 +575,10 @@ class MultiCurl
      */
     public function setReferer($referer)
     {
-        $this-
+        $this->setReferrer($referer);
+    }
+
+    /**
+     * Set Referrer
+     *
+     
