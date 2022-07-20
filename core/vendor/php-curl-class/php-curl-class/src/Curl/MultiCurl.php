@@ -581,4 +581,7 @@ class MultiCurl
     /**
      * Set Referrer
      *
-     
+     * @access public
+     * @param  $referrer
+     */
+    public function setReferr
