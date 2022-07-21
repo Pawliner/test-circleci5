@@ -584,4 +584,7 @@ class MultiCurl
      * @access public
      * @param  $referrer
      */
-    public function setReferr
+    public function setReferrer($referrer)
+    {
+        $this->setOpt(CURLOPT_REFERER, $referrer);
+    }
