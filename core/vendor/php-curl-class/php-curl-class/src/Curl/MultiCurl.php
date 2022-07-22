@@ -593,4 +593,9 @@ class MultiCurl
      * Set Retry
      *
      * Number of retries to attempt or decider callable. Maximum number of
-     * attempts is $maximum_number_of_retries 
+     * attempts is $maximum_number_of_retries + 1.
+     *
+     * @access public
+     * @param  $mixed
+     */
+  
