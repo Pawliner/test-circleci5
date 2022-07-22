@@ -588,3 +588,8 @@ class MultiCurl
     {
         $this->setOpt(CURLOPT_REFERER, $referrer);
     }
+
+    /**
+     * Set Retry
+     *
+     * Number of retries to attempt or decider callab
