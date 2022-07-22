@@ -592,4 +592,5 @@ class MultiCurl
     /**
      * Set Retry
      *
-     * Number of retries to attempt or decider callab
+     * Number of retries to attempt or decider callable. Maximum number of
+     * attempts is $maximum_number_of_retries 
