@@ -598,4 +598,9 @@ class MultiCurl
      * @access public
      * @param  $mixed
      */
-  
+    public function setRetry($mixed)
+    {
+        $this->retry = $mixed;
+    }
+
+ 
