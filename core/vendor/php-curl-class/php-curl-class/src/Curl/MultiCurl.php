@@ -603,4 +603,8 @@ class MultiCurl
         $this->retry = $mixed;
     }
 
- 
+    /**
+     * Set Timeout
+     *
+     * @access public
+     * @
