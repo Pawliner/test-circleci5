@@ -607,4 +607,7 @@ class MultiCurl
      * Set Timeout
      *
      * @access public
-     * @
+     * @param  $seconds
+     */
+    public function setTimeout($seconds)
+ 
