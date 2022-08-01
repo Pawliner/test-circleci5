@@ -610,4 +610,9 @@ class MultiCurl
      * @param  $seconds
      */
     public function setTimeout($seconds)
- 
+    {
+        $this->setOpt(CURLOPT_TIMEOUT, $seconds);
+    }
+
+    /**
+     *
