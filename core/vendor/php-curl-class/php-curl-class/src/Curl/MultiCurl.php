@@ -623,4 +623,10 @@ class MultiCurl
     public function setUrl($url)
     {
         $this->baseUrl = $url;
-   
+    }
+
+    /**
+     * Set User Agent
+     *
+     * @access public
+     
