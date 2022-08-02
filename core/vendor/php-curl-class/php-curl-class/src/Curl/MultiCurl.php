@@ -620,4 +620,7 @@ class MultiCurl
      * @access public
      * @param  $url
      */
- 
+    public function setUrl($url)
+    {
+        $this->baseUrl = $url;
+   
