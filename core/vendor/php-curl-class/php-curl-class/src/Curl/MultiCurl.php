@@ -629,4 +629,6 @@ class MultiCurl
      * Set User Agent
      *
      * @access public
-     
+     * @param  $user_agent
+     */
+    public function setUserAgen
