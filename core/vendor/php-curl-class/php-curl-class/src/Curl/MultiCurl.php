@@ -615,4 +615,9 @@ class MultiCurl
     }
 
     /**
+     * Set Url
      *
+     * @access public
+     * @param  $url
+     */
+ 
