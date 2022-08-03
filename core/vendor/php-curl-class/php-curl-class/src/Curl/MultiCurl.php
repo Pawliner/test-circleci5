@@ -640,4 +640,8 @@ class MultiCurl
      * Start
      *
      * @access public
-   
+     */
+    public function start()
+    {
+        if ($this->isStarted) {
+            
