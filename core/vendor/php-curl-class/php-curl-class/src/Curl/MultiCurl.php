@@ -631,4 +631,6 @@ class MultiCurl
      * @access public
      * @param  $user_agent
      */
-    public function setUserAgen
+    public function setUserAgent($user_agent)
+    {
+        $this->setOpt(CURLOPT_USERAGENT, $user_agent)
