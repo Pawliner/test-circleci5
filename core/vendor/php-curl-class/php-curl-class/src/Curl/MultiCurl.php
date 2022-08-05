@@ -654,4 +654,6 @@ class MultiCurl
             $concurrency = count($this->curls);
         }
 
-        for ($i 
+        for ($i = 0; $i < $concurrency; $i++) {
+            $this->initHandle(array_shift($this->curls));
+  
