@@ -644,4 +644,9 @@ class MultiCurl
     public function start()
     {
         if ($this->isStarted) {
-            
+            return;
+        }
+
+        $this->isStarted = true;
+
+        $con
