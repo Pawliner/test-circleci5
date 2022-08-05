@@ -650,4 +650,8 @@ class MultiCurl
         $this->isStarted = true;
 
         $concurrency = $this->concurrency;
-        if ($concurrency > count($this->
+        if ($concurrency > count($this->curls)) {
+            $concurrency = count($this->curls);
+        }
+
+        for ($i 
