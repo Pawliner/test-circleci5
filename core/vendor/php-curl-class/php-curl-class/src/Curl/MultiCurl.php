@@ -649,4 +649,5 @@ class MultiCurl
 
         $this->isStarted = true;
 
-        $con
+        $concurrency = $this->concurrency;
+        if ($concurrency > count($this->
