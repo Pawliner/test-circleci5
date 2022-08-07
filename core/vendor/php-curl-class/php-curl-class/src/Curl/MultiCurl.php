@@ -659,4 +659,4 @@ class MultiCurl
         }
 
         do {
-            // Wait for activity on any curl_multi connection wh
+            // Wait for activity on any curl_multi connection when curl_multi_select (libcurl) fails to correctly block.
