@@ -656,4 +656,7 @@ class MultiCurl
 
         for ($i = 0; $i < $concurrency; $i++) {
             $this->initHandle(array_shift($this->curls));
-  
+        }
+
+        do {
+            // Wait for activity on any curl_multi connection wh
