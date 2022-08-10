@@ -663,3 +663,6 @@ class MultiCurl
             // https://bugs.php.net/bug.php?id=63411
             if (curl_multi_select($this->multiCurl) === -1) {
                 usleep(100000);
+            }
+
+            curl_multi_exec($this->multiCurl, $a
