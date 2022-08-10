@@ -665,4 +665,6 @@ class MultiCurl
                 usleep(100000);
             }
 
-            curl_multi_exec($this->multiCurl, $a
+            curl_multi_exec($this->multiCurl, $active);
+
+            while (!($info_array = curl_multi_info_read($this->multiCu
