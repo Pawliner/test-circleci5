@@ -668,4 +668,5 @@ class MultiCurl
             curl_multi_exec($this->multiCurl, $active);
 
             while (!($info_array = curl_multi_info_read($this->multiCurl)) === false) {
-                if ($info_array['msg'] === CURLMSG_DONE)
+                if ($info_array['msg'] === CURLMSG_DONE) {
+                    foreach ($this->activeCurls as $key =
