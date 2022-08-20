@@ -671,4 +671,5 @@ class MultiCurl
                 if ($info_array['msg'] === CURLMSG_DONE) {
                     foreach ($this->activeCurls as $key => $ch) {
                         if ($ch->curl === $info_array['handle']) {
-                            // Set the error code for multi ha
+                            // Set the error code for multi handles using the "result" key in the array returned by
+                            // cur
