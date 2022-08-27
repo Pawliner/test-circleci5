@@ -678,4 +678,5 @@ class MultiCurl
                             $ch->exec($ch->curl);
 
                             if ($ch->attemptRetry()) {
-                                // Remove completed handle before adding again in order t
+                                // Remove completed handle before adding again in order to retry request.
+                                curl_multi_remove_ha
