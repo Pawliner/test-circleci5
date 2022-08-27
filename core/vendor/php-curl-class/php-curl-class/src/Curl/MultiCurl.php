@@ -678,4 +678,4 @@ class MultiCurl
                             $ch->exec($ch->curl);
 
                             if ($ch->attemptRetry()) {
- 
+                                // Remove completed handle before adding again in order t
