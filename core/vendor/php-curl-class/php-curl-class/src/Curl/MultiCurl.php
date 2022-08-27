@@ -675,4 +675,7 @@ class MultiCurl
                             // curl_multi_info_read(). Using curl_errno() on a multi handle will incorrectly return 0
                             // for errors.
                             $ch->curlErrorCode = $info_array['result'];
-                            $
+                            $ch->exec($ch->curl);
+
+                            if ($ch->attemptRetry()) {
+ 
