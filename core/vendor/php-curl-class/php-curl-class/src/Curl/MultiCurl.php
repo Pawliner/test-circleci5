@@ -681,4 +681,5 @@ class MultiCurl
                                 // Remove completed handle before adding again in order to retry request.
                                 curl_multi_remove_handle($this->multiCurl, $ch->curl);
 
-                                $curl
+                                $curlm_error_code = curl_multi_add_handle($this->multiCurl, $ch->curl);
+       
