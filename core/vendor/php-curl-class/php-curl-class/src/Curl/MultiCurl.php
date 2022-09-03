@@ -682,4 +682,5 @@ class MultiCurl
                                 curl_multi_remove_handle($this->multiCurl, $ch->curl);
 
                                 $curlm_error_code = curl_multi_add_handle($this->multiCurl, $ch->curl);
-       
+                                if (!($curlm_error_code === CURLM_OK)) {
+                   
