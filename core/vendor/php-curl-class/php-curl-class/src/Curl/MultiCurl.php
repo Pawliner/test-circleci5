@@ -685,4 +685,6 @@ class MultiCurl
                                 if (!($curlm_error_code === CURLM_OK)) {
                                     throw new \ErrorException(
                                         'cURL multi add handle error: ' . curl_multi_strerror($curlm_error_code)
-         
+                                    );
+                                }
+       
