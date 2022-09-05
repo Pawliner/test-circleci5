@@ -687,4 +687,7 @@ class MultiCurl
                                         'cURL multi add handle error: ' . curl_multi_strerror($curlm_error_code)
                                     );
                                 }
-       
+                            } else {
+                                $ch->execDone();
+
+    
