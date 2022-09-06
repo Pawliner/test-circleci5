@@ -690,4 +690,5 @@ class MultiCurl
                             } else {
                                 $ch->execDone();
 
-    
+                                // Remove completed instance from active curls.
+   
