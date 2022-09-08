@@ -691,4 +691,6 @@ class MultiCurl
                                 $ch->execDone();
 
                                 // Remove completed instance from active curls.
-   
+                                unset($this->activeCurls[$key]);
+
+                            
