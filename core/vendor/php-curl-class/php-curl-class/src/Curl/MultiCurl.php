@@ -693,4 +693,5 @@ class MultiCurl
                                 // Remove completed instance from active curls.
                                 unset($this->activeCurls[$key]);
 
-                                // Start a new request before removing the handle o
+                                // Start a new request before removing the handle of the completed one.
+                                if (count($this->curls) >= 1
