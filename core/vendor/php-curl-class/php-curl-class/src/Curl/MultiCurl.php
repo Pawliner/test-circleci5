@@ -695,4 +695,6 @@ class MultiCurl
 
                                 // Start a new request before removing the handle of the completed one.
                                 if (count($this->curls) >= 1) {
-                                    $this->initHandle(array_s
+                                    $this->initHandle(array_shift($this->curls));
+                                }
+               
