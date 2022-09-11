@@ -697,4 +697,6 @@ class MultiCurl
                                 if (count($this->curls) >= 1) {
                                     $this->initHandle(array_shift($this->curls));
                                 }
-               
+                                curl_multi_remove_handle($this->multiCurl, $ch->curl);
+
+ 
