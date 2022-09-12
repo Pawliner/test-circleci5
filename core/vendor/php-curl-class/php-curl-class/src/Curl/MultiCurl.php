@@ -699,4 +699,5 @@ class MultiCurl
                                 }
                                 curl_multi_remove_handle($this->multiCurl, $ch->curl);
 
- 
+                                // Clean up completed instance.
+             
