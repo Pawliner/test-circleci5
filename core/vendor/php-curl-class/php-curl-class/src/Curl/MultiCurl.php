@@ -703,4 +703,6 @@ class MultiCurl
                                 $ch->close();
                             }
 
-                
+                            break;
+                        }
+                    }
