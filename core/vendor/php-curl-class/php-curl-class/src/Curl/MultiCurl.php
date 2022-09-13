@@ -706,3 +706,8 @@ class MultiCurl
                             break;
                         }
                     }
+                }
+            }
+
+            if (!$active) {
+                $active = coun
