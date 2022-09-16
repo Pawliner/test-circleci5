@@ -712,4 +712,11 @@ class MultiCurl
             if (!$active) {
                 $active = count($this->activeCurls);
             }
-        } while ($active
+        } while ($active > 0);
+
+        $this->isStarted = false;
+    }
+
+    /**
+     * Success
+     *
