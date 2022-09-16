@@ -720,3 +720,7 @@ class MultiCurl
     /**
      * Success
      *
+     * @access public
+     * @param  $callback
+     */
+    public funct
