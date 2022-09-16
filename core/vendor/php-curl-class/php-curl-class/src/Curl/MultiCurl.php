@@ -710,4 +710,6 @@ class MultiCurl
             }
 
             if (!$active) {
-                $active = coun
+                $active = count($this->activeCurls);
+            }
+        } while ($active
