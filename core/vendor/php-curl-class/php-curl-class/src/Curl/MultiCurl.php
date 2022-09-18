@@ -723,4 +723,7 @@ class MultiCurl
      * @access public
      * @param  $callback
      */
-    public funct
+    public function success($callback)
+    {
+        $this->successFunction = $callback;
+    
