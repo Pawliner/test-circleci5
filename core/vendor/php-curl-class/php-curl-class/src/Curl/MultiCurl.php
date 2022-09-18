@@ -726,4 +726,9 @@ class MultiCurl
     public function success($callback)
     {
         $this->successFunction = $callback;
-    
+    }
+
+    /**
+     * Unset Header
+     *
+     * Remove extra header prev
