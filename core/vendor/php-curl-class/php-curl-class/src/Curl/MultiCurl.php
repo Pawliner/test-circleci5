@@ -737,3 +737,10 @@ class MultiCurl
      * @param  $key
      */
     public function unsetHeader($key)
+    {
+        unset($this->headers[$key]);
+    }
+
+    /**
+     * Remove Header
+     
