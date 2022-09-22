@@ -734,3 +734,6 @@ class MultiCurl
      * Remove extra header previously set using Curl::setHeader().
      *
      * @access public
+     * @param  $key
+     */
+    public function unsetHeader($key)
