@@ -743,4 +743,6 @@ class MultiCurl
 
     /**
      * Remove Header
-     
+     *
+     * Remove an internal header from the request.
+     * Using `curl -H "Host:" 
