@@ -747,4 +747,7 @@ class MultiCurl
      * Remove an internal header from the request.
      * Using `curl -H "Host:" ...' is equivalent to $curl->removeHeader('Host');.
      *
-     *
+     * @access public
+     * @param  $key
+     */
+    public function rem
