@@ -750,4 +750,10 @@ class MultiCurl
      * @access public
      * @param  $key
      */
-    public function rem
+    public function removeHeader($key)
+    {
+        $this->setHeader($key, '');
+    }
+
+    /**
+     *
