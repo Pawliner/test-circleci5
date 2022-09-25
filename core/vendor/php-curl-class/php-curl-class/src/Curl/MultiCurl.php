@@ -756,4 +756,8 @@ class MultiCurl
     }
 
     /**
+     * Verbose
      *
+     * @access public
+     * @param  bool $on
+     * @pa
