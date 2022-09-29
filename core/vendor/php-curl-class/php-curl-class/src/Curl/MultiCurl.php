@@ -760,4 +760,6 @@ class MultiCurl
      *
      * @access public
      * @param  bool $on
-     * @pa
+     * @param  resource $output
+     */
+    public function verbose($on = true, $out
