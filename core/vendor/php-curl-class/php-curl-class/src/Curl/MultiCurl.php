@@ -770,4 +770,8 @@ class MultiCurl
             $this->setOpt(CURLINFO_HEADER_OUT, false);
         }
         $this->setOpt(CURLOPT_VERBOSE, $on);
-      
+        $this->setOpt(CURLOPT_STDERR, $output);
+    }
+
+    /**
+     * Destr
