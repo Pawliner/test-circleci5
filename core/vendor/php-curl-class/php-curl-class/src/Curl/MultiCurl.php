@@ -774,4 +774,8 @@ class MultiCurl
     }
 
     /**
-     * Destr
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
