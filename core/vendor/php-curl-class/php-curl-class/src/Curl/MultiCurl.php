@@ -779,3 +779,11 @@ class MultiCurl
      * @access public
      */
     public function __destruct()
+    {
+        $this->close();
+    }
+
+    /**
+     * Queue Handle
+     *
+     * @a
