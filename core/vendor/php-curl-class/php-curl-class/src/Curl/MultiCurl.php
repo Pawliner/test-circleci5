@@ -786,4 +786,7 @@ class MultiCurl
     /**
      * Queue Handle
      *
-     * @a
+     * @access private
+     * @param  $curl
+     */
+    private function queueHandle
