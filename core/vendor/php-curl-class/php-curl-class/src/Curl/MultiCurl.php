@@ -789,4 +789,6 @@ class MultiCurl
      * @access private
      * @param  $curl
      */
-    private function queueHandle
+    private function queueHandle($curl)
+    {
+        // Use sequential ids to allow for ordere
