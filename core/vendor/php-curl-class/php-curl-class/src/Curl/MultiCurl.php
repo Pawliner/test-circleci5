@@ -791,4 +791,6 @@ class MultiCurl
      */
     private function queueHandle($curl)
     {
-        // Use sequential ids to allow for ordere
+        // Use sequential ids to allow for ordered post processing.
+        $curl->id = $this->nextCurlId++;
+        $curl->isChildOfMultiCur
