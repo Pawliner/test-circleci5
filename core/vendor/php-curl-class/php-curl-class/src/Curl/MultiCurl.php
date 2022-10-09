@@ -806,4 +806,5 @@ class MultiCurl
      */
     private function initHandle($curl)
     {
-        // Set 
+        // Set callbacks if not already individually set.
+        if ($curl->beforeSen
