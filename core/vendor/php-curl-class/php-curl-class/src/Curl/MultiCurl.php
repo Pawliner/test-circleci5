@@ -793,4 +793,9 @@ class MultiCurl
     {
         // Use sequential ids to allow for ordered post processing.
         $curl->id = $this->nextCurlId++;
-        $curl->isChildOfMultiCur
+        $curl->isChildOfMultiCurl = true;
+        $this->curls[$curl->id] = $curl;
+    }
+
+    /**
+     * Init Handl
