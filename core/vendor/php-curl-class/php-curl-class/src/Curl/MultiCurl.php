@@ -798,4 +798,9 @@ class MultiCurl
     }
 
     /**
-     * Init Handl
+     * Init Handle
+     *
+     * @access private
+     * @param  $curl
+     * @throws \ErrorException
+ 
