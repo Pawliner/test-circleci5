@@ -808,4 +808,7 @@ class MultiCurl
     {
         // Set callbacks if not already individually set.
         if ($curl->beforeSendFunction === null) {
-            $curl->beforeSend($this->beforeSe
+            $curl->beforeSend($this->beforeSendFunction);
+        }
+        if ($curl->successFunction === null) {
+            $curl-
