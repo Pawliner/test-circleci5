@@ -813,4 +813,6 @@ class MultiCurl
         if ($curl->successFunction === null) {
             $curl->success($this->successFunction);
         }
-        if ($curl->errorFunct
+        if ($curl->errorFunction === null) {
+            $curl->error($this->errorFunction);
+  
