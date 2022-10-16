@@ -815,4 +815,6 @@ class MultiCurl
         }
         if ($curl->errorFunction === null) {
             $curl->error($this->errorFunction);
-  
+        }
+        if ($curl->completeFunction === null) {
+            $curl->co
