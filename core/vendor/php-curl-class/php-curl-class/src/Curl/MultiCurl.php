@@ -817,4 +817,8 @@ class MultiCurl
             $curl->error($this->errorFunction);
         }
         if ($curl->completeFunction === null) {
-            $curl->co
+            $curl->complete($this->completeFunction);
+        }
+
+        $curl->setOpts($this->options);
+   
