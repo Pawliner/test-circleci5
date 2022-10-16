@@ -811,4 +811,6 @@ class MultiCurl
             $curl->beforeSend($this->beforeSendFunction);
         }
         if ($curl->successFunction === null) {
-            $curl-
+            $curl->success($this->successFunction);
+        }
+        if ($curl->errorFunct
