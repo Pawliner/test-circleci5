@@ -824,4 +824,5 @@ class MultiCurl
         $curl->setHeaders($this->headers);
         $curl->setRetry($this->retry);
 
-        forea
+        foreach ($this->cookies as $key => $value) {
+            $curl->setCookie($ke
