@@ -821,4 +821,7 @@ class MultiCurl
         }
 
         $curl->setOpts($this->options);
-   
+        $curl->setHeaders($this->headers);
+        $curl->setRetry($this->retry);
+
+        forea
