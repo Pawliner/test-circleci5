@@ -832,3 +832,5 @@ class MultiCurl
         $curl->setXmlDecoder($this->xmlDecoder);
 
         $curlm_error_code = curl_multi_add_handle($this->multiCurl, $curl->curl);
+        if (!($curlm_error_code === CURLM_OK)) {
+            throw ne
