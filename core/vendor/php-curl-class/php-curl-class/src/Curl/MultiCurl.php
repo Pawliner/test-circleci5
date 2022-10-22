@@ -831,4 +831,4 @@ class MultiCurl
         $curl->setJsonDecoder($this->jsonDecoder);
         $curl->setXmlDecoder($this->xmlDecoder);
 
-        $curlm
+        $curlm_error_code = curl_multi_add_handle($this->multiCurl, $curl->curl);
