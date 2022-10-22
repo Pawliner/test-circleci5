@@ -829,4 +829,6 @@ class MultiCurl
         }
 
         $curl->setJsonDecoder($this->jsonDecoder);
-   
+        $curl->setXmlDecoder($this->xmlDecoder);
+
+        $curlm
