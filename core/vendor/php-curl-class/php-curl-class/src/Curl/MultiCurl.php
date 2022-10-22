@@ -833,4 +833,4 @@ class MultiCurl
 
         $curlm_error_code = curl_multi_add_handle($this->multiCurl, $curl->curl);
         if (!($curlm_error_code === CURLM_OK)) {
-            throw ne
+            throw new \ErrorException('cURL multi add handle error: ' . curl_multi_s
