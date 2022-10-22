@@ -825,4 +825,8 @@ class MultiCurl
         $curl->setRetry($this->retry);
 
         foreach ($this->cookies as $key => $value) {
-            $curl->setCookie($ke
+            $curl->setCookie($key, $value);
+        }
+
+        $curl->setJsonDecoder($this->jsonDecoder);
+   
