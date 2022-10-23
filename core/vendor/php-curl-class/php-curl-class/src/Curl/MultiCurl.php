@@ -836,4 +836,7 @@ class MultiCurl
             throw new \ErrorException('cURL multi add handle error: ' . curl_multi_strerror($curlm_error_code));
         }
 
-        $this->activeCurls[$c
+        $this->activeCurls[$curl->id] = $curl;
+        $curl->call($curl->beforeSendFunction);
+    }
+}
