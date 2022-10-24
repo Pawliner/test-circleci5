@@ -8,4 +8,8 @@ class StrUtil
      * Return true when $haystack starts with $needle.
      *
      * @access public
-     * @param  $h
+     * @param  $haystack
+     * @param  $needle
+     *
+     * @return bool
+     
