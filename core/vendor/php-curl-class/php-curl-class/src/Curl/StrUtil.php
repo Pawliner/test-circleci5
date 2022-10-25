@@ -12,4 +12,6 @@ class StrUtil
      * @param  $needle
      *
      * @return bool
-     
+     */
+    public static function startsWith($haystack, $needle)
+    {
