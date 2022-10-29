@@ -15,3 +15,5 @@ class StrUtil
      */
     public static function startsWith($haystack, $needle)
     {
+        return mb_substr($haystack, 0, mb_strlen($needle)) === $needle;
+    }
