@@ -17,3 +17,4 @@ class StrUtil
     {
         return mb_substr($haystack, 0, mb_strlen($needle)) === $needle;
     }
+}
