@@ -12,4 +12,8 @@ class Url
     public function __construct($base_url, $relative_url = null)
     {
         $this->baseUrl = $base_url;
-        $this->r
+        $this->relativeUrl = $relative_url;
+    }
+
+    public function __toString()
+ 
