@@ -16,4 +16,9 @@ class Url
     }
 
     public function __toString()
- 
+    {
+        return $this->absolutizeUrl();
+    }
+
+    /**
+     * Remove dot segm
