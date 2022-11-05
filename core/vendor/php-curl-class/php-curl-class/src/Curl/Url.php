@@ -21,4 +21,6 @@ class Url
     }
 
     /**
-     * Remove dot segm
+     * Remove dot segments.
+     *
+     * Interpret and remove the special "." and "..
