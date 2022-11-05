@@ -25,4 +25,6 @@ class Url
      *
      * Interpret and remove the special "." and ".." path segments from a referenced path.
      */
-    public static function removeDotSeg
+    public static function removeDotSegments($input)
+    {
+        // 1.  The input buffer is initialized with
