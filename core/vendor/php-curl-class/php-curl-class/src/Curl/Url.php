@@ -23,4 +23,6 @@ class Url
     /**
      * Remove dot segments.
      *
-     * Interpret and remove the special "." and "..
+     * Interpret and remove the special "." and ".." path segments from a referenced path.
+     */
+    public static function removeDotSeg
