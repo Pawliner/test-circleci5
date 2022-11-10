@@ -27,4 +27,5 @@ class Url
      */
     public static function removeDotSegments($input)
     {
-        // 1.  The input buffer is initialized with
+        // 1.  The input buffer is initialized with the now-appended path
+        //     components and the output buffer is initialized to 
