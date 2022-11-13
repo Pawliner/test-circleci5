@@ -32,4 +32,5 @@ class Url
         //     string.
         $output = '';
 
-        // 2.  Whi
+        // 2.  While the input buffer is not empty, loop as follows:
+        while (!empty($input
