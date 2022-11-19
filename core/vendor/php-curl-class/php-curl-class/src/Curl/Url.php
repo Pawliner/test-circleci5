@@ -33,4 +33,5 @@ class Url
         $output = '';
 
         // 2.  While the input buffer is not empty, loop as follows:
-        while (!empty($input
+        while (!empty($input)) {
+            // A.  If the input buffer begins with a prefix of "
