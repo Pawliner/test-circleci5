@@ -37,4 +37,5 @@ class Url
             // A.  If the input buffer begins with a prefix of "../" or "./",
             //     then remove that prefix from the input buffer; otherwise,
             if (StrUtil::startsWith($input, '../')) {
-  
+                $input = substr($input, 3);
+            } elseif (StrUtil::startsWith($inp
