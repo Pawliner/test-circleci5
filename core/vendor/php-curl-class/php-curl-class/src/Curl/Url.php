@@ -41,4 +41,5 @@ class Url
             } elseif (StrUtil::startsWith($input, './')) {
                 $input = substr($input, 2);
 
-            // B.  i
+            // B.  if the input buffer begins with a prefix of "/./" or "/.",
+            // 
