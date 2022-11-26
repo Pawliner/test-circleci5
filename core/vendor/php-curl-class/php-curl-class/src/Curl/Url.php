@@ -38,4 +38,7 @@ class Url
             //     then remove that prefix from the input buffer; otherwise,
             if (StrUtil::startsWith($input, '../')) {
                 $input = substr($input, 3);
-            } elseif (StrUtil::startsWith($inp
+            } elseif (StrUtil::startsWith($input, './')) {
+                $input = substr($input, 2);
+
+            // B.  i
