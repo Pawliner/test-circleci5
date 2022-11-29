@@ -42,4 +42,5 @@ class Url
                 $input = substr($input, 2);
 
             // B.  if the input buffer begins with a prefix of "/./" or "/.",
-            // 
+            //     where "." is a complete path segment, then replace that
+            //     p
