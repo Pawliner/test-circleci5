@@ -43,4 +43,5 @@ class Url
 
             // B.  if the input buffer begins with a prefix of "/./" or "/.",
             //     where "." is a complete path segment, then replace that
-            //     p
+            //     prefix with "/" in the input buffer; otherwise,
+            } elseif
