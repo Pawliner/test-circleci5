@@ -45,4 +45,6 @@ class Url
             //     where "." is a complete path segment, then replace that
             //     prefix with "/" in the input buffer; otherwise,
             } elseif (StrUtil::startsWith($input, '/./')) {
-                $input = substr($input,
+                $input = substr($input, 2);
+            } elseif ($input === '/.') {
+                $input = '/';
