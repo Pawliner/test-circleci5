@@ -49,4 +49,6 @@ class Url
             } elseif ($input === '/.') {
                 $input = '/';
 
-            // C.  if the input buffer begins with a prefix of "/../" or "/.
+            // C.  if the input buffer begins with a prefix of "/../" or "/..",
+            //     where ".." is a complete path segment, then replace that
+       
