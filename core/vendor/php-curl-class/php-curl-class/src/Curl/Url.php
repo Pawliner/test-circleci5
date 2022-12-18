@@ -48,3 +48,5 @@ class Url
                 $input = substr($input, 2);
             } elseif ($input === '/.') {
                 $input = '/';
+
+            // C.  if the input buffer begins with a prefix of "/../" or "/.
