@@ -53,4 +53,6 @@ class Url
             //     where ".." is a complete path segment, then replace that
             //     prefix with "/" in the input buffer and remove the last
             //     segment and its preceding "/" (if any) from the output
-            //     buff
+            //     buffer; otherwise,
+            } elseif (StrUtil::startsWith($input, '/../')) {
+      
