@@ -52,4 +52,5 @@ class Url
             // C.  if the input buffer begins with a prefix of "/../" or "/..",
             //     where ".." is a complete path segment, then replace that
             //     prefix with "/" in the input buffer and remove the last
-        
+            //     segment and its preceding "/" (if any) from the output
+            //     buff
