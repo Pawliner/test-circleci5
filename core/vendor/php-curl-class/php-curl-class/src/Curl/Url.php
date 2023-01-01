@@ -55,4 +55,5 @@ class Url
             //     segment and its preceding "/" (if any) from the output
             //     buffer; otherwise,
             } elseif (StrUtil::startsWith($input, '/../')) {
-      
+                $input = substr($input, 3);
+                $output = substr_replace
