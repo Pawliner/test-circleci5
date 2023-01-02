@@ -56,4 +56,5 @@ class Url
             //     buffer; otherwise,
             } elseif (StrUtil::startsWith($input, '/../')) {
                 $input = substr($input, 3);
-                $output = substr_replace
+                $output = substr_replace($output, '', mb_strrpos($output, '/'));
+            } else
