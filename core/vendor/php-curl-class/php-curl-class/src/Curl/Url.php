@@ -57,4 +57,6 @@ class Url
             } elseif (StrUtil::startsWith($input, '/../')) {
                 $input = substr($input, 3);
                 $output = substr_replace($output, '', mb_strrpos($output, '/'));
-            } else
+            } elseif ($input === '/..') {
+                $input = '/';
+                $ou
