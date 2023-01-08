@@ -59,4 +59,6 @@ class Url
                 $output = substr_replace($output, '', mb_strrpos($output, '/'));
             } elseif ($input === '/..') {
                 $input = '/';
-                $ou
+                $output = substr_replace($output, '', mb_strrpos($output, '/'));
+
+            // D
