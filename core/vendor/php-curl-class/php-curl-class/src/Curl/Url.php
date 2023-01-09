@@ -61,4 +61,4 @@ class Url
                 $input = '/';
                 $output = substr_replace($output, '', mb_strrpos($output, '/'));
 
-            // D
+            // D.  if the input buffer consists only of "." or "..", then remove
