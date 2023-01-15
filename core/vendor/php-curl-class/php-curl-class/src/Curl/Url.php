@@ -66,4 +66,4 @@ class Url
             } elseif ($input === '.' || $input === '..') {
                 $input = '';
 
-       
+            // E.  move the first path segment in the input buffer to the e
