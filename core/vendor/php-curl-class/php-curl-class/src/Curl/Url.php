@@ -67,4 +67,5 @@ class Url
                 $input = '';
 
             // E.  move the first path segment in the input buffer to the end of
-            //     the output buffer, including the initial "/" char
+            //     the output buffer, including the initial "/" character (if
+            //     any) and any subsequent character
