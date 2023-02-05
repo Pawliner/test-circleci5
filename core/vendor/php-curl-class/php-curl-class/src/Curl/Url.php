@@ -79,4 +79,5 @@ class Url
             }
         }
 
-        // 3.  Finally
+        // 3.  Finally, the output buffer is returned as the result of
+        //  
