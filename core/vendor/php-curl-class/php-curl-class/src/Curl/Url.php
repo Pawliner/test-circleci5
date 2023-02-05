@@ -75,3 +75,8 @@ class Url
                 $input = substr_replace($input, '', 0, $pos);
             } else {
                 $output .= $input;
+                $input = '';
+            }
+        }
+
+        // 3.  Finally
