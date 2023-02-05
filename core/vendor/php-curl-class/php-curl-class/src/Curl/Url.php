@@ -72,4 +72,6 @@ class Url
             //     the next "/" character or the end of the input buffer.
             } elseif (!(($pos = mb_strpos($input, '/', 1)) === false)) {
                 $output .= substr($input, 0, $pos);
-                $input = substr_replace($input, '', 0, $pos)
+                $input = substr_replace($input, '', 0, $pos);
+            } else {
+                $output .= $input;
