@@ -85,4 +85,6 @@ class Url
     }
 
     /**
+     * Absolutize url.
      *
+     * Combine the base and relative url into an absolute
