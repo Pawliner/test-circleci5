@@ -87,4 +87,8 @@ class Url
     /**
      * Absolutize url.
      *
-     * Combine the base and relative url into an absolute
+     * Combine the base and relative url into an absolute url.
+     */
+    private function absolutizeUrl()
+    {
+        $b = $this->parseUrl($
