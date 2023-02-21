@@ -91,4 +91,7 @@ class Url
      */
     private function absolutizeUrl()
     {
-        $b = $this->parseUrl($
+        $b = $this->parseUrl($this->baseUrl);
+
+        if (!($this->relativeUrl === null)) {
+            $r 
