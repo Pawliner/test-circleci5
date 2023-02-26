@@ -94,4 +94,6 @@ class Url
         $b = $this->parseUrl($this->baseUrl);
 
         if (!($this->relativeUrl === null)) {
-            $r 
+            $r = $this->parseUrl($this->relativeUrl);
+
+            // Copy relativ
