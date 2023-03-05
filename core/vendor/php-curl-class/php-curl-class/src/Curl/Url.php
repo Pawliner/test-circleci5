@@ -98,4 +98,6 @@ class Url
 
             // Copy relative parts to base url.
             if (isset($r['scheme'])) {
-                $b['
+                $b['scheme'] = $r['scheme'];
+            }
+            if (i
