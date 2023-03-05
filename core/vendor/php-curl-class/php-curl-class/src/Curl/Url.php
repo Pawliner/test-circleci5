@@ -96,4 +96,6 @@ class Url
         if (!($this->relativeUrl === null)) {
             $r = $this->parseUrl($this->relativeUrl);
 
-            // Copy relativ
+            // Copy relative parts to base url.
+            if (isset($r['scheme'])) {
+                $b['
