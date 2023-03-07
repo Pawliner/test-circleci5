@@ -100,4 +100,6 @@ class Url
             if (isset($r['scheme'])) {
                 $b['scheme'] = $r['scheme'];
             }
-            if (i
+            if (isset($r['host'])) {
+                $b['host'] = $r['host'];
+    
