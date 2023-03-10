@@ -107,4 +107,7 @@ class Url
                 $b['port'] = $r['port'];
             }
             if (isset($r['user'])) {
-                $b['use
+                $b['user'] = $r['user'];
+            }
+            if (isset($r['pass'])) {
+  
