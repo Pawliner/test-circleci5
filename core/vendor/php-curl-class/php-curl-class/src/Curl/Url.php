@@ -104,4 +104,7 @@ class Url
                 $b['host'] = $r['host'];
             }
             if (isset($r['port'])) {
-                $b['port'] = $r['port'
+                $b['port'] = $r['port'];
+            }
+            if (isset($r['user'])) {
+                $b['use
