@@ -113,4 +113,6 @@ class Url
                 $b['pass'] = $r['pass'];
             }
 
-            if (!isset($r['p
+            if (!isset($r['path']) || $r['path'] === '') {
+                $r['path'] = '/';
+            }
