@@ -110,4 +110,7 @@ class Url
                 $b['user'] = $r['user'];
             }
             if (isset($r['pass'])) {
-  
+                $b['pass'] = $r['pass'];
+            }
+
+            if (!isset($r['p
