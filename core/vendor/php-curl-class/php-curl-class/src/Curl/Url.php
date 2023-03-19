@@ -117,4 +117,6 @@ class Url
                 $r['path'] = '/';
             }
             // Merge relative url with base when relative url's path doesn't start with a slash.
-            if (!(StrUtil::startsWith($r['path'], '/'))) 
+            if (!(StrUtil::startsWith($r['path'], '/'))) {
+                $base = mb_strrchr($b['path'], '/', true);
+                
