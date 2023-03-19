@@ -116,4 +116,5 @@ class Url
             if (!isset($r['path']) || $r['path'] === '') {
                 $r['path'] = '/';
             }
-            // Merge relative url with base when relative url's path doesn't star
+            // Merge relative url with base when relative url's path doesn't start with a slash.
+            if (!(StrUtil::startsWith($r['path'], '/'))) 
