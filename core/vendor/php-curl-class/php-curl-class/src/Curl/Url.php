@@ -124,4 +124,5 @@ class Url
                 }
                 $r['path'] = $base . '/' . $r['path'];
             }
-          
+            $b['path'] = $r['path'];
+            $b['path'] = $this->removeDotSegmen
