@@ -121,4 +121,7 @@ class Url
                 $base = mb_strrchr($b['path'], '/', true);
                 if ($base === false) {
                     $base = '';
-        
+                }
+                $r['path'] = $base . '/' . $r['path'];
+            }
+          
