@@ -125,4 +125,7 @@ class Url
                 $r['path'] = $base . '/' . $r['path'];
             }
             $b['path'] = $r['path'];
-            $b['path'] = $this->removeDotSegmen
+            $b['path'] = $this->removeDotSegments($b['path']);
+
+            if (isset($r['query'])) {
+                $
