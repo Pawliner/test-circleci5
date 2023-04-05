@@ -128,4 +128,6 @@ class Url
             $b['path'] = $this->removeDotSegments($b['path']);
 
             if (isset($r['query'])) {
-                $
+                $b['query'] = $r['query'];
+            }
+            if (isset($r['fragment
