@@ -135,4 +135,6 @@ class Url
             }
         }
 
- 
+        if (!isset($b['path'])) {
+            $b['path'] = '/';
+      
