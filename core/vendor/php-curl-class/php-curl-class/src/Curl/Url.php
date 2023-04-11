@@ -130,4 +130,9 @@ class Url
             if (isset($r['query'])) {
                 $b['query'] = $r['query'];
             }
-            if (isset($r['fragment
+            if (isset($r['fragment'])) {
+                $b['fragment'] = $r['fragment'];
+            }
+        }
+
+ 
