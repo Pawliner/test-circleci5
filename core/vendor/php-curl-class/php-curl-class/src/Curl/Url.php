@@ -137,4 +137,7 @@ class Url
 
         if (!isset($b['path'])) {
             $b['path'] = '/';
-      
+        }
+
+        $absolutized_url = $this->unparseUrl($b);
+        return $absolutized
