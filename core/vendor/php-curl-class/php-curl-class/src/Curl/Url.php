@@ -140,4 +140,10 @@ class Url
         }
 
         $absolutized_url = $this->unparseUrl($b);
-        return $absolutized
+        return $absolutized_url;
+    }
+
+    /**
+     * Parse url.
+     *
+     * Parse url
