@@ -153,4 +153,9 @@ class Url
         return parse_url($url);
     }
 
-   
+    /**
+     * Unparse url.
+     *
+     * Combine url components into a url.
+     */
+ 
