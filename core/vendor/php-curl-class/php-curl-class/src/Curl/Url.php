@@ -158,4 +158,5 @@ class Url
      *
      * Combine url components into a url.
      */
- 
+    private function unparseUrl($parsed_url) {
+        $scheme   = isset($p
