@@ -146,4 +146,6 @@ class Url
     /**
      * Parse url.
      *
-     * Parse url
+     * Parse url into components of a URI as specified by RFC 3986.
+     */
+    private functi
