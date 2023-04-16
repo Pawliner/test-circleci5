@@ -148,4 +148,9 @@ class Url
      *
      * Parse url into components of a URI as specified by RFC 3986.
      */
-    private functi
+    private function parseUrl($url)
+    {
+        return parse_url($url);
+    }
+
+   
