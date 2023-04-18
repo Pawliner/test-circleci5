@@ -160,4 +160,4 @@ class Url
      */
     private function unparseUrl($parsed_url) {
         $scheme   = isset($parsed_url['scheme'])   ? $parsed_url['scheme'] . '://' : '';
-  
+        $host     = isset($parsed_url['host'])     ? $parsed_url['host'] : '';
