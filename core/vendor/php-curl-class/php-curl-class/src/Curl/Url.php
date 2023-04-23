@@ -163,4 +163,5 @@ class Url
         $host     = isset($parsed_url['host'])     ? $parsed_url['host'] : '';
         $port     = isset($parsed_url['port'])     ? ':' . $parsed_url['port'] : '';
         $user     = isset($parsed_url['user'])     ? $parsed_url['user'] : '';
-        $pass     = isset($parsed_url['pass']) 
+        $pass     = isset($parsed_url['pass'])     ? ':' . $parsed_url['pass'] : '';
+        $pass     = ($user
