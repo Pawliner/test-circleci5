@@ -165,4 +165,5 @@ class Url
         $user     = isset($parsed_url['user'])     ? $parsed_url['user'] : '';
         $pass     = isset($parsed_url['pass'])     ? ':' . $parsed_url['pass'] : '';
         $pass     = ($user || $pass)               ? $pass . '@' : '';
-        $path     = iss
+        $path     = isset($parsed_url['path'])     ? $parsed_url['path'] : '';
+        $query    = isse
