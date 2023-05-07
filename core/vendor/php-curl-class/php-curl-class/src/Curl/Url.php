@@ -168,4 +168,7 @@ class Url
         $path     = isset($parsed_url['path'])     ? $parsed_url['path'] : '';
         $query    = isset($parsed_url['query'])    ? '?' . $parsed_url['query'] : '';
         $fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : '';
-        $unparsed_url =  $scheme . $user . $pass . $host . $port . $path . $q
+        $unparsed_url =  $scheme . $user . $pass . $host . $port . $path . $query . $fragment;
+        return $unparsed_url;
+    }
+}
