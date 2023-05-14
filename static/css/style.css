@@ -1,0 +1,37 @@
+
+/**
+ *
+ * 音乐搜索器 - CSS 文件
+ *
+ * @author  MaiCong <i@maicong.me>
+ * @link    https://github.com/maicong/music
+ * @since   1.5.4
+ *
+ */
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'San Francisco', 'Microsoft YaHei', 'PingFang SC',
+    'Hiragino Sans GB', 'WenQuanYi Micro Hei', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell',
+    'Fira Sans', 'Droid Sans', 'Noto Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+a {
+  -webkit-transition: all .3s;
+  transition: all .3s;
+}
+.about {
+  background: #fff;
+  color: #7f8c8d;
+}
+.about-color {
+  color: #34495e;
+}

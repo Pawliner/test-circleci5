@@ -86,3 +86,39 @@ if (server('HTTP_X_REQUESTED_WITH') === 'XMLHttpRequest') {
     if (!$music_input || !$music_filter || !$music_type) {
         response('', 403, '(°ー°〃) 传入的数据不对啊');
     }
+
+    if ($music_filter !== 'url' && !in_array($music_type, array_keys($music_type_list), true)) {
+        response('', 403, '(°ー°〃) 目前还不支持这个网站');
+    }
+
+    if (!preg_match($music_valid_patterns[$music_filter], $music_input)) {
+        response('', 403, '(・-・*) 请检查您的输入是否正确');
+    }
+
+    switch ($music_filter) {
+        case 'name':
+            if (!$music_page) {
+                $music_page = 1;
+            }
+            $music_response = mc_get_song_by_name($music_input, $music_type, $music_page);
+            break;
+        case 'id':
+            $music_response = mc_get_song_by_id($music_input, $music_type);
+            break;
+        case 'url':
+            $music_response = mc_get_song_by_url($music_input);
+            break;
+    }
+
+    if (empty($music_response)) {
+        response('', 404, 'ㄟ( ▔, ▔ )ㄏ 没有找到相关信息');
+    }
+
+    if ($music_response['error']) {
+        response('', $music_response['code'], '(°ー°〃) ' . $music_response['error']);
+    }
+
+    response($music_response, 200, '');
+}
+
+include_once(MC_TEMP_DIR . '/index.php');
