@@ -138,3 +138,69 @@ $(function() {
           .hide()
           .appendTo($group);
       }
+      $alert.html(msg).show();
+    },
+    submit: function submit(v) {
+      v.preventDefault();
+      if (this.isFormValid()) {
+        var input = $.trim($('#j-input').val());
+        var filter = $('#j-input').data('filter');
+        var type =
+          filter === 'url' ? '_' : $('input[name="music_type"]:checked').val();
+        var page = 1;
+        var $more = $('<div class="aplayer-more">载入更多</div>');
+        var isload = false;
+        var ajax = function ajax(input, filter, type, page) {
+          $.ajax({
+            type: 'POST',
+            url: getUrl(),
+            timeout: 30000,
+            data: {
+              input: input,
+              filter: filter,
+              type: type,
+              page: page
+            },
+            dataType: 'json',
+            beforeSend: function beforeSend() {
+              isload = true;
+              var title = document.title;
+              switch (filter) {
+                case 'name':
+                  pushState(title, getUrl('?name=' + input + '&type=' + type));
+                  break;
+                case 'id':
+                  pushState(title, getUrl('?id=' + input + '&type=' + type));
+                  break;
+                case 'url':
+                  pushState(title, getUrl('?url=' + encodeURIComponent(input)));
+                  break;
+              }
+              if (page === 1) {
+                $('#j-input').attr('disabled', true);
+                $('#j-submit').button('loading');
+              } else {
+                $more.text('请稍后...');
+              }
+            },
+            success: function success(result) {
+              if (result.code === 200 && result.data) {
+                result.data.map(function(v) {
+                  if (!v.title) v.title = '暂无';
+                  if (!v.author) v.author = '暂无';
+                  if (!v.pic) v.pic = nopic;
+                  if (!v.lrc) v.lrc = '[00:00.00] 暂无歌词';
+                  if (!/\[00:(\d{2})\./.test(v.lrc)) {
+                    v.lrc = '[00:00.00] 无效歌词';
+                  }
+                });
+                var setValue = function setValue(data) {
+                  $('#j-link').val(data.link);
+                  $('#j-link-btn').attr('href', data.link);
+                  $('#j-src').val(data.url);
+                  $('#j-src-btn').attr('href', data.url);
+                  $('#j-lrc').val(data.lrc);
+                  $('#j-lrc-btn').attr(
+                    'href',
+                    'data:application/octet-stream;base64,' +
+                      btoa(unescape(encodeURIComponent(data.lrc)))
