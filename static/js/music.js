@@ -75,3 +75,66 @@ $(function() {
       $('#j-validator').trigger('submit');
     }, 0);
   }
+
+  // Tab 切换
+  $('#j-nav').on('click', 'li', function() {
+    var holder = {
+      name: '例如: 不要说话 陈奕迅',
+      id: '例如: 25906124',
+      url: '例如: http://music.163.com/#/song?id=25906124',
+      pattern_name: '^.+$',
+      pattern_id: '^[\\w\\/\\|]+$',
+      pattern_url: '^https?:\\/\\/\\S+$'
+    };
+    var filter = $(this).data('filter');
+
+    $(this)
+      .addClass('am-active')
+      .siblings('li')
+      .removeClass('am-active');
+
+    $('#j-input')
+      .data('filter', filter)
+      .attr({
+        placeholder: holder[filter],
+        pattern: holder['pattern_' + filter]
+      })
+      .removeClass('am-field-valid am-field-error am-active')
+      .closest('.am-form-group')
+      .removeClass('am-form-success am-form-error')
+      .find('.am-alert')
+      .hide();
+
+    if (filter === 'url') {
+      $('#j-type').hide();
+    } else {
+      $('#j-type').show();
+    }
+  });
+
+  // 输入验证
+  $('#j-validator').validator({
+    onValid: function onValid(v) {
+      $(v.field)
+        .closest('.am-form-group')
+        .find('.am-alert')
+        .hide();
+    },
+    onInValid: function onInValid(v) {
+      var $field = $(v.field);
+      var $group = $field.closest('.am-form-group');
+      var msgs = {
+        name: '将 名称 和 作者 一起输入可提高匹配度',
+        id: '输入错误，请查看下面的帮助',
+        url: '输入错误，请查看下面的帮助'
+      };
+      var $alert = $group.find('.am-alert');
+      var msg = msgs[$field.data('filter')] || this.getValidationMessage(v);
+
+      if (!$alert.length) {
+        $alert = $(
+          '<div class="am-alert am-alert-danger am-animation-shake"></div>'
+        )
+          .hide()
+          .appendTo($group);
+      }
