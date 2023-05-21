@@ -204,3 +204,80 @@ $(function() {
                     'href',
                     'data:application/octet-stream;base64,' +
                       btoa(unescape(encodeURIComponent(data.lrc)))
+                  );
+                  if ('download' in $('#j-src-btn')[0]) {
+                    var name = data.title + '-' + data.author;
+                    $('#j-src-btn').attr('download', name + '.mp3');
+                    $('#j-lrc-btn').attr('download', name + '.lrc');
+                    $('#j-src-btn-icon, #j-lrc-btn-icon')
+                      .addClass('am-icon-download')
+                      .removeClass('am-icon-external-link');
+                  }
+                  $('#j-songid').val(data.songid);
+                  $('#j-name').val(data.title);
+                  $('#j-author').val(data.author);
+                };
+
+                if (page === 1) {
+                  if (player) {
+                    player.pause();
+                  }
+
+                  playerList = result.data;
+
+                  setValue(playerList[0]);
+
+                  $('#j-validator').slideUp();
+                  $('#j-main').slideDown();
+
+                  player = new APlayer({
+                    element: $('#j-player')[0],
+                    autoplay: false,
+                    narrow: false,
+                    showlrc: 1,
+                    mutex: false,
+                    mode: 'circulation',
+                    preload: 'metadata',
+                    theme: '#0e90d2',
+                    music: result.data
+                  });
+
+                  $('#j-player').append($more);
+
+                  $more.on('click', function() {
+                    if (isload) return;
+                    page++;
+                    ajax(input, filter, type, page);
+                  });
+                } else {
+                  player.addMusic(result.data);
+                  playerList = playerList.concat(result.data);
+                }
+
+                player.on('canplay', function() {
+                  player.play();
+                });
+                player.on('play', function() {
+                  var data = playerList[player.playIndex];
+                  var img = new Image();
+                  img.src = data.pic;
+                  img.onerror = function() {
+                    $('.aplayer-pic').css(
+                      'background-image',
+                      'url(' + nopic + ')'
+                    );
+                  };
+                  document.title =
+                    '正在播放: ' + data.title + ' - ' + data.author;
+                  setValue(data);
+                });
+                player.on('ended', function() {
+                  document.title = siteTitle;
+                });
+                if (result.data.length < 10) {
+                  $more.hide();
+                } else {
+                  $more.text('载入更多');
+                }
+              } else {
+                if (page === 1) {
