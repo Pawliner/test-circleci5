@@ -281,3 +281,62 @@ $(function() {
                 }
               } else {
                 if (page === 1) {
+                  $('#j-input')
+                    .closest('.am-form-group')
+                    .find('.am-alert')
+                    .html(result.error || '(°ー°〃) 服务器好像罢工了')
+                    .show();
+                } else {
+                  $more.text('没有了');
+                  setTimeout(function() {
+                    $more.slideUp();
+                  }, 1000);
+                }
+              }
+            },
+            error: function error(e, t) {
+              if (page === 1) {
+                var err = '(°ー°〃) 出了点小问题，请重试';
+                if (t === 'timeout') {
+                  err = '(°ー°〃) 请求超时了，请稍后重试';
+                }
+                $('#j-input')
+                  .closest('.am-form-group')
+                  .find('.am-alert')
+                  .html(err)
+                  .show();
+              } else {
+                $more.text('(°ー°〃) 加载失败了，点击重试');
+              }
+            },
+            complete: function complete() {
+              isload = false;
+              if (page === 1) {
+                $('#j-input').attr('disabled', false);
+                $('#j-submit').button('reset');
+              }
+            }
+          });
+        };
+
+        ajax(input, filter, type, page);
+      }
+    }
+  });
+
+  $('#j-main input').focus(function() {
+    $(this).select();
+  });
+
+  $('#j-more').on('click', function() {
+    $(this).hide();
+    $('#j-quote').removeClass('music-overflow');
+  });
+
+  $('#j-back').on('click', function() {
+    if (player) {
+      player.pause();
+    }
+    $('#j-validator').slideDown();
+    $('#j-main').slideUp();
+    $('#j-main input').val('');
