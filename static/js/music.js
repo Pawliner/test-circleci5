@@ -340,3 +340,6 @@ $(function() {
     $('#j-validator').slideDown();
     $('#j-main').slideUp();
     $('#j-main input').val('');
+    document.title = siteTitle;
+  });
+});
