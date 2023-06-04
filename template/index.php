@@ -68,3 +68,78 @@ if (!defined('MC_CORE')) {
                 <form id="j-validator" class="am-form am-margin-bottom-lg" method="post">
                     <div class="am-u-md-12 am-u-sm-centered">
                         <ul id="j-nav" class="am-nav am-nav-pills am-nav-justify am-margin-bottom music-tabs">
+                            <li class="am-active" data-filter="name">
+                                <a>音乐名称</a>
+                            </li>
+                            <li data-filter="id">
+                                <a>音乐 ID</a>
+                            </li>
+                            <li data-filter="url">
+                                <a>音乐地址</a>
+                            </li>
+                        </ul>
+                        <div class="am-form-group">
+                            <input id="j-input" data-filter="name" class="am-form-field am-input-lg am-text-center am-radius" placeholder="例如: 不要说话 陈奕迅" data-am-loading="{loadingText: ' '}" pattern="^.+$" required>
+                            <div class="am-alert am-alert-danger am-animation-shake"></div>
+                        </div>
+                        <div id="j-type" class="am-form-group am-text-center music-type">
+                        <?php foreach ($music_type_list as $key => $val) { ?>
+                            <label class="am-radio-inline">
+                                <input type="radio" name="music_type" value="<?php echo $key; ?>" data-am-ucheck<?php if ($key === 'netease') echo ' checked'; ?>>
+                                <?php echo $val; ?>
+                            </label>
+                            <?php if ($key === 'migu') echo '<br />'; ?>
+                        <?php } ?>
+                        </div>
+                        <button id="j-submit" type="submit" class="am-btn am-btn-primary am-btn-lg am-btn-block am-radius" data-am-loading="{spinner: 'cog', loadingText: '正在搜索相关音乐...', resetText: 'Get &#x221A;'}">Get &#x221A;</button>
+                    </div>
+                </form>
+                <form id="j-main" class="am-form am-u-md-12 am-u-sm-centered music-main">
+                    <a type="button" id="j-back" class="am-btn am-btn-success am-btn-lg am-btn-block am-radius am-margin-bottom-lg">成功 Get &#x221A; 返回继续 <i class="am-icon-reply am-icon-fw"></i></a>
+                    <div class="am-g am-margin-bottom-sm">
+                        <div class="am-u-lg-6">
+                            <div class="am-input-group am-input-group-sm am-margin-bottom-sm" data-am-popover="{content: '音乐地址', trigger: 'hover'}">
+                                <span class="am-input-group-label"><i class="am-icon-link am-icon-fw"></i></span>
+                                <input id="j-link" class="am-form-field" readonly>
+                                <span class="am-input-group-btn">
+                                    <a id="j-link-btn" class="am-btn am-btn-default" target="_blank">
+                                        <i class="am-icon-external-link"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="am-u-lg-6">
+                            <div class="am-input-group am-input-group-sm am-margin-bottom-sm" data-am-popover="{content: '音乐链接', trigger: 'hover'}">
+                                <span class="am-input-group-label"><i class="am-icon-music am-icon-fw"></i></span>
+                                <input id="j-src" class="am-form-field" readonly>
+                                <span class="am-input-group-btn">
+                                    <a id="j-src-btn" class="am-btn am-btn-default" target="_blank">
+                                        <i id="j-src-btn-icon" class="am-icon-external-link"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-g">
+                        <div class="am-u-lg-6">
+                            <div class="am-input-group am-input-group-sm am-margin-bottom-sm" data-am-popover="{content: '音乐ID', trigger: 'hover'}">
+                                <span class="am-input-group-label"><i class="am-icon-list-ol am-icon-fw"></i></span>
+                                <input id="j-songid" class="am-form-field" readonly>
+                            </div>
+                        </div>
+                        <div class="am-u-lg-6">
+                            <div class="am-input-group am-input-group-sm am-margin-bottom-sm" data-am-popover="{content: '音乐歌词', trigger: 'hover'}">
+                                <span class="am-input-group-label"><i class="am-icon-file-text-o am-icon-fw"></i></span>
+                                <input id="j-lrc" class="am-form-field" readonly>
+                                <span class="am-input-group-btn">
+                                    <a id="j-lrc-btn" class="am-btn am-btn-default" target="_blank">
+                                        <i id="j-lrc-btn-icon" class="am-icon-external-link"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="am-g">
+                        <div class="am-u-lg-6">
+                            <div class="am-input-group am-input-group-sm am-margin-bottom-sm" data-am-popover="{content: '音乐名称', trigger: 'hover'}">
+                                <span class="am-input-group-label"><i class="am-icon-tag am-icon-fw"></i></span>
