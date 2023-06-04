@@ -143,3 +143,69 @@ if (!defined('MC_CORE')) {
                         <div class="am-u-lg-6">
                             <div class="am-input-group am-input-group-sm am-margin-bottom-sm" data-am-popover="{content: '音乐名称', trigger: 'hover'}">
                                 <span class="am-input-group-label"><i class="am-icon-tag am-icon-fw"></i></span>
+                                <input id="j-name" class="am-form-field" readonly>
+                            </div>
+                        </div>
+                        <div class="am-u-lg-6">
+                            <div class="am-input-group am-input-group-sm am-margin-bottom-sm" data-am-popover="{content: '音乐作者', trigger: 'hover'}">
+                                <span class="am-input-group-label"><i class="am-icon-user am-icon-fw"></i></span>
+                                <input id="j-author" class="am-form-field" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="j-show" class="am-margin-vertical">
+                        <div id="j-player" class="aplayer"></div>
+                    </div>
+                </form>
+                <div class="am-u-md-12 am-u-sm-centered am-margin-vertical music-tips">
+                    <h4>帮助：</h4>
+                    <p><b>标红</b> 为 <strong>音乐 ID</strong>，<u>下划线</u> 表示 <strong>音乐地址</strong></p>
+                    <ul>
+                        <li>蜻蜓 FM 的音乐 ID 需要使用 <code>| (管道符)</code> 组合，例如 <code>158696|5266259</code></li>
+                        <li>全民 K 歌的音乐名称请输入 <code>shareuid</code>，这是用户的 uid，搜索结果是该用户的所有公开作品</li>
+                        <li>全民 K 歌的音乐 ID 请输入 <code>shareid</code> 这是单曲分享 id，搜索结果是该单曲信息</li>
+                    </ul>
+                    <blockquote id="j-quote" class="music-overflow">
+                        <p><span>网易：</span><u>http://music.163.com/#/song?id=<b>25906124</b></u></p>
+                        <p><span>ＱＱ：</span><u>http://y.qq.com/n/yqq/song/<b>002B2EAA3brD5b</b>.html</u></p>
+                        <p><span>酷狗：</span><u>http://www.kugou.com/song/#hash=<b>08228af3cb404e8a4e7e9871bf543ff6</b></u></p>
+                        <p><span>酷我：</span><u>http://www.kuwo.cn/yinyue/<b>382425</b>/</u></p>
+                        <p><span>虾米：</span><u>http://www.xiami.com/song/<b>2113248</b></u></p>
+                        <p><span>百度：</span><u>http://music.baidu.com/song/<b>266069</b></u></p>
+                        <p><span>一听：</span><u>http://www.1ting.com/player/b6/player_<b>357838</b>.html</u></p>
+                        <p><span>咪咕：</span><u>http://music.migu.cn/v2/music/song/<b>477803</b></u></p>
+                        <p><span>荔枝：</span><u>http://www.lizhi.fm/1947925/<b>2498707770886461446</b></u></p>
+                        <p><span>蜻蜓：</span><u>http://www.qingting.fm/channels/<b>158696</b>/programs/<b>5266259</b></u></p>
+                        <p><span>喜马拉雅：</span><u>http://www.ximalaya.com/51701370/sound/<b>24755731</b></u></p>
+                        <p><span>全民K歌 (shareuid)：</span><u>http://kg.qq.com/node/personal?uid=<b>619a958c25283e88</b></u></p>
+                        <p><span>全民K歌 (shareid)：</span><u>https://kg.qq.com/node/play?s=<b>FA3h1gFhd6Vk7Ft4</b></u></p>
+                        <p><span>5sing原创：</span><u>http://5sing.kugou.com/yc/<b>3082899</b>.html</u></p>
+                        <p><span>5sing翻唱：</span><u>http://5sing.kugou.com/fc/<b>14369766</b>.html</u></p>
+                    </blockquote>
+                    <div id="j-more" class="music-more">查看更多</div>
+                </div>
+            </div>
+        </div>
+        <div class="am-popup" id="copr-info">
+            <div class="am-popup-inner">
+                <div class="am-popup-hd">
+                    <h4 class="am-popup-title">免责声明</h4>
+                    <span data-am-modal-close class="am-close">&times;</span>
+                </div>
+                <div class="am-popup-bd">
+                    <p>本站音频文件来自各网站接口，本站不会修改任何音频文件</p>
+                    <p>音频版权来自各网站，本站只提供数据查询服务，不提供任何音频存储和贩卖服务</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <p class="am-text-sm">v<?php echo MC_VERSION; ?>&nbsp;&copy;&nbsp;<?php echo date('Y'); ?>&nbsp;<a href="https://github.com/maicong/music/releases" target="_blank" rel="author">源码下载</a>&nbsp;<a href="https://github.com/maicong/music/issues" target="_blank">意见反馈</a>&nbsp;<a href="javascript:void(0)" data-am-modal="{target: '#copr-info'}">免责声明</a></p>
+    </footer>
+    <script src="//cdn.staticfile.org/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//cdn.staticfile.org/amazeui/2.3.0/js/amazeui.min.js"></script>
+    <script src="//cdn.staticfile.org/aplayer/1.6.0/APlayer.min.js"></script>
+    <script src="//cdn.staticfile.org/Base64/1.0.1/base64.min.js"></script>
+    <script src="static/js/music.js?v<?php echo MC_VERSION; ?>"></script>
+</body>
+</html>
